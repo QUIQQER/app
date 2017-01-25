@@ -1,0 +1,15 @@
+<quiqqer>
+    <package>
+        <title>
+            <locale group="quiqqer/app" var="package.title"/>
+        </title>
+
+        <description>
+            <locale group="quiqqer/app" var="package.title"/>
+        </description>
+
+        <provider>
+            <rest src="\QUI\APP\RestProvider"/>
+        </provider>
+    </package>
+</quiqqer>
