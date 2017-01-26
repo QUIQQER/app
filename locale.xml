@@ -10,4 +10,47 @@
             <en><![CDATA[Extends QUIQQER with a REST API for a QUIQQER APP.]]></en>
         </locale>
     </groups>
+
+    <groups name="quiqqer/app" datatype="php">
+        <locale name="quiqqerApp.settings.category.title">
+            <de><![CDATA[App]]></de>
+            <en><![CDATA[App]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.general.title">
+            <de><![CDATA[Allgemeine Einstellungen]]></de>
+            <en><![CDATA[General settings]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.fontColor.text">
+            <de><![CDATA[Allgemeine Schriftfarbe]]></de>
+            <en><![CDATA[General font color]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.backgroundColor.text">
+            <de><![CDATA[Hintergrundfarbe der App]]></de>
+            <en><![CDATA[Background color of the app]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.advertisement.text">
+            <de><![CDATA[Werbung in der App verwenden]]></de>
+            <en><![CDATA[Use advertising in the app]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.title.text">
+            <de><![CDATA[Title der APP]]></de>
+            <en><![CDATA[Title of the app]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.menu.title">
+            <de><![CDATA[Menü Einstellungen]]></de>
+            <en><![CDATA[Menu settings]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.menuFrontColor.text">
+            <de><![CDATA[Schriftfarbe des Menüs]]></de>
+            <en><![CDATA[Font color of the menu]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.menuBackgroundColor.text">
+            <de><![CDATA[Hintergrundfarbe des Menüs]]></de>
+            <en><![CDATA[Background color of the menu]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.menuBottom.text">
+            <de><![CDATA[Unteres Menü anzeigen]]></de>
+            <en><![CDATA[Show bottom menü]]></en>
+        </locale>
+    </groups>
 </locales>
