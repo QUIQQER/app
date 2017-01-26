@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiqqer>
+    <project>
+        <settings>
+            <config>
+                <section name="quiqqerApp.settings">
+
+                    <conf name="fontColor">
+                        <type><![CDATA[string]]></type>
+                        <defaultvalue>#333333</defaultvalue>
+                    </conf>
+                    <conf name="backgroundColor">
+                        <type><![CDATA[string]]></type>
+                        <defaultvalue>#ffffff</defaultvalue>
+                    </conf>
+                    <conf name="advertisement">
+                        <type><![CDATA[bool]]></type>
+                        <defaultvalue>1</defaultvalue>
+                    </conf>
+                    <conf name="menuFrontColor">
+                        <type><![CDATA[string]]></type>
+                        <defaultvalue>#ffffff</defaultvalue>
+                    </conf>
+                    <conf name="menuBackgroundColor">
+                        <type><![CDATA[string]]></type>
+                        <defaultvalue>#1874cd</defaultvalue>
+                    </conf>
+                    <conf name="menuBottom">
+                        <type><![CDATA[bool]]></type>
+                        <defaultvalue>1</defaultvalue>
+                    </conf>
+
+                </section>
+            </config>
+
+            <window>
+                <categories>
+
+                    <category name="quiqqerApp">
+                        <text>
+                            <locale group="quiqqer/app"
+                                    var="quiqqerApp.settings.category.title"
+                            />
+                        </text>
+                        <icon>fa fa-id-badge</icon>
+
+                        <settings title="quiqqerApp.settings"
+                                  name="quiqqerApp.settings.general">
+
+                            <title>
+                                <locale group="quiqqer/app"
+                                        var="quiqqerApp.settings.general.title"
+                                />
+                            </title>
+
+                            <input conf="quiqqerApp.settings.fontColor"
+                                   type="color">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.fontColor.text"
+                                    />
+                                </text>
+                            </input>
+                            <input conf="quiqqerApp.settings.backgroundColor"
+                                   type="color">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.backgroundColor.text"
+                                    />
+                                </text>
+                            </input>
+                            <input conf="quiqqerApp.settings.advertisement"
+                                   type="checkbox">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.advertisement.text"
+                                    />
+                                </text>
+                            </input>
+                            <input type="hidden" data-qui="package/quiqqer/app/bin/controls/TitleSetting">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.title.text"
+                                    />
+                                </text>
+                            </input>
+                        </settings>
+
+                        <settings title="quiqqerApp.settings"
+                                  name="quiqqerApp.settings.menu">
+
+                            <title>
+                                <locale group="quiqqer/app"
+                                        var="quiqqerApp.settings.menu.title"
+                                />
+                            </title>
+                            <input conf="quiqqerApp.settings.menuFrontColor"
+                                   type="color">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.menuFrontColor.text"
+                                    />
+                                </text>
+                            </input>
+                            <input conf="quiqqerApp.settings.menuBackgroundColor"
+                                   type="color">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.menuBackgroundColor.text"
+                                    />
+                                </text>
+                            </input>
+                            <input conf="quiqqerApp.settings.menuBottom"
+                                   type="checkbox">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.menuBottom.text"
+                                    />
+                                </text>
+                            </input>
+
+                        </settings>
+
+
+                    </category>
+                </categories>
+            </window>
+        </settings>
+    </project>
+</quiqqer>

@@ -133,12 +133,26 @@ class RestProvider implements QUI\REST\ProviderInterface
         $menu = null;
 
 
+        // title
         $result = array(
-            'logo'        => $logo,
-            'placeholder' => $placeholder,
-            'favicon'     => $favicon,
-            'menu'        => $menu,
-            'imprint'     => $imprint
+            'title'         => QUI::getLocale()->get('quiqqer/app', 'app.title.' . $Project->getName()),
+            'logo'          => $logo,
+            'placeholder'   => $placeholder,
+            'favicon'       => $favicon,
+            'menu'          => $menu,
+            'imprint'       => $imprint,
+            'advertisment'  => !!$Project->getConfig('quiqqerApp.settings.advertisement'),
+            'useBottomMenu' => !!$Project->getConfig('quiqqerApp.settings.menuBottom'),
+            'colors'        => array(
+                'fontColor'           => $Project->getConfig('quiqqerApp.settings.fontColor'),
+                'backgroundColor'     => $Project->getConfig('quiqqerApp.settings.backgroundColor'),
+                'menuFrontColor'      => $Project->getConfig('quiqqerApp.settings.menuFrontColor'),
+                'menuBackgroundColor' => $Project->getConfig('quiqqerApp.settings.menuBackgroundColor')
+            ),
+
+            // @todo muss noch gesetzt werden,
+            // wann wurde diese config das letzte mal verändert
+            'lastEdit'      => time()
         );
 
         return $Response->withStatus(200)
