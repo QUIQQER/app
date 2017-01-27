@@ -24,7 +24,7 @@ Mitwirken
 
 - Issue Tracker: https://dev.quiqqer.com/quiqqer/app/issues
 - Source Code: https://dev.quiqqer.com/quiqqer/app/tree/master
-
+- Wiki: https://dev.quiqqer.com/quiqqer/app/wikis/home
 
 Support
 -------
@@ -36,6 +36,9 @@ senden Sie bitte eine E-Mail an support@pcsg.de.
 Lizenz
 -------
 
+MIT
 
 Entwickler
 --------
+
+https://dev.quiqqer.com/quiqqer/app/wikis/rest/
