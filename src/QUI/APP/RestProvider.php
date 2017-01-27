@@ -72,13 +72,27 @@ class RestProvider implements QUI\REST\ProviderInterface
         // Logo
         $logo = '';
 
-        if ($Project->getConfig('logo')) {
+        if ($Project->getConfig('quiqqerApp.settings.logo')) {
             try {
                 $Image = QUI\Projects\Media\Utils::getImageByUrl(
-                    $Project->getConfig('logo')
+                    $Project->getConfig('quiqqerApp.settings.logo')
                 );
 
                 $logo = $host . $Image->getSizeCacheUrl();
+            } catch (QUI\Exception $Exception) {
+            }
+        }
+
+        // splash
+        $splash = '';
+
+        if ($Project->getConfig('quiqqerApp.settings.splash')) {
+            try {
+                $Image = QUI\Projects\Media\Utils::getImageByUrl(
+                    $Project->getConfig('quiqqerApp.settings.splash')
+                );
+
+                $splash = $host . $Image->getSizeCacheUrl();
             } catch (QUI\Exception $Exception) {
             }
         }
@@ -97,19 +111,6 @@ class RestProvider implements QUI\REST\ProviderInterface
             }
         }
 
-        // placeholder
-        $favicon = '';
-
-        if ($Project->getConfig('favicon')) {
-            try {
-                $Image = QUI\Projects\Media\Utils::getImageByUrl(
-                    $Project->getConfig('favicon')
-                );
-
-                $favicon = $host . $Image->getSizeCacheUrl();
-            } catch (QUI\Exception $Exception) {
-            }
-        }
 
         // Impressum
         $imprint = null;
@@ -125,31 +126,26 @@ class RestProvider implements QUI\REST\ProviderInterface
             $Imprint = $sites[0];
 
             if ($Imprint->getAttribute('active')) {
-                $imprint = array(
-                    'id'    => $Imprint->getId(),
-                    'title' => $Imprint->getAttribute('title'),
-                    'name'  => $Imprint->getAttribute('name'),
-                    'url'   => $Imprint->getUrlRewritten()
-                );
+                $imprint = $this->getSiteData($Imprint);
             }
         }
 
 
         // Menu
-        $menu = null;
+        $menu = array();
 
 
         // title
         $result = array(
             'title'         => QUI::getLocale()->get('quiqqer/app', 'app.title.' . $Project->getName()),
             'logo'          => $logo,
+            'splash'        => $splash,
             'placeholder'   => $placeholder,
-            'favicon'       => $favicon,
             'menu'          => $menu,
             'imprint'       => $imprint,
             'advertisment'  => !!$Project->getConfig('quiqqerApp.settings.advertisement'),
             'useBottomMenu' => !!$Project->getConfig('quiqqerApp.settings.menuBottom'),
-            'languages'     => !!$Project->getConfig('quiqqerApp.settings.availableLanguages'),
+            'languages'     => $Project->getConfig('quiqqerApp.settings.availableLanguages'),
             'lastEdit'      => time(),
             'colors'        => array(
                 'fontColor'           => $Project->getConfig('quiqqerApp.settings.fontColor'),
@@ -185,5 +181,23 @@ class RestProvider implements QUI\REST\ProviderInterface
 
         return $Response->withStatus(200)
             ->write($Site->getAttribute('content'));
+    }
+
+    /**
+     * Return the data for a site
+     *
+     * @param QUI\Projects\Site $Site
+     * @return array
+     */
+    protected function getSiteData(QUI\Projects\Site $Site)
+    {
+        $Project = $Site->getProject();
+
+        return array(
+            'id'    => $Site->getId(),
+            'title' => $Site->getAttribute('title'),
+            'name'  => $Site->getAttribute('name'),
+            'url'   => $Project->getVHost(true, true) . $Site->getUrlRewritten()
+        );
     }
 }

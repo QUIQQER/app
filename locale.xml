@@ -13,8 +13,8 @@
 
     <groups name="quiqqer/app" datatype="php">
         <locale name="quiqqerApp.settings.category.title">
-            <de><![CDATA[App]]></de>
-            <en><![CDATA[App]]></en>
+            <de><![CDATA[Mobile-App]]></de>
+            <en><![CDATA[Mobile-App]]></en>
         </locale>
         <locale name="quiqqerApp.settings.general.title">
             <de><![CDATA[Allgemeine Einstellungen]]></de>
@@ -33,8 +33,16 @@
             <en><![CDATA[Use advertising in the app]]></en>
         </locale>
         <locale name="quiqqerApp.settings.title.text">
-            <de><![CDATA[Title der APP]]></de>
+            <de><![CDATA[Titel der APP]]></de>
             <en><![CDATA[Title of the app]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.logo.text">
+            <de><![CDATA[Logo der APP]]></de>
+            <en><![CDATA[Logo of the app]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.splash.text">
+            <de><![CDATA[Splashscreen der APP]]></de>
+            <en><![CDATA[Splashscreen of the app]]></en>
         </locale>
         <locale name="quiqqerApp.settings.availableLanguages.text">
             <de><![CDATA[Mögliche Sprachen der APP]]></de>

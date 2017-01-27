@@ -23,6 +23,12 @@
                     <conf name="availableLanguages">
                         <type><![CDATA[string]]></type>
                     </conf>
+                    <conf name="logo">
+                        <type><![CDATA[string]]></type>
+                    </conf>
+                    <conf name="splash">
+                        <type><![CDATA[string]]></type>
+                    </conf>
                     <conf name="menuFrontColor">
                         <type><![CDATA[string]]></type>
                         <defaultvalue>#ffffff</defaultvalue>
@@ -58,7 +64,23 @@
                                         var="quiqqerApp.settings.general.title"
                                 />
                             </title>
+                            <input type="hidden" data-qui="package/quiqqer/app/bin/controls/TitleSetting">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.title.text"
+                                    />
+                                </text>
+                            </input>
 
+                            <input conf="quiqqerApp.settings.availableLanguages"
+                                   type="hidden"
+                                   data-qui="package/quiqqer/app/bin/controls/AvailableLanguages">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.availableLanguages.text"
+                                    />
+                                </text>
+                            </input>
                             <input conf="quiqqerApp.settings.fontColor"
                                    type="color">
                                 <text>
@@ -75,27 +97,27 @@
                                     />
                                 </text>
                             </input>
+                            <input conf="quiqqerApp.settings.logo"
+                                   class="media-image">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.logo.text"
+                                    />
+                                </text>
+                            </input>
+                            <input conf="quiqqerApp.settings.splash"
+                                   class="media-image">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.splash.text"
+                                    />
+                                </text>
+                            </input>
                             <input conf="quiqqerApp.settings.advertisement"
                                    type="checkbox">
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.advertisement.text"
-                                    />
-                                </text>
-                            </input>
-                            <input type="hidden" data-qui="package/quiqqer/app/bin/controls/TitleSetting">
-                                <text>
-                                    <locale group="quiqqer/app"
-                                            var="quiqqerApp.settings.title.text"
-                                    />
-                                </text>
-                            </input>
-                            <input conf="quiqqerApp.settings.availableLanguages"
-                                   type="hidden"
-                                   data-qui="package/quiqqer/app/bin/controls/AvailableLanguages">
-                                <text>
-                                    <locale group="quiqqer/app"
-                                            var="quiqqerApp.settings.availableLanguages.text"
                                     />
                                 </text>
                             </input>
