@@ -75,24 +75,14 @@ define('package/quiqqer/app/bin/controls/TitleSetting', [
                 }
 
                 this.$Languages = new InputMultiLang({
-                    value: JSON.encode(data)
+                    value: JSON.encode(data),
+                    name: 'quiqqerApp.settings.title'
                 }).inject(this.$Elm, 'after');
 
             }.bind(this), {
                 'package': 'quiqqer/translator',
                 'group': 'quiqqer/app',
                 'var': 'app.title.' + this.$Project.getName()
-            });
-        },
-
-        /**
-         * Save the locale
-         *
-         * @returns {Promise}
-         */
-        save: function () {
-            return new Promise(function () {
-
             });
         }
     });
