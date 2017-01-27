@@ -52,5 +52,9 @@ class EventHandler
             QUI\System\Log::writeException($Exception);
         }
 
+        // clear cache
+        QUI\Cache\Manager::clear(
+            'quiqqer/app/settings/' . $Project->getName()
+        );
     }
 }

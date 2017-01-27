@@ -4,6 +4,7 @@
  * @require qui/QUI
  * @require qui/controls/Control
  * @require package/quiqqer/translator/bin/controls/Update
+ * @require Ajax
  */
 define('package/quiqqer/app/bin/controls/TitleSetting', [
 

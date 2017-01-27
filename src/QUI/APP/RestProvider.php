@@ -60,8 +60,14 @@ class RestProvider implements QUI\REST\ProviderInterface
         ResponseInterface $Response,
         $args
     ) {
-        $Project = QUI::getProject($args['project'], $args['lang']);
-        $host    = $Project->getVHost(true, true);
+        $Project   = QUI::getProject($args['project'], $args['lang']);
+        $host      = $Project->getVHost(true, true);
+        $cacheName = 'quiqqer/app/settings/' . $Project->getName();
+
+        try {
+            return QUI\Cache\Manager::get($cacheName);
+        } catch (\Exception $Exception) {
+        }
 
         // Logo
         $logo = '';
@@ -143,17 +149,17 @@ class RestProvider implements QUI\REST\ProviderInterface
             'imprint'       => $imprint,
             'advertisment'  => !!$Project->getConfig('quiqqerApp.settings.advertisement'),
             'useBottomMenu' => !!$Project->getConfig('quiqqerApp.settings.menuBottom'),
+            'languages'     => !!$Project->getConfig('quiqqerApp.settings.availableLanguages'),
+            'lastEdit'      => time(),
             'colors'        => array(
                 'fontColor'           => $Project->getConfig('quiqqerApp.settings.fontColor'),
                 'backgroundColor'     => $Project->getConfig('quiqqerApp.settings.backgroundColor'),
                 'menuFrontColor'      => $Project->getConfig('quiqqerApp.settings.menuFrontColor'),
                 'menuBackgroundColor' => $Project->getConfig('quiqqerApp.settings.menuBackgroundColor')
-            ),
-
-            // @todo muss noch gesetzt werden,
-            // wann wurde diese config das letzte mal verändert
-            'lastEdit'      => time()
+            )
         );
+
+        QUI\Cache\Manager::set($cacheName, $result);
 
         return $Response->withStatus(200)
             ->withHeader('Content-Type', 'application/json')

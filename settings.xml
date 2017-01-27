@@ -17,6 +17,12 @@
                         <type><![CDATA[bool]]></type>
                         <defaultvalue>1</defaultvalue>
                     </conf>
+                    <conf name="lastEdit">
+                        <type><![CDATA[int]]></type>
+                    </conf>
+                    <conf name="availableLanguages">
+                        <type><![CDATA[string]]></type>
+                    </conf>
                     <conf name="menuFrontColor">
                         <type><![CDATA[string]]></type>
                         <defaultvalue>#ffffff</defaultvalue>
@@ -81,6 +87,15 @@
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.title.text"
+                                    />
+                                </text>
+                            </input>
+                            <input conf="quiqqerApp.settings.availableLanguages"
+                                   type="hidden"
+                                   data-qui="package/quiqqer/app/bin/controls/AvailableLanguages">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.availableLanguages.text"
                                     />
                                 </text>
                             </input>

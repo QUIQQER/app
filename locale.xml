@@ -36,6 +36,10 @@
             <de><![CDATA[Title der APP]]></de>
             <en><![CDATA[Title of the app]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.availableLanguages.text">
+            <de><![CDATA[Mögliche Sprachen der APP]]></de>
+            <en><![CDATA[Possible languages of the APP]]></en>
+        </locale>
         <locale name="quiqqerApp.settings.menu.title">
             <de><![CDATA[Menü Einstellungen]]></de>
             <en><![CDATA[Menu settings]]></en>
