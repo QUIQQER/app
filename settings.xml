@@ -158,6 +158,19 @@
 
                         </settings>
 
+                        <settings title="quiqqerApp.settings"
+                                  name="quiqqerApp.settings.menuStructure">
+                            <title>
+                                <locale group="quiqqer/app"
+                                        var="quiqqerApp.settings.menuStructure.title"
+                                />
+                            </title>
+
+                            <input conf="quiqqerApp.settings.menu"
+                                   type="hidden"
+                                   data-qui="package/quiqqer/app/bin/controls/MenuStructure" label="false"/>
+                        </settings>
+
 
                     </category>
                 </categories>

@@ -20,6 +20,10 @@
             <de><![CDATA[Allgemeine Einstellungen]]></de>
             <en><![CDATA[General settings]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.menuStructure.title">
+            <de><![CDATA[Menüstruktur]]></de>
+            <en><![CDATA[Menu structure]]></en>
+        </locale>
         <locale name="quiqqerApp.settings.fontColor.text">
             <de><![CDATA[Allgemeine Schriftfarbe]]></de>
             <en><![CDATA[General font color]]></en>
@@ -63,6 +67,17 @@
         <locale name="quiqqerApp.settings.menuBottom.text">
             <de><![CDATA[Unteres Menü anzeigen]]></de>
             <en><![CDATA[Show bottom menü]]></en>
+        </locale>
+    </groups>
+
+    <groups name="quiqqer/app" datatype="js">
+        <locale name="window.remove.title">
+            <de><![CDATA[Menü Eintrag entfernen]]></de>
+            <en><![CDATA[Remove the menu item]]></en>
+        </locale>
+        <locale name="window.remove.content">
+            <de><![CDATA[Möchten Sie die markierten Einträge wirklich entfernen?]]></de>
+            <en><![CDATA[Are you sure you want to remove the selected entries?]]></en>
         </locale>
     </groups>
 </locales>
