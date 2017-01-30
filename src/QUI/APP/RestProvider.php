@@ -69,6 +69,9 @@ class RestProvider implements QUI\REST\ProviderInterface
         } catch (\Exception $Exception) {
         }
 
+        $Package = QUI::getPackage('quiqqer/app');
+        $Config  = $Package->getConfig();
+
         // Logo
         $logo = '';
 
@@ -133,6 +136,25 @@ class RestProvider implements QUI\REST\ProviderInterface
 
         // Menu
         $menu = array();
+        $ids  = $Config->getValue(
+            'menu',
+            $Project->getName() . '_' . $Project->getLang()
+        );
+
+        if ($ids) {
+            $ids = explode(',', $ids);
+
+            foreach ($ids as $id) {
+                try {
+                    $Site = $Project->get($id);
+
+                    if ($Site->getAttribute('active')) {
+                        $menu[] = $this->getSiteData($Site);
+                    }
+                } catch (QUI\Exception $Exception) {
+                }
+            }
+        }
 
 
         // title
