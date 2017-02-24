@@ -8,6 +8,11 @@ var_dump($apiData);
 
 $colors = $apiData->colors;
 
+$tabBarDisplayStyle = '';
+if (!$apiData->useBottomMenu) {
+    $tabBarDisplayStyle = 'display: none !important;';
+}
+
 $scss = "
 // --------------------------------------------------
 // Page
@@ -27,6 +32,13 @@ $scss = "
 // Icon/Text Color
 .tabbar * {
   color: {$colors->menuFrontColor} !important;
+}
+
+// Display Tabbar?
+ion-tabs {
+  .tabbar {
+   {$tabBarDisplayStyle}
+  }
 }
 
 
@@ -53,4 +65,4 @@ ion-header {
 
 ";
 
-file_put_contents('src/theme/custom_vars.scss', $scss);
+file_put_contents('src/theme/custom.scss', $scss);

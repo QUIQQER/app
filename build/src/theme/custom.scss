@@ -19,6 +19,13 @@ $tabs-background: #ffc800;
   color: #ffffff !important;
 }
 
+// Display Tabbar?
+ion-tabs {
+  .tabbar {
+   display: none !important;
+  }
+}
+
 
 // --------------------------------------------------
 // Top Toolbar
