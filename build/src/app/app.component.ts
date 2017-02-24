@@ -1,58 +1,49 @@
-import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import {Component, ViewChild} from '@angular/core';
+import {Platform, MenuController, Nav} from 'ionic-angular';
+import {StatusBar, Splashscreen} from 'ionic-native';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import {TabsPage} from '../pages/tabs/tabs';
+import {Test} from "tslint/lib/lint";
 
 export interface PageInterface {
-  title: string;
-  component: any;
-  icon: string;
-  index?: number;
+    title: string;
+    component: any;
+    icon: string;
+    url?: string;
+    tabIndex?: number;
 }
 
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+    @ViewChild(Nav) nav: Nav;
 
-  // set our app's pages
-  appPages: PageInterface[] = [
-    { title: 'Home', component: TabsPage, icon: 'calendar' },
-    { title: 'About', component: TabsPage, index: 1, icon: 'information-circle' },
-    { title: 'Contact', component: TabsPage, index: 2, icon: 'contacts' }
-  ];
+    // set our app's pages
+    appPages: PageInterface[] = [
+        {title: 'Home', component: TabsPage, icon: 'calendar'},
+        {title: 'About', component: TabsPage, tabIndex: 1, icon: 'information-circle'},
+        {title: 'Contact', component: TabsPage, tabIndex: 2, icon: 'contacts'},
+        {title: 'Test', component: TabsPage, tabIndex: 0, icon: 'arrow-forward', url: 'http://placehold.it/300x300'}
+    ];
 
-  rootPage = TabsPage;
+    rootPage = TabsPage;
 
-  constructor(platform: Platform, public menu: MenuController) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
-    });
+    constructor(platform: Platform, public menu: MenuController) {
+        platform.ready().then(() => {
+            StatusBar.styleDefault();
+            Splashscreen.hide();
+        });
 
-  }
-
-  openPage(page: PageInterface) {
-    // the nav component was found using @ViewChild(Nav)
-    // reset the nav to remove previous pages and only have this page
-    // we wouldn't want the back button to show in this scenario
-
-    this.menu.close();
-
-    if (page.index) {
-      this.nav.setRoot(page.component, { tabIndex: page.index });
-
-    } else {
-      this.nav.setRoot(page.component).catch(() => {
-        console.log("Didn't set nav root");
-      });
     }
 
+    openPage(page: PageInterface) {
+        // the nav component was found using @ViewChild(Nav)
+        // reset the nav to remove previous pages and only have this page
+        // we wouldn't want the back button to show in this scenario
+        this.menu.close();
 
-  }
+        this.nav.setRoot(page.component, {tabIndex: page.tabIndex, url: page.url, title: page.title});
+    }
 
 }
