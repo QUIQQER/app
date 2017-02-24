@@ -1,9 +1,10 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, MenuController, Nav} from 'ionic-angular';
-import {StatusBar, Splashscreen} from 'ionic-native';
+import {StatusBar, Splashscreen, AdMob} from 'ionic-native';
 
 import {TabsPage} from '../pages/tabs/tabs';
 import {Test} from "tslint/lib/lint";
+import {config} from "./config";
 
 export interface PageInterface {
     title: string;
@@ -29,10 +30,19 @@ export class MyApp {
 
     rootPage = TabsPage;
 
-    constructor(platform: Platform, public menu: MenuController) {
+    constructor(private platform: Platform,
+                public menu: MenuController) {
         platform.ready().then(() => {
             StatusBar.styleDefault();
             Splashscreen.hide();
+
+            if(AdMob && config.showAds) {
+                AdMob.createBanner({
+                    isTesting: true,
+                    autoShow: true,
+                    position: 8 // Bottom Center
+                });
+            }
         });
 
     }

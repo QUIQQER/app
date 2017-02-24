@@ -1,5 +1,7 @@
 <?php
 
+echo "\nBuild started\n";
+
 $apiUrl = "http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de";
 
 $apiData = json_decode(file_get_contents($apiUrl, true));
@@ -66,3 +68,22 @@ ion-header {
 ";
 
 file_put_contents('src/theme/custom.scss', $scss);
+
+
+/**
+ * Config
+ */
+
+$showAds = $apiData->advertisment ? 'true' : 'false';
+
+$config = "
+export let config = {
+    'showAds': {$showAds}
+};
+";
+
+file_put_contents('src/app/config.ts', $config);
+
+
+
+echo "\nBuild completed\n";
