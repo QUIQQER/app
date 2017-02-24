@@ -8,6 +8,10 @@ $apiData = json_decode(file_get_contents($apiUrl, true));
 
 var_dump($apiData);
 
+/**
+ * SCSS
+ */
+
 $colors = $apiData->colors;
 
 $tabBarDisplayStyle = '';
@@ -84,6 +88,25 @@ export let config = {
 
 file_put_contents('src/app/config.ts', $config);
 
+
+/**
+ * Icon & Splash
+ */
+
+$logo = $apiData->logo;
+$splash = $apiData->splash;
+
+if (!empty($logo)) {
+    copy($logo, 'resources/icon.png');
+    echo "\nGeneriere Icons...";
+    echo exec('ionic resources --icon');
+}
+
+if (!empty($splash)) {
+    copy($splash, 'resources/splash.png');
+    echo "\nGeneriere Splashscreens...";
+    echo exec('ionic resources --splash');
+}
 
 
 echo "\nBuild completed\n";
