@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {NavParams} from "ionic-angular";
+import {NavParams, ModalController} from "ionic-angular";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {ImprintPage} from "../../modals/imprint/imprint";
 
 @Component({
     selector: 'page-home',
@@ -13,7 +14,9 @@ export class HomePage {
 
     private title: String = 'Home';
 
-    constructor(params: NavParams, sanitizer: DomSanitizer) {
+    constructor(private params: NavParams,
+                private sanitizer: DomSanitizer,
+                private modalCtrl: ModalController) {
         let url   = params.get('url');
         let title = params.get('title');
 
@@ -26,7 +29,10 @@ export class HomePage {
         if (typeof title != 'undefined') {
             this.title = title;
         }
+    }
 
+    public showImprint() {
+        this.modalCtrl.create(ImprintPage).present();
     }
 
 }
