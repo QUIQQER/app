@@ -3,7 +3,6 @@ import {Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar, Splashscreen, AdMob} from 'ionic-native';
 
 import {TabsPage} from '../pages/tabs/tabs';
-import {Test} from "tslint/lib/lint";
 import {config} from "./config";
 
 export interface PageInterface {
