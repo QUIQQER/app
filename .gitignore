@@ -29,3 +29,4 @@ build/$RECYCLE.BIN/
 build/.DS_Store
 build/Thumbs.db
 build/UserInterfaceState.xcuserstate
+/build/src/theme/custom.scss
