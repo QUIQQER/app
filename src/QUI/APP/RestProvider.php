@@ -69,6 +69,9 @@ class RestProvider implements QUI\REST\ProviderInterface
         } catch (\Exception $Exception) {
         }
 
+        $Locale = new QUI\Locale();
+        $Locale->setCurrent($Project->getLang());
+
         $Package = QUI::getPackage('quiqqer/app');
         $Config  = $Package->getConfig();
 
@@ -159,7 +162,7 @@ class RestProvider implements QUI\REST\ProviderInterface
 
         // title
         $result = array(
-            'title'         => QUI::getLocale()->get('quiqqer/app', 'app.title.' . $Project->getName()),
+            'title'         => $Locale->get('quiqqer/app', 'app.title.' . $Project->getName()),
             'logo'          => $logo,
             'splash'        => $splash,
             'placeholder'   => $placeholder,
