@@ -30,3 +30,4 @@ build/.DS_Store
 build/Thumbs.db
 build/UserInterfaceState.xcuserstate
 /build/src/theme/custom.scss
+/build/src/app/pages.ts

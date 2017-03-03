@@ -103,17 +103,30 @@ file_put_contents('src/app/config.ts', $config);
 $logo = $apiData->logo;
 $splash = $apiData->splash;
 
-if (!empty($logo)) {
+if (!empty($logo) && !isset($options['noIcon'])) {
     copy($logo, 'resources/icon.png');
-    echo "\nGeneriere Icons...";
+    echo "\nGeneriere Icons...\n";
     echo exec('ionic resources --icon');
 }
 
-if (!empty($splash)) {
+if (!empty($splash) && !isset($options['noSplash'])) {
     copy($splash, 'resources/splash.png');
-    echo "\nGeneriere Splashscreens...";
+    echo "\nGeneriere Splashscreens...\n";
     echo exec('ionic resources --splash');
 }
+
+
+/**
+ * Menu
+ */
+
+$pages = "export let pages = [";
+foreach ($apiData->menu as $page) {
+    $pages .= "{title: '{$page->title}', url: '{$page->url}'},";
+}
+$pages .= "];";
+
+file_put_contents('src/app/pages.ts', $pages);
 
 
 echo "\nBuild completed\n";

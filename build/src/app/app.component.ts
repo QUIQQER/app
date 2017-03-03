@@ -4,6 +4,7 @@ import {StatusBar, Splashscreen, AdMob} from 'ionic-native';
 
 import {TabsPage} from '../pages/tabs/tabs';
 import {config} from "./config";
+import {pages} from "./pages";
 
 export interface PageInterface {
     title: string;
@@ -19,18 +20,24 @@ export interface PageInterface {
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    // set our app's pages
-    appPages: PageInterface[] = [
-        {title: 'Home', component: TabsPage, icon: 'calendar'},
-        {title: 'About', component: TabsPage, tabIndex: 1, icon: 'information-circle'},
-        {title: 'Contact', component: TabsPage, tabIndex: 2, icon: 'contacts'},
-        {title: 'Test', component: TabsPage, tabIndex: 0, icon: 'arrow-forward', url: 'http://placehold.it/300x300'}
-    ];
+    appPages: PageInterface[] = [];
 
     rootPage = TabsPage;
 
     constructor(private platform: Platform,
                 public menu: MenuController) {
+
+        // Add pages to sidemenu
+        for (let page of pages) {
+            this.appPages.push({
+                title: page.title,
+                component: TabsPage,
+                tabIndex: 0,
+                icon: 'paper',
+                url: page.url
+            });
+        }
+
         platform.ready().then(() => {
             StatusBar.styleDefault();
             Splashscreen.hide();
