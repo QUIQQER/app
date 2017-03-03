@@ -23,7 +23,7 @@ export class HomePage {
         if (typeof url == 'undefined') {
             this.url = sanitizer.bypassSecurityTrustResourceUrl(this.defaultUrl);
         } else {
-            this.url = sanitizer.bypassSecurityTrustResourceUrl(url);
+            this.url = sanitizer.bypassSecurityTrustResourceUrl(url+'?app=1');
         }
 
         if (typeof title != 'undefined') {
