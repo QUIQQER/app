@@ -71,6 +71,8 @@ class EventHandler
             }
         }
 
+        QUI\Translator::publish('quiqqer/app');
+
         // clear cache
         QUI\Cache\Manager::clear(
             'quiqqer/app/settings/' . $Project->getName()
