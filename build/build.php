@@ -37,7 +37,7 @@ $scss = "
 
 // Icon/Text Color
 .tabbar * {
-  color: {$colors->menuFrontColor} !important;
+  color: {$colors->menuFontColor} !important;
 }
 
 // Display Tabbar?
@@ -59,13 +59,13 @@ ion-header {
 
   // Font Color
   .toolbar-title {
-    color: {$colors->menuFrontColor};
+    color: {$colors->menuFontColor};
   }
 }
 
 // Primary Color for Menu Button
 \$colors: (
-        primary: {$colors->menuFrontColor},
+        primary: {$colors->menuFontColor},
 );
 
 

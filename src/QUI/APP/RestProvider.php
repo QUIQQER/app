@@ -172,7 +172,7 @@ class RestProvider implements QUI\REST\ProviderInterface
             'colors'        => array(
                 'fontColor'           => $Project->getConfig('quiqqerApp.settings.fontColor'),
                 'backgroundColor'     => $Project->getConfig('quiqqerApp.settings.backgroundColor'),
-                'menuFrontColor'      => $Project->getConfig('quiqqerApp.settings.menuFrontColor'),
+                'menuFontColor'       => $Project->getConfig('quiqqerApp.settings.menuFontColor'),
                 'menuBackgroundColor' => $Project->getConfig('quiqqerApp.settings.menuBackgroundColor')
             )
         );

@@ -56,7 +56,7 @@
             <de><![CDATA[Menü Einstellungen]]></de>
             <en><![CDATA[Menu settings]]></en>
         </locale>
-        <locale name="quiqqerApp.settings.menuFrontColor.text">
+        <locale name="quiqqerApp.settings.menuFontColor.text">
             <de><![CDATA[Schriftfarbe des Menüs]]></de>
             <en><![CDATA[Font color of the menu]]></en>
         </locale>

@@ -29,7 +29,7 @@
                     <conf name="splash">
                         <type><![CDATA[string]]></type>
                     </conf>
-                    <conf name="menuFrontColor">
+                    <conf name="menuFontColor">
                         <type><![CDATA[string]]></type>
                         <defaultvalue>#ffffff</defaultvalue>
                     </conf>
@@ -131,11 +131,11 @@
                                         var="quiqqerApp.settings.menu.title"
                                 />
                             </title>
-                            <input conf="quiqqerApp.settings.menuFrontColor"
+                            <input conf="quiqqerApp.settings.menuFontColor"
                                    type="color">
                                 <text>
                                     <locale group="quiqqer/app"
-                                            var="quiqqerApp.settings.menuFrontColor.text"
+                                            var="quiqqerApp.settings.menuFontColor.text"
                                     />
                                 </text>
                             </input>
@@ -159,7 +159,8 @@
                         </settings>
 
                         <settings title="quiqqerApp.settings"
-                                  name="quiqqerApp.settings.menuStructure">
+                                  name="quiqqerApp.settings.menuStructure"
+                        >
                             <title>
                                 <locale group="quiqqer/app"
                                         var="quiqqerApp.settings.menuStructure.title"
@@ -168,7 +169,8 @@
 
                             <input conf="quiqqerApp.settings.menu"
                                    type="hidden"
-                                   data-qui="package/quiqqer/app/bin/controls/MenuStructure" label="false"/>
+                                   label="false"
+                                   data-qui="package/quiqqer/app/bin/controls/MenuStructure"/>
                         </settings>
 
 
