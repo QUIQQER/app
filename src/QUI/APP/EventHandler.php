@@ -76,4 +76,17 @@ class EventHandler
             'quiqqer/app/settings/' . $Project->getName()
         );
     }
+
+
+    /**
+     * @param QUI\Rewrite $Rewrite
+     * @param $url
+     */
+    public static function onRequest(QUI\Rewrite $Rewrite, $url)
+    {
+        $Request = QUI::getRequest();
+        if ($Request->query->get('app') == 1) {
+            QUI::getGlobalResponse()->headers->remove("X-Frame-Options");
+        }
+    }
 }
