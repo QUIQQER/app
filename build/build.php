@@ -2,7 +2,14 @@
 
 echo "\nBuild started\n";
 
+$options = getopt('', array('noIcon', 'noSplash', 'apiUrl::'));
+
+var_dump($options);
+
 $apiUrl = "http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de";
+if (isset($options['apiUrl'])) {
+    $apiUrl = $options['apiUrl'];
+}
 
 $apiData = json_decode(file_get_contents($apiUrl, true));
 
