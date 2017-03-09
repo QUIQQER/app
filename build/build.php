@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This script can be called with parameters --noIcon and/or --noSplash to skip icon and/or splashscreen generation
+ */
+
 echo "\nBuild started\n";
 
 $options = getopt('', array('noIcon', 'noSplash', 'apiUrl::'));
