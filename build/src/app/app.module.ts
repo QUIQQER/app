@@ -6,6 +6,7 @@ import {ContactPage} from '../pages/contact/contact';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 import {ImprintPage} from "../modals/imprint/imprint";
+import {NetworkCheckPage} from "../modals/network-check/network-check";
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import {ImprintPage} from "../modals/imprint/imprint";
         ContactPage,
         HomePage,
         TabsPage,
-        ImprintPage
+        ImprintPage,
+        NetworkCheckPage
     ],
     imports: [
         IonicModule.forRoot(MyApp)
@@ -26,7 +28,8 @@ import {ImprintPage} from "../modals/imprint/imprint";
         ContactPage,
         HomePage,
         TabsPage,
-        ImprintPage
+        ImprintPage,
+        NetworkCheckPage
     ],
     providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
