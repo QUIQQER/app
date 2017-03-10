@@ -1,39 +1,50 @@
 <?php
 
 /**
- * This script can be called with parameters --noIcon and/or --noSplash to skip icon and/or splashscreen generation
+ * This script requires the first parameter to be the QUIQQER APP API URL
+ * These parameters can be used optionally: --noIcon and/or --noSplash to skip icon and/or splashscreen generation
  */
 
 echo "\nBuild started\n";
 
-// Get command line options
-$options = getopt('', array('noIcon', 'noSplash'));
+$generateIcon   = true;
+$generateSplash = true;
 
-// Print out used options
-$optionsString = "";
-foreach ($options as $key => $option) {
-    $optionsString .= $option;
-    if ($key != count($options)) {
-        $optionsString .= ", ";
-    }
-}
-echo "Used Options: $optionsString\n";
-
-$apiUrl = "http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de";
-if (isset($options['apiUrl'])) {
-    $apiUrl = $options['apiUrl'];
+// Is no icon generation flag set?
+if (in_array('--noIcon', $argv)) {
+    $generateIcon = false;
+    echo "Not generating Icons\n";
 }
 
-$apiData = json_decode(file_get_contents($apiUrl, true));
+// Is no splash generation flag set?
+if (in_array('--noSplash', $argv)) {
+    $generateSplash = false;
+    echo "Not generating Splash\n";
+}
 
-var_dump($apiData);
 
+// Get API URL from first argument
+if (!isset($argv[1])) {
+    // If no first argument exit with error
+    echo "\n ERROR: You need to provide an API URL!\n";
+    exit;
+}
+$apiUrl = $argv[1]; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
+
+try {
+    $apiData = json_decode(file_get_contents($apiUrl, true));
+} catch (Exception $ex) {
+    echo "\n ERROR: Invalid API URL!\n";
+    exit;
+}
+
+//var_dump($apiData);
 
 
 /**
- ===============================
- =            SCSS             =
- ===============================
+ * ===============================
+ * =            SCSS             =
+ * ===============================
  */
 $colors = $apiData->colors;
 
@@ -97,11 +108,10 @@ ion-header {
 file_put_contents('src/theme/custom.scss', $scss);
 
 
-
 /**
-===============================
-=          CONFIG             =
-===============================
+ * ===============================
+ * =          CONFIG             =
+ * ===============================
  */
 $showAds = $apiData->advertisment ? 'true' : 'false';
 
@@ -115,33 +125,31 @@ export let config = {
 file_put_contents('src/app/config.ts', $config);
 
 
-
 /**
-===============================
-=      ICON & SPLASH          =
-===============================
+ * ===============================
+ * =      ICON & SPLASH          =
+ * ===============================
  */
-$logo = $apiData->logo;
+$logo   = $apiData->logo;
 $splash = $apiData->splash;
 
-if (!empty($logo) && !isset($options['noIcon'])) {
+if (!empty($logo) && $generateIcon) {
     copy($logo, 'resources/icon.png');
     echo "\nGeneriere Icons...\n";
     echo exec('ionic resources --icon');
 }
 
-if (!empty($splash) && !isset($options['noSplash'])) {
+if (!empty($splash) && $generateSplash) {
     copy($splash, 'resources/splash.png');
     echo "\nGeneriere Splashscreens...\n";
     echo exec('ionic resources --splash');
 }
 
 
-
 /**
-===============================
-=         SIDE MENU           =
-===============================
+ * ===============================
+ * =         SIDE MENU           =
+ * ===============================
  */
 $pages = "// Pages for sidemenu generated via build script\nexport let pages = [";
 foreach ($apiData->menu as $page) {
@@ -150,7 +158,6 @@ foreach ($apiData->menu as $page) {
 $pages .= "];";
 
 file_put_contents('src/app/pages.ts', $pages);
-
 
 
 echo "\nBuild completed\n";
