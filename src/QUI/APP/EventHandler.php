@@ -86,8 +86,12 @@ class EventHandler
      */
     public static function onRequest(QUI\Rewrite $Rewrite, $url)
     {
-        $Request = QUI::getRequest();
-        if ($Request->query->get('app') == 1) {
+        // If request comes from a QUIQQER app
+        if (Validate::isAppRequest()) {
+            // Save that this is an QUIQQER app session
+            QUI::getSession()->set('__APP__', 1);
+
+            // Remove SAMEORIGIN Policy for iframes inside the app
             QUI::getGlobalResponse()->headers->remove("X-Frame-Options");
         }
     }
