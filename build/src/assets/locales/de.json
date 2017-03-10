@@ -1,3 +1,6 @@
 {
-
+  "network-check": {
+    "header": "Es wird eine aktive Internetverbindung benötigt.",
+    "text": "Bitte verbinde dein Gerät mit dem Internet."
+  }
 }
