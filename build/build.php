@@ -31,9 +31,12 @@ if (!isset($argv[1])) {
 }
 $apiUrl = $argv[1]; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
 
+// Try do get data from Api
 try {
+    // Get JSON data from API
     $apiData = json_decode(file_get_contents($apiUrl, true));
 } catch (Exception $ex) {
+    // If anything goes wrong exit with error
     echo "\n ERROR: Invalid API URL!\n";
     exit;
 }
@@ -48,6 +51,7 @@ try {
  */
 $colors = $apiData->colors;
 
+// Show bottom tab bar?
 $tabBarDisplayStyle = '';
 if (!$apiData->useBottomMenu) {
     $tabBarDisplayStyle = 'display: none !important;';
@@ -105,6 +109,7 @@ ion-header {
 
 ";
 
+// Save to file
 file_put_contents('src/theme/custom.scss', $scss);
 
 
@@ -113,6 +118,7 @@ file_put_contents('src/theme/custom.scss', $scss);
  * =          CONFIG             =
  * ===============================
  */
+// Show advertisement banner?
 $showAds = $apiData->advertisment ? 'true' : 'false';
 
 $config = "
@@ -122,6 +128,7 @@ export let config = {
 };
 ";
 
+// Save to file
 file_put_contents('src/app/config.ts', $config);
 
 
@@ -133,15 +140,25 @@ file_put_contents('src/app/config.ts', $config);
 $logo   = $apiData->logo;
 $splash = $apiData->splash;
 
+// If Logo URL and no Flag set, generate Icon
 if (!empty($logo) && $generateIcon) {
+    // Download the Icon
     copy($logo, 'resources/icon.png');
+
     echo "\nGeneriere Icons...\n";
+
+    // Execute Ionic icon generation command
     echo exec('ionic resources --icon');
 }
 
+// If Splash URL and no Flag set, generate Splash
 if (!empty($splash) && $generateSplash) {
+    // Download the Splash
     copy($splash, 'resources/splash.png');
+
     echo "\nGeneriere Splashscreens...\n";
+
+    // Execute Ionic splash generation command
     echo exec('ionic resources --splash');
 }
 
@@ -151,12 +168,14 @@ if (!empty($splash) && $generateSplash) {
  * =         SIDE MENU           =
  * ===============================
  */
+// Build array of pages for sidemenu
 $pages = "// Pages for sidemenu generated via build script\nexport let pages = [";
 foreach ($apiData->menu as $page) {
     $pages .= "{title: '{$page->title}', url: '{$page->url}'},";
 }
 $pages .= "];";
 
+// Save to file
 file_put_contents('src/app/pages.ts', $pages);
 
 
