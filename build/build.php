@@ -6,9 +6,18 @@
 
 echo "\nBuild started\n";
 
-$options = getopt('', array('noIcon', 'noSplash', 'apiUrl::'));
+// Get command line options
+$options = getopt('', array('noIcon', 'noSplash'));
 
-var_dump($options);
+// Print out used options
+$optionsString = "";
+foreach ($options as $key => $option) {
+    $optionsString .= $option;
+    if ($key != count($options)) {
+        $optionsString .= ", ";
+    }
+}
+echo "Used Options: $optionsString\n";
 
 $apiUrl = "http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de";
 if (isset($options['apiUrl'])) {
