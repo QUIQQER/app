@@ -7,6 +7,8 @@ import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 import {ImprintPage} from "../modals/imprint/imprint";
 import {NetworkCheckPage} from "../modals/network-check/network-check";
+import {Http} from "@angular/http";
+import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-translate";
 
 @NgModule({
     declarations: [
@@ -19,7 +21,12 @@ import {NetworkCheckPage} from "../modals/network-check/network-check";
         NetworkCheckPage
     ],
     imports: [
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        TranslateModule.forRoot({
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [Http]
+        })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -34,4 +41,9 @@ import {NetworkCheckPage} from "../modals/network-check/network-check";
     providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {
+}
+
+export function createTranslateLoader(http: Http)
+{
+    return new TranslateStaticLoader(http, 'assets/locales', '.json');
 }
