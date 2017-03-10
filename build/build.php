@@ -19,10 +19,13 @@ $apiData = json_decode(file_get_contents($apiUrl, true));
 
 var_dump($apiData);
 
-/**
- * SCSS
- */
 
+
+/**
+ ===============================
+ =            SCSS             =
+ ===============================
+ */
 $colors = $apiData->colors;
 
 $tabBarDisplayStyle = '';
@@ -85,10 +88,12 @@ ion-header {
 file_put_contents('src/theme/custom.scss', $scss);
 
 
-/**
- * Config
- */
 
+/**
+===============================
+=          CONFIG             =
+===============================
+ */
 $showAds = $apiData->advertisment ? 'true' : 'false';
 
 $config = "
@@ -101,10 +106,12 @@ export let config = {
 file_put_contents('src/app/config.ts', $config);
 
 
-/**
- * Icon & Splash
- */
 
+/**
+===============================
+=      ICON & SPLASH          =
+===============================
+ */
 $logo = $apiData->logo;
 $splash = $apiData->splash;
 
@@ -121,17 +128,20 @@ if (!empty($splash) && !isset($options['noSplash'])) {
 }
 
 
-/**
- * Menu
- */
 
-$pages = "export let pages = [";
+/**
+===============================
+=         SIDE MENU           =
+===============================
+ */
+$pages = "// Pages for sidemenu generated via build script\nexport let pages = [";
 foreach ($apiData->menu as $page) {
     $pages .= "{title: '{$page->title}', url: '{$page->url}'},";
 }
 $pages .= "];";
 
 file_put_contents('src/app/pages.ts', $pages);
+
 
 
 echo "\nBuild completed\n";
