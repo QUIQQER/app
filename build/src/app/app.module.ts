@@ -40,9 +40,14 @@ import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-trans
     ],
     providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
-export class AppModule {
-}
 
+export class AppModule {}
+
+/**
+ * Creates and returns a Translation Loader
+ * @param http
+ * @return {TranslateStaticLoader}
+ */
 export function createTranslateLoader(http: Http)
 {
     return new TranslateStaticLoader(http, 'assets/locales', '.json');

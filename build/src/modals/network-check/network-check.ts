@@ -6,19 +6,22 @@ import {Network} from "ionic-native";
     selector: 'page-network-check',
     templateUrl: 'network-check.html'
 })
-export class NetworkCheckPage {
-
-    constructor(public viewCtrl: ViewController) {
+export class NetworkCheckPage
+{
+    constructor(public viewCtrl: ViewController)
+    {
+        // If network connection established we can close this page
         Network.onConnect().subscribe(() => {
            this.dismiss();
         });
     }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad NetworkCheckPage');
-    }
 
-    dismiss() {
+    /**
+     * Closes this page
+     */
+    dismiss()
+    {
         this.viewCtrl.dismiss();
     }
 

@@ -18,7 +18,8 @@ export interface PageInterface {
 @Component({
     templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp
+{
     @ViewChild(Nav) nav: Nav;
 
     appPages: PageInterface[] = [];
@@ -72,12 +73,16 @@ export class MyApp {
     }
 
 
-    openPage(page: PageInterface) {
-        // the nav component was found using @ViewChild(Nav)
-        // reset the nav to remove previous pages and only have this page
-        // we wouldn't want the back button to show in this scenario
+    /**
+     * Opens a page as root level (ergo no back button) from the sidemenu
+     * @param {PageInterface} page - The page to open
+     */
+    openPage(page: PageInterface)
+    {
+        // Close the open menu
         this.menu.close();
 
+        // Open page as root level so there is no back button
         this.nav.setRoot(page.component, {tabIndex: page.tabIndex, url: page.url, title: page.title});
     }
 

@@ -7,16 +7,22 @@ import {config} from "../../app/config";
     selector: 'page-imprint',
     templateUrl: 'imprint.html'
 })
-export class ImprintPage {
+export class ImprintPage
+{
+    private url: SafeResourceUrl;
 
     constructor(private viewCtrl: ViewController,
-                private sanitizer: DomSanitizer,) {
+                private sanitizer: DomSanitizer)
+    {
+        // URL is used for iframe src, so we have to tell Angular it's save
         this.url = sanitizer.bypassSecurityTrustResourceUrl(config.imprintUrl+'?app=1');
     }
 
-    private url: SafeResourceUrl;
-
-    public dismiss() {
+    /**
+     * Closes the imprint
+     */
+    public dismiss()
+    {
         this.viewCtrl.dismiss();
     }
 }
