@@ -40,6 +40,7 @@ if (!isset($argv[1])) {
 $apiUrl = $argv[1]; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
 
 
+// Install npm Modules
 if ($runNpm) {
     echo "\nInstalling Node Modules, this may take a while...\n";
     shell_exec('npm install');
