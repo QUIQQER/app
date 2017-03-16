@@ -96,7 +96,7 @@ ion-header {
   }
 
   // Font Color
-  .toolbar-title {
+  ion-navbar.toolbar * {
     color: {$colors->menuFontColor};
   }
 }
