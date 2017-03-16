@@ -101,6 +101,11 @@ ion-header {
   }
 }
 
+// Sidebar Title Color
+ion-toolbar.toolbar ion-title * {
+  color: {$colors->menuFontColor};
+}
+
 // Primary Color for Menu Button
 \$colors: (
         primary: {$colors->menuFontColor},
