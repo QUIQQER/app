@@ -23,7 +23,8 @@ build/platforms/
 build/plugins/
 build/plugins/android.json
 build/plugins/ios.json
-build/www/
+build/www/*
+!build/www/.gitkeep
 build/$RECYCLE.BIN/
 
 build/.DS_Store

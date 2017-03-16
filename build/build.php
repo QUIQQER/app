@@ -9,6 +9,8 @@ echo "\nBuild started\n";
 
 $runNpm = true;
 
+$restoreState = true;
+
 $generateIcon   = true;
 $generateSplash = true;
 
@@ -16,6 +18,12 @@ $generateSplash = true;
 if (in_array('--noNpm', $argv)) {
     $runNpm = false;
     echo "Not running npm install\n";
+}
+
+// Is no state restore flag set?
+if (in_array('--noRestore', $argv)) {
+    $restoreState = false;
+    echo "Not restoring Ionic State\n";
 }
 
 // Is no icon generation flag set?
@@ -44,6 +52,13 @@ $apiUrl = $argv[1]; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainp
 if ($runNpm) {
     echo "\nInstalling Node Modules, this may take a while...\n";
     shell_exec('npm install');
+}
+
+
+// Restore Ionic State
+if ($restoreState) {
+    echo "\nRestoring Ionic State...\n";
+    shell_exec('ionic state restore');
 }
 
 
