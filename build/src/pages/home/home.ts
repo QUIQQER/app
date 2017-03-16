@@ -23,10 +23,9 @@ export class HomePage {
         // If opened with URL param we have to tell Angular it's save since it's used for iframe src
         if (typeof url == 'undefined') {
             // If no URL provided (e.g.on startup) use the first url from menu
-            this.url = sanitizer.bypassSecurityTrustResourceUrl(Page.url);
-
+            this.url = this.getSanitizedUrl(Page.url);
         } else {
-            this.url = sanitizer.bypassSecurityTrustResourceUrl(url + '?app=1');
+            this.url = this.getSanitizedUrl(url);
         }
 
         if (typeof title != 'undefined') {
@@ -40,5 +39,11 @@ export class HomePage {
      */
     public showImprint() {
         this.modalCtrl.create(ImprintPage).present();
+    }
+
+
+    public getSanitizedUrl(url : string)
+    {
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url + '?app=1');
     }
 }
