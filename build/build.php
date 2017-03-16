@@ -5,6 +5,7 @@
  * These parameters can be used optionally: --noIcon and/or --noSplash to skip icon and/or splashscreen generation
  */
 
+
 echo "\nBuild started\n";
 
 $runNpm = true;
@@ -214,5 +215,14 @@ $pages .= "];";
 // Save to file
 file_put_contents('src/app/pages.ts', $pages);
 
+
+/**
+ * ===============================
+ * =         CONFIG.xml          =
+ * ===============================
+ */
+$xmlConfig = new SimpleXMLElement(file_get_contents('config.xml'));
+$xmlConfig->name = $apiData->title;
+$xmlConfig->saveXML('config.xml');
 
 echo "\nBuild completed\n";
