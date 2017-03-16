@@ -7,8 +7,16 @@
 
 echo "\nBuild started\n";
 
+$runNpm = true;
+
 $generateIcon   = true;
 $generateSplash = true;
+
+// Is no npm flag set?
+if (in_array('--noNpm', $argv)) {
+    $runNpm = false;
+    echo "Not running npm install\n";
+}
 
 // Is no icon generation flag set?
 if (in_array('--noIcon', $argv)) {
@@ -20,6 +28,12 @@ if (in_array('--noIcon', $argv)) {
 if (in_array('--noSplash', $argv)) {
     $generateSplash = false;
     echo "Not generating Splash\n";
+}
+
+
+if ($runNpm) {
+    echo "\nInstalling Node Modules, this may take a while...\n";
+    shell_exec('npm install');
 }
 
 
