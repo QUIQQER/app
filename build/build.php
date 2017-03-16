@@ -31,12 +31,6 @@ if (in_array('--noSplash', $argv)) {
 }
 
 
-if ($runNpm) {
-    echo "\nInstalling Node Modules, this may take a while...\n";
-    shell_exec('npm install');
-}
-
-
 // Get API URL from first argument
 if (!isset($argv[1])) {
     // If no first argument exit with error
@@ -44,6 +38,13 @@ if (!isset($argv[1])) {
     exit;
 }
 $apiUrl = $argv[1]; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
+
+
+if ($runNpm) {
+    echo "\nInstalling Node Modules, this may take a while...\n";
+    shell_exec('npm install');
+}
+
 
 // Try do get data from Api
 try {
