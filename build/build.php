@@ -153,7 +153,7 @@ if (!empty($logo) && $generateIcon) {
     echo "\nGeneriere Icons...\n";
 
     // Execute Ionic icon generation command
-    echo exec('ionic resources --icon');
+    echo shell_exec('ionic resources --icon');
 }
 
 // If Splash URL and no Flag set, generate Splash
@@ -164,7 +164,7 @@ if (!empty($splash) && $generateSplash) {
     echo "\nGeneriere Splashscreens...\n";
 
     // Execute Ionic splash generation command
-    echo exec('ionic resources --splash');
+    echo shell_exec('ionic resources --splash');
 }
 
 
