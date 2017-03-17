@@ -4,7 +4,12 @@
         <settings>
             <config>
                 <section name="quiqqerApp.settings">
-
+                    <conf name="author.name">
+                        <type><![CDATA[string]]></type>
+                    </conf>
+                    <conf name="author.email">
+                        <type><![CDATA[string]]></type>
+                    </conf>
                     <conf name="fontColor">
                         <type><![CDATA[string]]></type>
                         <defaultvalue>#333333</defaultvalue>
@@ -76,6 +81,22 @@
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.description.text"
+                                    />
+                                </text>
+                            </input>
+
+                            <input conf="quiqqerApp.settings.author.name" type="text">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.author.name.text"
+                                    />
+                                </text>
+                            </input>
+
+                            <input conf="quiqqerApp.settings.author.email" type="text">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.author.email.text"
                                     />
                                 </text>
                             </input>

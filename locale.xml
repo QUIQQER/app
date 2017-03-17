@@ -44,6 +44,14 @@
             <de><![CDATA[Beschreibung der APP]]></de>
             <en><![CDATA[Description of the app]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.author.name.text">
+            <de><![CDATA[Name des Autors]]></de>
+            <en><![CDATA[Author Name]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.author.email.text">
+            <de><![CDATA[Email Adresse des Autors]]></de>
+            <en><![CDATA[Author Email Address]]></en>
+        </locale>
         <locale name="quiqqerApp.settings.logo.text">
             <de><![CDATA[Logo der APP]]></de>
             <en><![CDATA[Logo of the app]]></en>
