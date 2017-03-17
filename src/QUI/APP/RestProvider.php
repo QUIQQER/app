@@ -165,8 +165,9 @@ class RestProvider implements QUI\REST\ProviderInterface
             'title'         => $Locale->get('quiqqer/app', 'app.title.' . $Project->getName()),
             'description'   => $Locale->get('quiqqer/app', 'app.description.' . $Project->getName()),
             'author'        => array(
-                'name'  => $Project->getConfig('quiqqerApp.settings.author.name'),
-                'email' => $Project->getConfig('quiqqerApp.settings.author.email')
+                'name'    => $Project->getConfig('quiqqerApp.settings.author.name'),
+                'email'   => $Project->getConfig('quiqqerApp.settings.author.email'),
+                'website' => $Project->getHost()
             ),
             'logo'          => $logo,
             'splash'        => $splash,
