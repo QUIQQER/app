@@ -44,6 +44,10 @@
             <de><![CDATA[Beschreibung der APP]]></de>
             <en><![CDATA[Description of the app]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.version.text">
+            <de><![CDATA[Versionsnummer]]></de>
+            <en><![CDATA[Version Number]]></en>
+        </locale>
         <locale name="quiqqerApp.settings.author.name.text">
             <de><![CDATA[Name des Autors]]></de>
             <en><![CDATA[Author Name]]></en>

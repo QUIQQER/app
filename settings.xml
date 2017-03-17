@@ -4,6 +4,10 @@
         <settings>
             <config>
                 <section name="quiqqerApp.settings">
+                    <conf name="version">
+                        <type><![CDATA[string]]></type>
+                        <defaultvalue>1.0.0</defaultvalue>
+                    </conf>
                     <conf name="author.name">
                         <type><![CDATA[string]]></type>
                     </conf>
@@ -81,6 +85,14 @@
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.description.text"
+                                    />
+                                </text>
+                            </input>
+
+                            <input conf="quiqqerApp.settings.version" type="text">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.version.text"
                                     />
                                 </text>
                             </input>
