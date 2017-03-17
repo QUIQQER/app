@@ -224,6 +224,7 @@ file_put_contents('src/app/pages.ts', $pages);
 $xmlConfig = new SimpleXMLElement(file_get_contents('config.xml'));
 $appTitle = $apiData->title;
 $xmlConfig->name = $appTitle;
+$xmlConfig->description = $apiData->description;
 $xmlConfig->attributes()->id = 'com.' . preg_replace('/\s/', '', $appTitle);
 $xmlConfig->saveXML('config.xml');
 
