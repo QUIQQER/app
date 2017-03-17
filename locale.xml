@@ -56,9 +56,17 @@
             <de><![CDATA[Logo der APP]]></de>
             <en><![CDATA[Logo of the app]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.logo.description">
+            <de><![CDATA[.png, .ai, oder .psd Datei mit einer Auflösung von mind. 192x192px]]></de>
+            <en><![CDATA[.png, .ai, or .psd file with a resolution of at least 192x192px]]></en>
+        </locale>
         <locale name="quiqqerApp.settings.splash.text">
             <de><![CDATA[Splashscreen der APP]]></de>
             <en><![CDATA[Splashscreen of the app]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.splash.description">
+            <de><![CDATA[.png, .ai, oder .psd Datei mit einer Auflösung von mind. 2208x2208px]]></de>
+            <en><![CDATA[.png, .ai, or .psd file with a resolution of at least 2208x2208px]]></en>
         </locale>
         <locale name="quiqqerApp.settings.availableLanguages.text">
             <de><![CDATA[Mögliche Sprachen der APP]]></de>

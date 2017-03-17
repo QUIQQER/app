@@ -133,6 +133,9 @@
                                             var="quiqqerApp.settings.logo.text"
                                     />
                                 </text>
+                                <description>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.logo.description" />
+                                </description>
                             </input>
                             <input conf="quiqqerApp.settings.splash"
                                    class="media-image">
@@ -141,6 +144,9 @@
                                             var="quiqqerApp.settings.splash.text"
                                     />
                                 </text>
+                                <description>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.splash.description" />
+                                </description>
                             </input>
                             <input conf="quiqqerApp.settings.advertisement"
                                    type="checkbox">
