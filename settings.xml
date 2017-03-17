@@ -72,6 +72,14 @@
                                 </text>
                             </input>
 
+                            <input type="hidden" data-qui="package/quiqqer/app/bin/controls/DescriptionSetting">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.description.text"
+                                    />
+                                </text>
+                            </input>
+
                             <input conf="quiqqerApp.settings.availableLanguages"
                                    type="hidden"
                                    data-qui="package/quiqqer/app/bin/controls/AvailableLanguages">

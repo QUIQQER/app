@@ -31,24 +31,45 @@ class EventHandler
             return;
         }
 
-        // title
+        // title & desc
         $Package = QUI::getPackage('quiqqer/app');
         $Config  = $Package->getConfig();
         $group   = 'quiqqer/app';
-        $var     = 'app.title.' . $Project->getName();
-        $titles  = json_decode($params['quiqqerApp.settings.title'], true);
+
+        $var_title    = 'app.title.' . $Project->getName();
+        $var_desc     = 'app.description.' . $Project->getName();
+        $titles       = json_decode($params['quiqqerApp.settings.title'], true);
+        $descriptions = json_decode($params['quiqqerApp.settings.description'], true);
 
         try {
-            QUI\Translator::add($group, $var, $Package->getName());
+            QUI\Translator::add($group, $var_title, $Package->getName());
         } catch (QUI\Exception $Exception) {
+            // Throws error if lang var already exists
+        }
+
+        try {
+            QUI\Translator::add($group, $var_desc, $Package->getName());
+        } catch (QUI\Exception $Exception) {
+            // Throws error if lang var already exists
         }
 
         try {
             QUI\Translator::update(
                 'quiqqer/app',
-                $var,
+                $var_title,
                 $Package->getName(),
                 $titles
+            );
+        } catch (QUI\Exception $Exception) {
+            QUI\System\Log::writeException($Exception);
+        }
+
+        try {
+            QUI\Translator::update(
+                'quiqqer/app',
+                $var_desc,
+                $Package->getName(),
+                $descriptions
             );
         } catch (QUI\Exception $Exception) {
             QUI\System\Log::writeException($Exception);

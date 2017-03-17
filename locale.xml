@@ -40,6 +40,10 @@
             <de><![CDATA[Titel der APP]]></de>
             <en><![CDATA[Title of the app]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.description.text">
+            <de><![CDATA[Beschreibung der APP]]></de>
+            <en><![CDATA[Description of the app]]></en>
+        </locale>
         <locale name="quiqqerApp.settings.logo.text">
             <de><![CDATA[Logo der APP]]></de>
             <en><![CDATA[Logo of the app]]></en>
