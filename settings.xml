@@ -56,7 +56,6 @@
 
             <window>
                 <categories>
-
                     <category name="quiqqerApp">
                         <text>
                             <locale group="quiqqer/app"
@@ -146,7 +145,7 @@
                                     />
                                 </text>
                                 <description>
-                                    <locale group="quiqqer/app" var="quiqqerApp.settings.logo.description" />
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.logo.description"/>
                                 </description>
                             </input>
                             <input conf="quiqqerApp.settings.splash"
@@ -157,7 +156,7 @@
                                     />
                                 </text>
                                 <description>
-                                    <locale group="quiqqer/app" var="quiqqerApp.settings.splash.description" />
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.splash.description"/>
                                 </description>
                             </input>
                             <input conf="quiqqerApp.settings.advertisement"
@@ -220,7 +219,12 @@
                                    data-qui="package/quiqqer/app/bin/controls/MenuStructure"/>
                         </settings>
 
-
+                        <settings>
+                            <input type="hidden"
+                                   disabled="disabled"
+                                   data-qui="package/quiqqer/app/bin/controls/DownloadButton"
+                                   label="false"/>
+                        </settings>
                     </category>
                 </categories>
             </window>

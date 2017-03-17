@@ -103,5 +103,10 @@
             <de><![CDATA[Möchten Sie die markierten Einträge wirklich entfernen?]]></de>
             <en><![CDATA[Are you sure you want to remove the selected entries?]]></en>
         </locale>
+
+        <locale name="download.button">
+            <de><![CDATA[Herunterladen]]></de>
+            <en><![CDATA[Download]]></en>
+        </locale>
     </groups>
 </locales>
