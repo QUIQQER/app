@@ -221,11 +221,22 @@ file_put_contents('src/app/pages.ts', $pages);
  * =         CONFIG.xml          =
  * ===============================
  */
-$xmlConfig = new SimpleXMLElement(file_get_contents('config.xml'));
 $appTitle = $apiData->title;
-$xmlConfig->name = $appTitle;
-$xmlConfig->description = $apiData->description;
+$author   = $apiData->author;
+
+$xmlConfig                   = new SimpleXMLElement(file_get_contents('config.xml'));
 $xmlConfig->attributes()->id = 'com.' . preg_replace('/\s/', '', $appTitle);
+
+$xmlConfig->name        = $appTitle;
+$xmlConfig->description = $apiData->description;
+
+$xmlConfig->author          = $author->name;
+
+$xmlAuthorAttributes        = $xmlConfig->author->attributes();
+$xmlAuthorAttributes->email = $author->email;
+$xmlAuthorAttributes->href  = $author->website;
+
+
 $xmlConfig->saveXML('config.xml');
 
 echo "\nBuild completed\n";
