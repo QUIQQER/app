@@ -176,6 +176,7 @@ class RestProvider implements QUI\REST\ProviderInterface
             'menu'          => $menu,
             'imprint'       => $imprint,
             'advertisment'  => !!$Project->getConfig('quiqqerApp.settings.advertisement'),
+            'admobid'       => $Project->getConfig('quiqqerApp.settings.advertisement.admobid'),
             'useBottomMenu' => !!$Project->getConfig('quiqqerApp.settings.menuBottom'),
             'languages'     => $Project->getConfig('quiqqerApp.settings.availableLanguages'),
             'lastEdit'      => time(),

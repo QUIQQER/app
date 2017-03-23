@@ -36,6 +36,10 @@
             <de><![CDATA[Werbung in der App verwenden]]></de>
             <en><![CDATA[Use advertising in the app]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.advertisement.admobid.text">
+            <de><![CDATA[AdMob ID für Werbung]]></de>
+            <en><![CDATA[AdMob ID for ads]]></en>
+        </locale>
         <locale name="quiqqerApp.settings.title.text">
             <de><![CDATA[Titel der APP]]></de>
             <en><![CDATA[Title of the app]]></en>

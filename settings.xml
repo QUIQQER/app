@@ -26,6 +26,9 @@
                         <type><![CDATA[bool]]></type>
                         <defaultvalue>1</defaultvalue>
                     </conf>
+                    <conf name="advertisement.admobid">
+                        <type><![CDATA[string]]></type>
+                    </conf>
                     <conf name="lastEdit">
                         <type><![CDATA[int]]></type>
                     </conf>
@@ -164,6 +167,14 @@
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.advertisement.text"
+                                    />
+                                </text>
+                            </input>
+                            <input conf="quiqqerApp.settings.advertisement.admobid"
+                                   type="text">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.advertisement.admobid.text"
                                     />
                                 </text>
                             </input>
