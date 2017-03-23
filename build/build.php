@@ -161,6 +161,7 @@ $showAds = $apiData->advertisment ? 'true' : 'false';
 $config = "
 export let config = {
     'showAds': {$showAds},
+    'admobid': '{$apiData->admobid}',
     'imprintUrl': '{$apiData->imprint->url}'
 };
 ";

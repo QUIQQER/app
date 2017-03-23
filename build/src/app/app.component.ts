@@ -49,7 +49,7 @@ export class MyApp
 
             if(AdMob && config.showAds) {
                 AdMob.createBanner({
-                    isTesting: true,
+                    adId: config.admobid,
                     autoShow: true,
                     position: 8 // Bottom Center
                 });
