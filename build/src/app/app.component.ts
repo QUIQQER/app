@@ -51,7 +51,7 @@ export class MyApp
                 AdMob.createBanner({
                     adId: config.admobid,
                     autoShow: true,
-                    position: 8 // Bottom Center
+                    position: AdMob.AD_POSITION.BOTTOM_CENTER
                 });
             }
         });
