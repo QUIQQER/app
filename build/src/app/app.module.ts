@@ -9,6 +9,10 @@ import {ImprintPage} from "../modals/imprint/imprint";
 import {NetworkCheckPage} from "../modals/network-check/network-check";
 import {Http} from "@angular/http";
 import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-translate";
+import {SplashScreen} from "@ionic-native/splash-screen";
+import {StatusBar} from "@ionic-native/status-bar";
+import {Network} from "@ionic-native/network";
+import {AdMob} from "@ionic-native/admob";
 
 @NgModule({
     declarations: [
@@ -38,7 +42,13 @@ import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-trans
         ImprintPage,
         NetworkCheckPage
     ],
-    providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+    providers: [
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        StatusBar,
+        SplashScreen,
+        Network,
+        AdMob
+    ]
 })
 
 export class AppModule {}

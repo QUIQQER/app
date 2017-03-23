@@ -1,6 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, MenuController, Nav} from 'ionic-angular';
-import {StatusBar, Splashscreen, AdMob} from 'ionic-native';
+
+import {AdMob} from '@ionic-native/admob';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {TabsPage} from '../pages/tabs/tabs';
 import {config} from "./config";
@@ -28,7 +31,10 @@ export class MyApp
 
     constructor(private platform: Platform,
                 public menu: MenuController,
-                private translate: TranslateService)
+                private translate: TranslateService,
+                private StatusBar: StatusBar,
+                private SplashScreen: SplashScreen,
+                private AdMob : AdMob)
     {
         this.initializeTranslation();
 
@@ -45,7 +51,7 @@ export class MyApp
 
         platform.ready().then(() => {
             StatusBar.styleDefault();
-            Splashscreen.hide();
+            SplashScreen.hide();
 
             if(AdMob && config.showAds) {
                 AdMob.createBanner({

@@ -4,7 +4,7 @@ import {NavParams, ModalController, Platform} from 'ionic-angular';
 import {HomePage} from '../home/home';
 import {AboutPage} from '../about/about';
 import {ContactPage} from '../contact/contact';
-import {Network} from "ionic-native";
+import {Network} from "@ionic-native/network";
 import {NetworkCheckPage} from "../../modals/network-check/network-check";
 
 @Component({
@@ -21,7 +21,12 @@ export class TabsPage
     private url;
     private title;
 
-    constructor(navParams: NavParams, private modalCtrl: ModalController, private platform: Platform)
+    constructor(
+        navParams: NavParams,
+        private modalCtrl: ModalController,
+        private platform: Platform,
+        private Network: Network
+    )
     {
         // If we lose network connection show no network screen
         Network.onDisconnect().subscribe(() => {
@@ -44,7 +49,7 @@ export class TabsPage
 
         // If the modal is closed and there is still no network show it again
         NetworkCheckModal.onWillDismiss(()=>{
-            if(Network.type == 'none') {
+            if(this.Network.type == 'none') {
                 this.showNoNetworkModal();
             }
         });

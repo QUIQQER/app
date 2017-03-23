@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ViewController} from 'ionic-angular';
-import {Network} from "ionic-native";
+import {Network} from "@ionic-native/network";
 
 @Component({
     selector: 'page-network-check',
@@ -8,7 +8,7 @@ import {Network} from "ionic-native";
 })
 export class NetworkCheckPage
 {
-    constructor(public viewCtrl: ViewController)
+    constructor(public viewCtrl: ViewController, private Network : Network)
     {
         // If network connection established we can close this page
         Network.onConnect().subscribe(() => {
