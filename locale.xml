@@ -96,6 +96,10 @@
             <de><![CDATA[Unteres Menü anzeigen]]></de>
             <en><![CDATA[Show bottom menü]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.download.title">
+            <de><![CDATA[Herunterladen]]></de>
+            <en><![CDATA[Download]]></en>
+        </locale>
     </groups>
 
     <groups name="quiqqer/app" datatype="js">

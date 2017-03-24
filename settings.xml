@@ -231,6 +231,11 @@
                         </settings>
 
                         <settings>
+                            <title>
+                                <locale group="quiqqer/app"
+                                        var="quiqqerApp.settings.download.title"
+                                />
+                            </title>
                             <input type="hidden"
                                    disabled="disabled"
                                    data-qui="package/quiqqer/app/bin/controls/DownloadButton"
