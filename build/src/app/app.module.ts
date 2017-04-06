@@ -1,4 +1,5 @@
 import {NgModule, ErrorHandler} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
 import {AboutPage} from '../pages/about/about';
@@ -25,6 +26,7 @@ import {AdMob} from "@ionic-native/admob";
         NetworkCheckPage
     ],
     imports: [
+        BrowserModule,
         IonicModule.forRoot(MyApp),
         TranslateModule.forRoot({
             provide: TranslateLoader,
@@ -51,14 +53,14 @@ import {AdMob} from "@ionic-native/admob";
     ]
 })
 
-export class AppModule {}
+export class AppModule {
+}
 
 /**
  * Creates and returns a Translation Loader
  * @param http
  * @return {TranslateStaticLoader}
  */
-export function createTranslateLoader(http: Http)
-{
+export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/locales', '.json');
 }
