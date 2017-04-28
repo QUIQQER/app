@@ -5,6 +5,10 @@ define('QUIQQER_SYSTEM', true);
 $packagesDir = str_replace('quiqqer/app/bin', '', dirname(__FILE__));
 require_once $packagesDir . '/header.php';
 
+if (!QUI::getUserBySession()->isSU()) {
+    exit;
+}
+
 // Folder to store our ZIP
 $tempFolderPath = QUI::getTemp()->createFolder('app');
 
