@@ -86,7 +86,7 @@ define('package/quiqqer/app/bin/controls/DownloadButton', [
 
         $download: function ()
         {
-            var projectName  = this.$Project.options.name,
+            var projectName  = this.$Project.getName(),
                 downloadFile = URL_OPT_DIR + 'quiqqer/app/bin/download.php?project=' + projectName,
                 iframeId     = Math.floor(Date.now() / 1000);
 
