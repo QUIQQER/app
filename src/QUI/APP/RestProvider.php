@@ -65,9 +65,12 @@ class RestProvider implements QUI\REST\ProviderInterface
         $cacheName = 'quiqqer/app/settings/' . $Project->getName();
 
         try {
-            return QUI\Cache\Manager::get($cacheName);
+            return $Response->withStatus(200)
+                ->withHeader('Content-Type', 'application/json')
+                ->write(QUI\Cache\Manager::get($cacheName));
         } catch (\Exception $Exception) {
         }
+
 
         $Locale = new QUI\Locale();
         $Locale->setCurrent($Project->getLang());
