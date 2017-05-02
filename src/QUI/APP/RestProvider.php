@@ -3,6 +3,7 @@
 /**
  * This file contains QUI\APP\RestProvider
  */
+
 namespace QUI\APP;
 
 use QUI;
@@ -228,10 +229,11 @@ class RestProvider implements QUI\REST\ProviderInterface
     protected function getSiteData(QUI\Projects\Site $Site)
     {
         return array(
-            'id'    => $Site->getId(),
-            'title' => $Site->getAttribute('title'),
-            'name'  => $Site->getAttribute('name'),
-            'url'   => $Site->getUrlRewritten()
+            'id'        => $Site->getId(),
+            'title'     => $Site->getAttribute('title'),
+            'name'      => $Site->getAttribute('name'),
+            'url'       => $Site->getUrlRewritten(),
+            'last_edit' => $Site->getAttribute('e_date')
         );
     }
 }
