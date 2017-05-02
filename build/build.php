@@ -43,7 +43,7 @@ if (in_array('--noSplash', $argv)) {
 // Get API URL from first argument
 if (!isset($argv[1])) {
     // If no first argument exit with error
-    echo "\n ERROR: You need to provide an API URL!\n";
+    error("You need to provide an API URL!");
     exit;
 }
 $apiUrl = $argv[1]; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
@@ -69,7 +69,7 @@ try {
     $apiData = json_decode(file_get_contents($apiUrl, true));
 } catch (Exception $ex) {
     // If anything goes wrong exit with error
-    echo "\n ERROR: Invalid API URL!\n";
+    error("Invalid API URL!");
     exit;
 }
 
@@ -242,3 +242,13 @@ $xmlAuthorAttributes->href  = $author->website;
 $xmlConfig->saveXML('config.xml');
 
 echo "\nBuild completed\n";
+
+/**
+ * Outputs an error message (colored red)
+ *
+ * @param $message
+ */
+function error($message)
+{
+    echo "\033[0;31mERROR:" . PHP_EOL . "$message\033[0m" . PHP_EOL;
+}
