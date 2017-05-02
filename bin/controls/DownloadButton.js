@@ -86,7 +86,22 @@ define('package/quiqqer/app/bin/controls/DownloadButton', [
 
         $download: function ()
         {
-            window.open('//' + window.location.hostname + '/packages/quiqqer/app/bin/download.php', '_blank')
+            var projectName  = this.$Project.options.name,
+                downloadFile = URL_OPT_DIR + 'quiqqer/app/bin/download.php?project=' + projectName,
+                iframeId     = Math.floor(Date.now() / 1000);
+
+            new Element('iframe', {
+                id             : 'download-iframe-' + iframeId,
+                src            : downloadFile,
+                styles         : {
+                    left    : -1000,
+                    height  : 10,
+                    position: 'absolute',
+                    top     : -1000,
+                    width   : 10
+                },
+                'data-iframeid': iframeId
+            }).inject(document.body);
         }
     });
 });
