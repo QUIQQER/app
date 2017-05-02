@@ -33,7 +33,6 @@ class EventHandler
 
         // title & desc
         $Package = QUI::getPackage('quiqqer/app');
-        $Config  = $Package->getConfig();
         $group   = 'quiqqer/app';
 
         $var_title    = 'app.title.' . $Project->getName();
@@ -73,23 +72,6 @@ class EventHandler
             );
         } catch (QUI\Exception $Exception) {
             QUI\System\Log::writeException($Exception);
-        }
-
-        // menu
-        if (isset($params['quiqqerApp.settings.menu'])) {
-            $menu = json_decode($params['quiqqerApp.settings.menu'], true);
-            QUI\System\Log::writeRecursive($menu);
-            if ($menu) {
-                foreach ($menu as $lang => $entries) {
-                    $Config->setValue(
-                        'menu',
-                        $Project->getName() . '_' . $lang,
-                        $entries
-                    );
-                }
-
-                $Config->save();
-            }
         }
 
         QUI\Translator::publish('quiqqer/app');
