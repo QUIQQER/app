@@ -5,7 +5,6 @@
  * These parameters can be used optionally: --noIcon and/or --noSplash to skip icon and/or splashscreen generation
  */
 
-
 echo "\nBuild started\n";
 
 $runNpm = true;
@@ -254,7 +253,7 @@ $xmlConfig->attributes()->version = $apiData->version;
 $xmlConfig->name        = $appTitle;
 $xmlConfig->description = $apiData->description;
 
-$xmlConfig->author          = $author->name;
+$xmlConfig->author = $author->name;
 
 $xmlAuthorAttributes        = $xmlConfig->author->attributes();
 $xmlAuthorAttributes->email = $author->email;
