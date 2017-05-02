@@ -182,7 +182,7 @@ if (!empty($logo) && $generateIcon) {
     // Download the Icon
     copy($logo, 'resources/icon.png');
 
-    echo "\nGeneriere Icons...\n";
+    echo "\nGenerating Icons...\n";
 
     $cmd = 'ionic cordova resources --icon';
 
@@ -204,7 +204,7 @@ if (!empty($splash) && $generateSplash) {
     // Download the Splash
     copy($splash, 'resources/splash.png');
 
-    echo "\nGeneriere Splashscreens...\n";
+    echo "\nGenerating Splashscreens...\n";
 
     $cmd = 'ionic cordova resources --splash';
 
