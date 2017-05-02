@@ -185,7 +185,7 @@ if (!empty($logo) && $generateIcon) {
 
     echo "\nGenerating Icons...\n";
 
-    $cmd = 'ionic cordova resources --icon';
+    $cmd = 'ionic resources --icon';
 
     // Execute Ionic icon generation command
     $result = liveExecuteCommand($cmd);
@@ -207,7 +207,7 @@ if (!empty($splash) && $generateSplash) {
 
     echo "\nGenerating Splashscreens...\n";
 
-    $cmd = 'ionic cordova resources --splash';
+    $cmd = 'ionic resources --splash';
 
     // Execute Ionic splash generation command
     $result = liveExecuteCommand($cmd);
