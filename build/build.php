@@ -39,14 +39,15 @@ if (in_array('--noSplash', $argv)) {
 }
 
 
-// Get API URL from first argument
-if (!isset($argv[1])) {
-    // If no first argument exit with error
-    error("You need to provide an API URL!");
+// Get API URL from config.ini
+$configIni = parse_ini_file('config.ini', true);
+if ($configIni === false) {
+    // If no config.ini found or not parseable
+    error("config.ini could not be found");
     exit;
 }
-$apiUrl = $argv[1]; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
 
+$apiUrl = $configIni['api_url']; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
 
 // Install npm Modules
 if ($runNpm) {
