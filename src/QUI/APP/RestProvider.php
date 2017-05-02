@@ -227,13 +227,11 @@ class RestProvider implements QUI\REST\ProviderInterface
      */
     protected function getSiteData(QUI\Projects\Site $Site)
     {
-        $Project = $Site->getProject();
-
         return array(
             'id'    => $Site->getId(),
             'title' => $Site->getAttribute('title'),
             'name'  => $Site->getAttribute('name'),
-            'url'   => $Project->getVHost(true, true) . $Site->getUrlRewritten()
+            'url'   => $Site->getUrlRewritten()
         );
     }
 }
