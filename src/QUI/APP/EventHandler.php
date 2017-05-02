@@ -3,6 +3,7 @@
 /**
  * This file contains QUI\APP\EventHandler
  */
+
 namespace QUI\APP;
 
 use QUI;
@@ -10,7 +11,7 @@ use QUI;
 /**
  * Class RestProvider
  *
- * @package QUI\OAuth
+ * @package QUI\APP
  */
 class EventHandler
 {
