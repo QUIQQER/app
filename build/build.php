@@ -267,7 +267,8 @@ echo "\nBuild completed\n";
 
 /**
  * Execute the given command by displaying console output live to the user.
- * From Amith via Stackoverflow (http://stackoverflow.com/a/32664523/3002417)
+ * Modified version of Amith Snippet from Stackoverflow
+ * @see http://stackoverflow.com/a/32664523/3002417
  * @param  string $cmd :  command to be executed
  * @return array   exit_status  :  exit status of the executed command
  *                 output       :  console output of the executed command
