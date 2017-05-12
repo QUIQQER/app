@@ -96,6 +96,20 @@
             <de><![CDATA[Unteres Menü anzeigen]]></de>
             <en><![CDATA[Show bottom menü]]></en>
         </locale>
+
+        <locale name="quiqqerApp.settings.staticPages.title">
+            <de><![CDATA[Statische Seiten]]></de>
+            <en><![CDATA[Static Sites]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.staticPages.text">
+            <de><![CDATA[Statische Seiten IDs]]></de>
+            <en><![CDATA[Static Site IDs]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.staticPages.description">
+            <de><![CDATA[Geben Sie hier kommasepariert die IDs der Seiten an, die auch offline in der App verfügbar sein sollen. Zum Beispiel: "1,5,7" (Nicht für Shop-Seiten o.ä. geeignet)]]></de>
+            <en><![CDATA[Enter a comma separated list of IDs of pages which should also be available offline in the app. For example: "1,5,7" (Don't use this for shop or similar pages.)]]></en>
+        </locale>
+
         <locale name="quiqqerApp.settings.download.title">
             <de><![CDATA[Herunterladen]]></de>
             <en><![CDATA[Download]]></en>

@@ -53,7 +53,9 @@
                         <type><![CDATA[bool]]></type>
                         <defaultvalue>1</defaultvalue>
                     </conf>
-
+                    <conf name="staticPages">
+                        <type><![CDATA[string]]></type>
+                    </conf>
                 </section>
             </config>
 
@@ -229,6 +231,25 @@
                                    label="false"
                                    data-qui="package/quiqqer/app/bin/controls/MenuStructure"/>
                         </settings>
+
+
+                        <settings title="quiqqerApp.settings"
+                                  name="quiqqerApp.settings.staticPages"
+                        >
+                            <title>
+                                <locale group="quiqqer/app" var="quiqqerApp.settings.staticPages.title"/>
+                            </title>
+
+                            <input conf="quiqqerApp.settings.staticPages" type="text">
+                                <text>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.staticPages.text"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.staticPages.description"/>
+                                </description>
+                            </input>
+                        </settings>
+
 
                         <settings>
                             <title>

@@ -141,6 +141,14 @@ class RestProvider implements QUI\REST\ProviderInterface
         }
 
 
+        // Static Pages
+        $staticPageIDs = $Project->getConfig('quiqqerApp.settings.staticPages');
+
+        if ($staticPageIDs) {
+            $staticPageIDs = explode(',', $staticPageIDs);
+        }
+
+
         // Menu
         $menu = array();
         $ids  = $Config->getValue(
@@ -156,7 +164,14 @@ class RestProvider implements QUI\REST\ProviderInterface
                     $Site = $Project->get($id);
 
                     if ($Site->getAttribute('active')) {
-                        $menu[] = $this->getSiteData($Site);
+                        $site = $this->getSiteData($Site);
+
+                        $site['isStatic'] = false;
+                        if (in_array($id, $staticPageIDs)) {
+                            $site['isStatic'] = true;
+                        }
+
+                        $menu[] = $site;
                     }
                 } catch (QUI\Exception $Exception) {
                 }
