@@ -1,5 +1,8 @@
 <ion-tabs [selectedIndex]="mySelectedIndex">
     <ion-tab [root]="tab1Root" tabIcon="home" [rootParams]="{url: url, title: title}"></ion-tab>
-    <ion-tab [root]="tab2Root" tabIcon="information-circle"></ion-tab>
-    <ion-tab [root]="tab3Root" tabIcon="contacts"></ion-tab>
+    <ion-tab *ngFor="let page of bottomMenuPages"
+             [root]="tab1Root"
+             [rootParams]="{url: page.url, title: page.title}"
+             tabIcon="home"
+    ></ion-tab>
 </ion-tabs>

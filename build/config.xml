@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.MeineQUIQQERApp" version="1.0.0">
-  <name>Meine QUIQQER App</name>
-  <description>Test Desc DE</description>
-  <author email="email@autor.de" href="http://quiqqer.local">Autor</author>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.QUIQQERApp" version="1.0.0">
+  <name>QUIQQER App</name>
+  <description>Description goes here</description>
+  <author email="jan@pcsg.de" href="http://quiqqer.local">Jan W.</author>
   <content src="index.html"/>
   <access origin="*"/>
   <allow-navigation href="http://ionic.local/*"/>

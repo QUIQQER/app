@@ -113,7 +113,11 @@ $scss = "
 // Display Tabbar?
 ion-tabs {
   .tabbar {
-   {$tabBarDisplayStyle}
+    {$tabBarDisplayStyle}
+   
+    > a:first-child {
+      display: none;
+    }
   }
 }
 
@@ -237,6 +241,40 @@ $pages .= "];";
 
 // Save to file
 file_put_contents('src/app/pages.ts', $pages);
+
+
+/**
+ * ===============================
+ * =         BOTTOM MENU         =
+ * ===============================
+ */
+// Build array of pages for sidemenu
+$pages = "// Pages for bottom menu generated via build script\nexport let bottomMenu = [";
+foreach ($apiData->bottomMenu as $page) {
+    $pages .= "{title: '{$page->title}', url: '{$page->url}'},";
+}
+$pages .= "];";
+
+// Save to file
+file_put_contents('src/assets/bottomMenu.ts', $pages);
+
+
+/**
+ * ===============================
+ * =      STATIC PAGES/URLs      =
+ * ===============================
+ */
+// Build array of pages for sidemenu
+$staticURLs = "// static pages generated via build script\nvar static_urls = [";
+foreach ($apiData->sideMenu as $page) {
+    if ($page->isStatic) {
+        $staticURLs .= "'{$page->url}',";
+    }
+}
+$staticURLs .= "];";
+
+// Save to file
+file_put_contents('src/assets/static_pages.js', $staticURLs);
 
 
 /**

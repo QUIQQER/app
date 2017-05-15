@@ -6,6 +6,7 @@ import {AboutPage} from '../about/about';
 import {ContactPage} from '../contact/contact';
 import {Network} from "@ionic-native/network";
 import {NetworkCheckPage} from "../../modals/network-check/network-check";
+import {bottomMenu} from "../../assets/bottomMenu";
 
 @Component({
     templateUrl: 'tabs.html'
@@ -17,6 +18,8 @@ export class TabsPage
     tab2Root: any = AboutPage;
     tab3Root: any = ContactPage;
     mySelectedIndex: number;
+
+    bottomMenuPages: Array<any>;
 
     private url;
     private title;
@@ -32,6 +35,8 @@ export class TabsPage
         Network.onDisconnect().subscribe(() => {
            this.showNoNetworkModal();
         });
+
+        this.bottomMenuPages = bottomMenu;
 
         // If we are created with params use them
         this.mySelectedIndex = navParams.get('tabIndex') || 0;
