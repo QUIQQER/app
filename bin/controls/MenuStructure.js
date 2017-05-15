@@ -44,6 +44,8 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
             '$refreshButtons'
         ],
 
+        menuType: 'sideMenu',
+
         initialize: function (options) {
             this.$Elm = null;
             this.$Languages = null;
@@ -72,6 +74,7 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
             }
         },
 
+
         /**
          * event : on import
          */
@@ -98,6 +101,9 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
             var GridContainer = this.$Elm.getElement(
                 '.quiqqer-app-menu-structure-data'
             );
+
+            // Using MooTools .getProperty() since QUI's .getAttribute() doesn't work somehow
+            this.menuType =  this.$Input.getProperty('data-qui-options-menutype');
 
             this.$Grid = new Grid(GridContainer, {
                 buttons: [{
@@ -251,6 +257,7 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                         name: self.$Project.getName(),
                         lang: language
                     }),
+                    'menu': self.menuType,
                     onError: reject
                 });
             });

@@ -8,16 +8,18 @@
  * Returns the menu entries from the project
  *
  * @param {String} $project - Project JSON data
+ * @param {String} $menu - Which menu to get ('sideMenu' or 'bottomMenu')
  *
  * @return array
  */
 QUI::$Ajax->registerFunction(
     'package_quiqqer_app_ajax_getMenu',
-    function ($project) {
+    function ($project, $menu) {
+
         $Project = QUI::getProjectManager()->decode($project);
         $Config  = QUI::getPackage('quiqqer/app')->getConfig();
 
-        $ids = $Config->getValue('menu', $Project->getName() . '_' . $Project->getLang());
+        $ids = $Config->getValue($menu, $Project->getName() . '_' . $Project->getLang());
 
         if (!$ids) {
             return array();
@@ -40,6 +42,6 @@ QUI::$Ajax->registerFunction(
 
         return $result;
     },
-    array('project'),
+    array('project', 'menu'),
     'Permission::checkAdminUser'
 );

@@ -218,20 +218,37 @@
                         </settings>
 
                         <settings title="quiqqerApp.settings"
-                                  name="quiqqerApp.settings.menuStructure"
+                                  name="quiqqerApp.settings.sideMenuStructure"
                         >
                             <title>
                                 <locale group="quiqqer/app"
-                                        var="quiqqerApp.settings.menuStructure.title"
+                                        var="quiqqerApp.settings.sideMenuStructure.title"
                                 />
                             </title>
 
-                            <input conf="quiqqerApp.settings.menu"
+                            <input conf="quiqqerApp.settings.sideMenu"
                                    type="hidden"
                                    label="false"
-                                   data-qui="package/quiqqer/app/bin/controls/MenuStructure"/>
+                                   data-qui="package/quiqqer/app/bin/controls/MenuStructure"
+                                   data-qui-options-menuType="sideMenu"/>
+
                         </settings>
 
+                        <settings title="quiqqerApp.settings"
+                                  name="quiqqerApp.settings.bottomMenuStructure"
+                        >
+                            <title>
+                                <locale group="quiqqer/app"
+                                        var="quiqqerApp.settings.bottomMenuStructure.title"
+                                />
+                            </title>
+
+                            <input conf="quiqqerApp.settings.bottomMenu"
+                                   type="hidden"
+                                   label="false"
+                                   data-qui="package/quiqqer/app/bin/controls/MenuStructure"
+                                   data-qui-options-menuType="bottomMenu"/>
+                        </settings>
 
                         <settings title="quiqqerApp.settings"
                                   name="quiqqerApp.settings.staticPages"

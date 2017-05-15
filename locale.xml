@@ -20,9 +20,13 @@
             <de><![CDATA[Allgemeine Einstellungen]]></de>
             <en><![CDATA[General settings]]></en>
         </locale>
-        <locale name="quiqqerApp.settings.menuStructure.title">
-            <de><![CDATA[Menüstruktur]]></de>
-            <en><![CDATA[Menu structure]]></en>
+        <locale name="quiqqerApp.settings.sideMenuStructure.title">
+            <de><![CDATA[Seitliche Menüstruktur]]></de>
+            <en><![CDATA[Side-Menu structure]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.title">
+            <de><![CDATA[Untere Menüstruktur]]></de>
+            <en><![CDATA[Bottom-Menu structure]]></en>
         </locale>
         <locale name="quiqqerApp.settings.fontColor.text">
             <de><![CDATA[Allgemeine Schriftfarbe]]></de>

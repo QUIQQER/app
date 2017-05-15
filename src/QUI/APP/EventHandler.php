@@ -34,6 +34,7 @@ class EventHandler
 
         // title & desc
         $Package = QUI::getPackage('quiqqer/app');
+        $Config  = $Package->getConfig();
         $group   = 'quiqqer/app';
 
         $var_title    = 'app.title.' . $Project->getName();
@@ -73,6 +74,44 @@ class EventHandler
             );
         } catch (QUI\Exception $Exception) {
             QUI\System\Log::writeException($Exception);
+        }
+
+
+        $isConfigChanged = false;
+
+        // sideMenu
+        if (isset($params['quiqqerApp.settings.sideMenu'])) {
+            $sideMenu = json_decode($params['quiqqerApp.settings.sideMenu'], true);
+            if ($sideMenu) {
+                foreach ($sideMenu as $lang => $entries) {
+                    $Config->setValue(
+                        'sideMenu',
+                        $Project->getName() . '_' . $lang,
+                        $entries
+                    );
+                }
+                $isConfigChanged = true;
+            }
+        }
+
+
+        // bottomMenu
+        if (isset($params['quiqqerApp.settings.bottomMenu'])) {
+            $bottomMenu = json_decode($params['quiqqerApp.settings.bottomMenu'], true);
+            if ($bottomMenu) {
+                foreach ($bottomMenu as $lang => $entries) {
+                    $Config->setValue(
+                        'bottomMenu',
+                        $Project->getName() . '_' . $lang,
+                        $entries
+                    );
+                }
+                $isConfigChanged = true;
+            }
+        }
+
+        if ($isConfigChanged) {
+            $Config->save();
         }
 
         QUI\Translator::publish('quiqqer/app');
