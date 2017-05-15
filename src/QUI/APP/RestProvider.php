@@ -72,12 +72,8 @@ class RestProvider implements QUI\REST\ProviderInterface
         } catch (\Exception $Exception) {
         }
 
-
         $Locale = new QUI\Locale();
         $Locale->setCurrent($Project->getLang());
-
-        $Package = QUI::getPackage('quiqqer/app');
-        $Config  = $Package->getConfig();
 
         // Logo
         $logo = '';
@@ -140,45 +136,6 @@ class RestProvider implements QUI\REST\ProviderInterface
             }
         }
 
-
-        // Static Pages
-        $staticPageIDs = $Project->getConfig('quiqqerApp.settings.staticPages');
-
-        if ($staticPageIDs) {
-            $staticPageIDs = explode(',', $staticPageIDs);
-        }
-
-
-        // Menu
-        $menu = array();
-        $ids  = $Config->getValue(
-            'menu',
-            $Project->getName() . '_' . $Project->getLang()
-        );
-
-        if ($ids) {
-            $ids = explode(',', $ids);
-
-            foreach ($ids as $id) {
-                try {
-                    $Site = $Project->get($id);
-
-                    if ($Site->getAttribute('active')) {
-                        $site = $this->getSiteData($Site);
-
-                        $site['isStatic'] = false;
-                        if (in_array($id, $staticPageIDs)) {
-                            $site['isStatic'] = true;
-                        }
-
-                        $menu[] = $site;
-                    }
-                } catch (QUI\Exception $Exception) {
-                }
-            }
-        }
-
-
         // title
         $result = array(
             'title'         => $Locale->get('quiqqer/app', 'app.title.' . $Project->getName()),
@@ -192,7 +149,8 @@ class RestProvider implements QUI\REST\ProviderInterface
             'logo'          => $logo,
             'splash'        => $splash,
             'placeholder'   => $placeholder,
-            'menu'          => $menu,
+            'sideMenu'      => $this->getMenu('sideMenu', $Project),
+            'bottomMenu'    => $this->getMenu('bottomMenu', $Project),
             'imprint'       => $imprint,
             'advertisment'  => !!$Project->getConfig('quiqqerApp.settings.advertisement'),
             'admobid'       => $Project->getConfig('quiqqerApp.settings.advertisement.admobid'),
@@ -244,11 +202,62 @@ class RestProvider implements QUI\REST\ProviderInterface
     protected function getSiteData(QUI\Projects\Site $Site)
     {
         return array(
-            'id'        => $Site->getId(),
-            'title'     => $Site->getAttribute('title'),
-            'name'      => $Site->getAttribute('name'),
-            'url'       => $Site->getUrlRewritten(),
+            'id'       => $Site->getId(),
+            'title'    => $Site->getAttribute('title'),
+            'name'     => $Site->getAttribute('name'),
+            'url'      => $Site->getUrlRewritten(),
             'lastEdit' => $Site->getAttribute('e_date')
         );
+    }
+
+
+    private function getMenu($menuType, QUI\Projects\Project $Project)
+    {
+        $Package = QUI::getPackage('quiqqer/app');
+        $Config  = $Package->getConfig();
+
+        $staticPageIDs = $this->getStaticPageIDs($Project);
+
+        $menu = array();
+        $ids  = $Config->getValue(
+            $menuType,
+            $Project->getName() . '_' . $Project->getLang()
+        );
+
+        if ($ids) {
+            $ids = explode(',', $ids);
+
+            foreach ($ids as $id) {
+                try {
+                    $Site = $Project->get($id);
+
+                    if ($Site->getAttribute('active')) {
+                        $site = $this->getSiteData($Site);
+
+                        $site['isStatic'] = false;
+                        if (in_array($id, $staticPageIDs)) {
+                            $site['isStatic'] = true;
+                        }
+
+                        $menu[] = $site;
+                    }
+                } catch (QUI\Exception $Exception) {
+                }
+            }
+        }
+
+        return $menu;
+    }
+
+
+    private function getStaticPageIDs(QUI\Projects\Project $Project)
+    {
+        $staticPageIDs = $Project->getConfig('quiqqerApp.settings.staticPages');
+
+        if ($staticPageIDs) {
+            return explode(',', $staticPageIDs);
+        }
+
+        return array();
     }
 }
