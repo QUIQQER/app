@@ -87,7 +87,7 @@ class EventHandler
                     $Config->setValue(
                         'sideMenu',
                         $Project->getName() . '_' . $lang,
-                        $entries
+                        json_encode($entries)
                     );
                 }
                 $isConfigChanged = true;
@@ -103,7 +103,7 @@ class EventHandler
                     $Config->setValue(
                         'bottomMenu',
                         $Project->getName() . '_' . $lang,
-                        $entries
+                        json_encode($entries)
                     );
                 }
                 $isConfigChanged = true;
@@ -136,6 +136,7 @@ class EventHandler
 
             // Remove SAMEORIGIN Policy for iframes inside the app
             QUI::getGlobalResponse()->headers->remove("X-Frame-Options");
+            QUI::getGlobalResponse()->headers->add(['Access-Control-Allow-Origin' => '*']);
         }
     }
 }

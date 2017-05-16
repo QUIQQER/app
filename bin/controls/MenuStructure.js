@@ -18,13 +18,15 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
     'qui/controls/buttons/Select',
     'qui/controls/loader/Loader',
     'qui/controls/windows/Confirm',
+    'controls/icons/Confirm',
     'controls/grid/Grid',
     'Ajax',
     'Locale',
 
     'css!package/quiqqer/app/bin/controls/MenuStructure.css'
 
-], function (QUI, QUIControl, QUISelect, QUILoader, QUIConfirm, Grid, QUIAjax, QUILocale) {
+], function (QUI, QUIControl, QUISelect, QUILoader, QUIConfirm, IconConfirm, Grid, QUIAjax, QUILocale)
+{
     "use strict";
 
     var lg = 'quiqqer/app';
@@ -32,7 +34,7 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
     return new Class({
 
         Extends: QUIControl,
-        Type: 'package/quiqqer/app/bin/controls/MenuStructure',
+        Type   : 'package/quiqqer/app/bin/controls/MenuStructure',
 
         Binds: [
             '$onImport',
@@ -41,12 +43,14 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
             'save',
             'openAddDialog',
             'openRemoveDialog',
+            'openIconSelectDialog',
             '$refreshButtons'
         ],
 
         menuType: 'sideMenu',
 
-        initialize: function (options) {
+        initialize: function (options)
+        {
             this.$Elm = null;
             this.$Languages = null;
             this.$Project = null;
@@ -66,7 +70,8 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
          *
          * @param {Object} Project
          */
-        setProject: function (Project) {
+        setProject: function (Project)
+        {
             this.$Project = Project;
 
             if (!this.$Languages) {
@@ -78,7 +83,8 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
         /**
          * event : on import
          */
-        $onImport: function () {
+        $onImport: function ()
+        {
             if (!this.$Project) {
                 return;
             }
@@ -87,7 +93,7 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
 
             this.$Elm = new Element('div', {
                 'class': 'quiqqer-app-menu-structure',
-                html: '<div class="quiqqer-app-menu-structure-langselect"></div>' +
+                html   : '<div class="quiqqer-app-menu-structure-langselect"></div>' +
                 '<div class="quiqqer-app-menu-structure-data"></div>'
             }).wraps(this.$Elm);
 
@@ -103,25 +109,27 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
             );
 
             // Using MooTools .getProperty() since QUI's .getAttribute() doesn't work somehow
-            this.menuType =  this.$Input.getProperty('data-qui-options-menutype');
+            this.menuType = this.$Input.getProperty('data-qui-options-menutype');
 
             this.$Grid = new Grid(GridContainer, {
-                buttons: [{
-                    name: 'up',
-                    icon: 'fa fa-chevron-up',
+                buttons    : [{
+                    name    : 'up',
+                    icon    : 'fa fa-chevron-up',
                     disabled: true,
-                    events: {
-                        onClick: function () {
+                    events  : {
+                        onClick: function ()
+                        {
                             this.$Grid.moveup();
                             this.save();
                         }.bind(this)
                     }
                 }, {
-                    name: 'down',
-                    icon: 'fa fa-chevron-down',
+                    name    : 'down',
+                    icon    : 'fa fa-chevron-down',
                     disabled: true,
-                    events: {
-                        onClick: function () {
+                    events  : {
+                        onClick: function ()
+                        {
                             this.$Grid.movedown();
                             this.save();
                         }.bind(this)
@@ -129,39 +137,52 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                 }, {
                     type: 'seperator'
                 }, {
-                    name: 'add',
+                    name     : 'add',
                     textimage: 'fa fa-plus',
-                    text: QUILocale.get('quiqqer/system', 'add'),
-                    events: {
+                    text     : QUILocale.get('quiqqer/system', 'add'),
+                    events   : {
                         onClick: this.openAddDialog
                     }
                 }, {
-                    name: 'remove',
+                    name     : 'remove',
                     textimage: 'fa fa-trash',
-                    text: QUILocale.get('quiqqer/system', 'remove'),
-                    events: {
+                    text     : QUILocale.get('quiqqer/system', 'remove'),
+                    events   : {
                         onClick: this.openRemoveDialog
                     },
-                    disabled: true
+                    disabled : true
+                }, {
+                    name     : 'setIcon',
+                    textimage: 'fa fa-css3',
+                    text     : QUILocale.get('quiqqer/system', 'setIcon'),
+                    events   : {
+                        onClick: this.openIconSelectDialog
+                    },
+                    disabled : true
                 }],
                 columnModel: [{
-                    header: QUILocale.get('quiqqer/system', 'id'),
+                    header   : QUILocale.get('quiqqer/system', 'id'),
                     dataIndex: 'id',
-                    dataType: 'number',
-                    width: 60
+                    dataType : 'number',
+                    width    : 60
                 }, {
-                    header: QUILocale.get('quiqqer/system', 'title'),
+                    header   : QUILocale.get('quiqqer/system', 'title'),
                     dataIndex: 'title',
-                    dataType: 'string',
-                    width: 200
+                    dataType : 'string',
+                    width    : 200
                 }, {
-                    header: QUILocale.get('quiqqer/system', 'name'),
+                    header   : QUILocale.get('quiqqer/system', 'name'),
                     dataIndex: 'name',
-                    dataType: 'string',
-                    width: 200
+                    dataType : 'string',
+                    width    : 200
+                }, {
+                    header   : QUILocale.get('quiqqer/system', 'icon'),
+                    dataIndex: 'icon',
+                    dataType : 'string',
+                    width    : 50
                 }],
-                height: 300,
-                sortHeader: false
+                height     : 300,
+                sortHeader : false
             });
 
             this.$Grid.addEvents({
@@ -177,7 +198,8 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                 }
             }).inject(SelectContainer);
 
-            this.$getLanguages().then(function (langs) {
+            this.$getLanguages().then(function (langs)
+            {
                 var i, len, lang;
 
                 for (i = 0, len = langs.length; i < len; i++) {
@@ -198,12 +220,14 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
          *
          * @returns {Promise}
          */
-        refresh: function () {
+        refresh: function ()
+        {
             var self = this;
 
             this.Loader.show();
 
-            return new Promise(function (resolve, reject) {
+            return new Promise(function (resolve, reject)
+            {
                 var language = self.$Select.getValue();
 
                 if (self.$Input.value !== '') {
@@ -222,7 +246,8 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                     if (language in data) {
                         var ids = data[language].split(',');
 
-                        QUIAjax.get('package_quiqqer_app_ajax_getSitesData', function (result) {
+                        QUIAjax.get('package_quiqqer_app_ajax_getSitesData', function (result)
+                        {
                             self.$Grid.setData({
                                 data: result
                             });
@@ -231,19 +256,20 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                             resolve();
                         }, {
                             'package': 'quiqqer/app',
-                            project: JSON.encode({
+                            project  : JSON.encode({
                                 name: self.$Project.getName(),
                                 lang: language
                             }),
-                            ids: JSON.encode(ids),
-                            onError: reject
+                            ids      : JSON.encode(ids),
+                            onError  : reject
                         });
 
                         return;
                     }
                 }
 
-                QUIAjax.get('package_quiqqer_app_ajax_getMenu', function (result) {
+                QUIAjax.get('package_quiqqer_app_ajax_getMenu', function (result)
+                {
                     self.$Grid.setData({
                         data: result
                     });
@@ -253,12 +279,12 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                     resolve();
                 }, {
                     'package': 'quiqqer/app',
-                    project: JSON.encode({
+                    project  : JSON.encode({
                         name: self.$Project.getName(),
                         lang: language
                     }),
-                    'menu': self.menuType,
-                    onError: reject
+                    'menu'   : self.menuType,
+                    onError  : reject
                 });
             });
         },
@@ -266,10 +292,11 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
         /**
          * Saves the current language data to the input
          */
-        save: function () {
-            var data = {},
+        save: function ()
+        {
+            var data  = {},
                 value = this.$Input.value,
-                lang = this.$Select.getValue();
+                lang  = this.$Select.getValue();
 
             try {
                 data = JSON.decode(value);
@@ -280,26 +307,33 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
             } catch (e) {
             }
 
-            var ids = this.$Grid.getData().map(function (Entry) {
-                return Entry.id;
+            var gridData = [];
+            this.$Grid.getData().forEach(function (Entry)
+            {
+                gridData.push({id: Entry.id, icon: Entry.icon});
             });
 
-            data[lang] = ids.join(',');
+            data[lang] = gridData;
 
             this.$Input.value = JSON.encode(data);
+            console.log(this.$Input.value);
         },
 
         /**
          * Open the dialog to add a site
          */
-        openAddDialog: function () {
+        openAddDialog: function ()
+        {
             var self = this;
 
-            require(['controls/projects/Popup'], function (Popup) {
+            require(['controls/projects/Popup'], function (Popup)
+            {
                 new Popup({
                     events: {
-                        onSubmit: function (Win, value) {
-                            self.addSite(value.ids[0]).then(function () {
+                        onSubmit: function (Win, value)
+                        {
+                            self.addSite(value.ids[0]).then(function ()
+                            {
                                 self.$refreshButtons();
                             });
                         }
@@ -311,26 +345,50 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
         /**
          * Opens the delete / remove dialog
          */
-        openRemoveDialog: function () {
-            var self = this,
-                selectedData = this.$Grid.getSelectedData(),
+        openRemoveDialog: function ()
+        {
+            var self            = this,
+                selectedData    = this.$Grid.getSelectedData(),
                 selectedIndices = this.$Grid.getSelectedIndices();
 
             new QUIConfirm({
-                icon: 'fa fa-trash',
-                title: QUILocale.get(lg, 'window.remove.title'),
+                icon     : 'fa fa-trash',
+                title    : QUILocale.get(lg, 'window.remove.title'),
                 maxHeight: 300,
-                maxWidth: 450,
-                events: {
-                    onOpen: function (Win) {
+                maxWidth : 450,
+                events   : {
+                    onOpen: function (Win)
+                    {
                         Win.getContent().set('html', QUILocale.get(lg, 'window.remove.content'));
                     },
 
-                    onSubmit: function () {
+                    onSubmit: function ()
+                    {
                         self.$Grid.deleteRows(selectedIndices);
                         self.save();
                         self.$refreshButtons();
                     }
+                }
+            }).open();
+        },
+
+
+        openIconSelectDialog: function ()
+        {
+            new IconConfirm({
+                events: {
+                    onSubmit: function (Win, selected)
+                    {
+//                        this.setValue(selected[0]);
+                        var index = this.$Grid.getSelectedIndices()[0];
+                        var data = this.$Grid.getSelectedData()[0];
+
+//                        data.icon = '<i class="'+selected[0]+'"></i>';
+                        data.icon = selected[0];
+
+                        this.$Grid.setDataByRow(index, data);
+                        this.save();
+                    }.bind(this)
                 }
             }).open();
         },
@@ -340,17 +398,20 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
          *
          * @param {String|Number} id - Site ID
          */
-        addSite: function (id) {
+        addSite: function (id)
+        {
             var self = this;
 
             this.Loader.show();
 
-            return new Promise(function (resolve) {
-                QUIAjax.get('package_quiqqer_app_ajax_getSiteData', function (result) {
+            return new Promise(function (resolve)
+            {
+                QUIAjax.get('package_quiqqer_app_ajax_getSiteData', function (result)
+                {
                     self.$Grid.addRow({
-                        id: result.id,
+                        id   : result.id,
                         title: result.title,
-                        name: result.name
+                        name : result.name
                     });
 
                     self.save();
@@ -358,11 +419,11 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                     resolve();
                 }, {
                     'package': 'quiqqer/app',
-                    project: JSON.encode({
+                    project  : JSON.encode({
                         name: self.$Project.getName(),
                         lang: self.$Select.getValue()
                     }),
-                    id: id
+                    id       : id
                 });
             });
         },
@@ -372,8 +433,10 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
          *
          * @returns {Promise}
          */
-        $getLanguages: function () {
-            return new Promise(function (resolve) {
+        $getLanguages: function ()
+        {
+            return new Promise(function (resolve)
+            {
                 QUIAjax.get('ajax_system_getAvailableLanguages', resolve);
             });
         },
@@ -381,33 +444,45 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
         /**
          * Refresh the status of each button
          */
-        $refreshButtons: function () {
-            var buttons = this.$Grid.getButtons(),
+        $refreshButtons: function ()
+        {
+            var buttons  = this.$Grid.getButtons(),
                 selected = this.$Grid.getSelectedIndices();
 
-            var Add = buttons.filter(function (Btn) {
+            var Add = buttons.filter(function (Btn)
+            {
                 return Btn.getAttribute('name') == 'add';
             })[0];
 
-            var Remove = buttons.filter(function (Btn) {
+            var Remove = buttons.filter(function (Btn)
+            {
                 return Btn.getAttribute('name') == 'remove';
             })[0];
 
-            var Up = buttons.filter(function (Btn) {
+            var SetIcon = buttons.filter(function (Btn)
+            {
+                return Btn.getAttribute('name') == 'setIcon';
+            })[0];
+
+            var Up = buttons.filter(function (Btn)
+            {
                 return Btn.getAttribute('name') == 'up';
             })[0];
 
-            var Down = buttons.filter(function (Btn) {
+            var Down = buttons.filter(function (Btn)
+            {
                 return Btn.getAttribute('name') == 'down';
             })[0];
 
             Add.enable();
             Remove.disable();
+            SetIcon.disable();
             Up.disable();
             Down.disable();
 
             if (selected.length) {
                 Remove.enable();
+                SetIcon.enable();
                 Up.enable();
                 Down.enable();
             }

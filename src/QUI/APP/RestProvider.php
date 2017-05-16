@@ -219,28 +219,35 @@ class RestProvider implements QUI\REST\ProviderInterface
 
         $staticPageIDs = $this->getStaticPageIDs($Project);
 
-        $menu = array();
-        $ids  = $Config->getValue(
+        $menu        = array();
+        $menuEntries = $Config->getValue(
             $menuType,
             $Project->getName() . '_' . $Project->getLang()
         );
 
-        if ($ids) {
-            $ids = explode(',', $ids);
+        if ($menuEntries) {
+            $menuEntries = json_decode($menuEntries, true);
 
-            foreach ($ids as $id) {
+            foreach ($menuEntries as $menuEntry) {
                 try {
+                    $id   = $menuEntry['id'];
                     $Site = $Project->get($id);
 
                     if ($Site->getAttribute('active')) {
-                        $site = $this->getSiteData($Site);
+                        $siteData = $this->getSiteData($Site);
 
-                        $site['isStatic'] = false;
+                        $siteData['isStatic'] = false;
                         if (in_array($id, $staticPageIDs)) {
-                            $site['isStatic'] = true;
+                            $siteData['isStatic'] = true;
                         }
 
-                        $menu[] = $site;
+                        if (isset($menuEntry['icon'])) {
+                            $siteData['icon'] = $menuEntry['icon'];
+                        } else {
+                            $siteData['icon'] = false;
+                        }
+
+                        $menu[] = $siteData;
                     }
                 } catch (QUI\Exception $Exception) {
                 }

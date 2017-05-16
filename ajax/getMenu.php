@@ -19,23 +19,32 @@ QUI::$Ajax->registerFunction(
         $Project = QUI::getProjectManager()->decode($project);
         $Config  = QUI::getPackage('quiqqer/app')->getConfig();
 
-        $ids = $Config->getValue($menu, $Project->getName() . '_' . $Project->getLang());
+        $menuItems = $Config->getValue($menu, $Project->getName() . '_' . $Project->getLang());
 
-        if (!$ids) {
+        if (!$menuItems) {
             return array();
         }
 
-        $result = array();
-        $ids    = explode(',', $ids);
+        $result    = array();
+        $menuItems = json_decode($menuItems, true);
 
-        foreach ($ids as $id) {
+        foreach ($menuItems as $menuItem) {
             try {
-                $Site     = $Project->get($id);
-                $result[] = array(
+                $Site = $Project->get($menuItem['id']);
+
+                $resultData = array(
                     'id'    => $Site->getId(),
                     'title' => $Site->getAttribute('title'),
                     'name'  => $Site->getAttribute('name')
                 );
+
+                if (isset($menuItem['icon'])) {
+                    $resultData['icon'] = $menuItem['icon'];
+                } else {
+                    $resultData['icon'] = false;
+                }
+
+                $result[] = $resultData;
             } catch (QUI\Exception $Exception) {
             }
         }
