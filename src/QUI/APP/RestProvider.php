@@ -206,7 +206,8 @@ class RestProvider implements QUI\REST\ProviderInterface
             'title'    => $Site->getAttribute('title'),
             'name'     => $Site->getAttribute('name'),
             'url'      => $Site->getUrlRewritten(),
-            'lastEdit' => $Site->getAttribute('e_date')
+            'lastEdit' => $Site->getAttribute('e_date'),
+            'icon'     => $Site->getAttribute('image_site'),
         );
     }
 
