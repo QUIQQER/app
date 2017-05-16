@@ -134,5 +134,15 @@
             <de><![CDATA[Herunterladen]]></de>
             <en><![CDATA[Download]]></en>
         </locale>
+
+        <locale name="icon">
+            <de><![CDATA[Icon]]></de>
+            <en><![CDATA[Icon]]></en>
+        </locale>
+
+        <locale name="setIcon.button">
+            <de><![CDATA[Icon Auswählen]]></de>
+            <en><![CDATA[Select Icon]]></en>
+        </locale>
     </groups>
 </locales>

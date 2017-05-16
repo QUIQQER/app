@@ -154,7 +154,7 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                 }, {
                     name     : 'setIcon',
                     textimage: 'fa fa-css3',
-                    text     : QUILocale.get('quiqqer/system', 'setIcon'),
+                    text     : QUILocale.get('quiqqer/app', 'setIcon.button'),
                     events   : {
                         onClick: this.openIconSelectDialog
                     },
@@ -176,10 +176,10 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                     dataType : 'string',
                     width    : 200
                 }, {
-                    header   : QUILocale.get('quiqqer/system', 'icon'),
+                    header   : QUILocale.get('quiqqer/app', 'icon'),
                     dataIndex: 'icon',
                     dataType : 'string',
-                    width    : 50
+                    width    : 100
                 }],
                 height     : 300,
                 sortHeader : false
