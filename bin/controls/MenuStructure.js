@@ -316,7 +316,6 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
             data[lang] = gridData;
 
             this.$Input.value = JSON.encode(data);
-            console.log(this.$Input.value);
         },
 
         /**
