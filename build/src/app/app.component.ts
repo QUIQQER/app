@@ -40,11 +40,18 @@ export class MyApp
 
         // Add pages to sidemenu
         for (let page of pages) {
+
+            // If no icon set, use a default one
+            let icon = 'fa fa-file-text-o';
+            if(page.icon) {
+                icon = page.icon;
+            }
+
             this.appPages.push({
                 title: page.title,
                 component: TabsPage,
                 tabIndex: 0,
-                icon: 'paper',
+                icon: icon,
                 url: page.url
             });
         }

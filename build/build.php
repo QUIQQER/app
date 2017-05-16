@@ -235,7 +235,7 @@ if (!empty($splash) && $generateSplash) {
 // Build array of pages for sidemenu
 $pages = "// Pages for sidemenu generated via build script\nexport let pages = [";
 foreach ($apiData->sideMenu as $page) {
-    $pages .= "{title: '{$page->title}', url: '{$page->url}'},";
+    $pages .= "{title: '{$page->title}', url: '{$page->url}', icon: '{$page->icon}'},";
 }
 $pages .= "];";
 
