@@ -53,6 +53,10 @@
                         <type><![CDATA[bool]]></type>
                         <defaultvalue>1</defaultvalue>
                     </conf>
+                    <conf name="bottomMenu.iconLayout">
+                        <type><![CDATA[text]]></type>
+                        <defaultvalue>icon-top</defaultvalue>
+                    </conf>
                     <conf name="staticPages">
                         <type><![CDATA[string]]></type>
                     </conf>
@@ -248,6 +252,41 @@
                                    label="false"
                                    data-qui="package/quiqqer/app/bin/controls/MenuStructure"
                                    data-qui-options-menuType="bottomMenu"/>
+
+                            <select conf="quiqqerApp.settings.bottomMenu.iconLayout">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.text"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.desc"/>
+                                </description>
+                                <option value="icon-top">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconTop"/>
+                                </option>
+                                <option value="icon-right">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconRight"/>
+                                </option>
+                                <option value="icon-bottom">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconBottom"/>
+                                </option>
+                                <option value="icon-left">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconLeft"/>
+                                </option>
+                                <option value="icon-hide">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconHide"/>
+                                </option>
+                                <option value="title-hide">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.titleHide"/>
+                                </option>
+                            </select>
                         </settings>
 
                         <settings title="quiqqerApp.settings"

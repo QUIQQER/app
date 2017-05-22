@@ -138,26 +138,27 @@ class RestProvider implements QUI\REST\ProviderInterface
 
         // title
         $result = array(
-            'title'         => $Locale->get('quiqqer/app', 'app.title.' . $Project->getName()),
-            'description'   => $Locale->get('quiqqer/app', 'app.description.' . $Project->getName()),
-            'version'       => $Project->getConfig('quiqqerApp.settings.version'),
-            'author'        => array(
+            'title'                => $Locale->get('quiqqer/app', 'app.title.' . $Project->getName()),
+            'description'          => $Locale->get('quiqqer/app', 'app.description.' . $Project->getName()),
+            'version'              => $Project->getConfig('quiqqerApp.settings.version'),
+            'author'               => array(
                 'name'    => $Project->getConfig('quiqqerApp.settings.author.name'),
                 'email'   => $Project->getConfig('quiqqerApp.settings.author.email'),
                 'website' => $Project->getHost()
             ),
-            'logo'          => $logo,
-            'splash'        => $splash,
-            'placeholder'   => $placeholder,
-            'sideMenu'      => $this->getMenu('sideMenu', $Project),
-            'bottomMenu'    => $this->getMenu('bottomMenu', $Project),
-            'imprint'       => $imprint,
-            'advertisment'  => !!$Project->getConfig('quiqqerApp.settings.advertisement'),
-            'admobid'       => $Project->getConfig('quiqqerApp.settings.advertisement.admobid'),
-            'useBottomMenu' => !!$Project->getConfig('quiqqerApp.settings.menuBottom'),
-            'languages'     => $Project->getConfig('quiqqerApp.settings.availableLanguages'),
-            'lastEdit'      => time(),
-            'colors'        => array(
+            'logo'                 => $logo,
+            'splash'               => $splash,
+            'placeholder'          => $placeholder,
+            'sideMenu'             => $this->getMenu('sideMenu', $Project),
+            'bottomMenu'           => $this->getMenu('bottomMenu', $Project),
+            'bottomMenuIconLayout' => $Project->getConfig('quiqqerApp.settings.bottomMenu.iconLayout'),
+            'imprint'              => $imprint,
+            'advertisment'         => !!$Project->getConfig('quiqqerApp.settings.advertisement'),
+            'admobid'              => $Project->getConfig('quiqqerApp.settings.advertisement.admobid'),
+            'useBottomMenu'        => !!$Project->getConfig('quiqqerApp.settings.menuBottom'),
+            'languages'            => $Project->getConfig('quiqqerApp.settings.availableLanguages'),
+            'lastEdit'             => time(),
+            'colors'               => array(
                 'fontColor'           => $Project->getConfig('quiqqerApp.settings.fontColor'),
                 'backgroundColor'     => $Project->getConfig('quiqqerApp.settings.backgroundColor'),
                 'menuFontColor'       => $Project->getConfig('quiqqerApp.settings.menuFontColor'),

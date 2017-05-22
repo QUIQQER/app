@@ -212,7 +212,8 @@ $config = "
 export let config = {
     'showAds': {$showAds},
     'admobid': '{$apiData->admobid}',
-    'imprintUrl': '{$apiData->imprint->url}'
+    'imprintUrl': '{$apiData->imprint->url}',
+    'bottomMenuIconLayout': '{$apiData->bottomMenuIconLayout}'
 };
 ";
 

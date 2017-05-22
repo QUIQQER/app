@@ -7,6 +7,7 @@ import {ContactPage} from '../contact/contact';
 import {Network} from "@ionic-native/network";
 import {NetworkCheckPage} from "../../modals/network-check/network-check";
 import {bottomMenu} from "../../assets/bottomMenu";
+import {config} from "../../app/config";
 
 @Component({
     templateUrl: 'tabs.html'
@@ -20,6 +21,7 @@ export class TabsPage
     mySelectedIndex: number;
 
     bottomMenuPages: Array<any>;
+    bottomMenuIconLayout: string = 'icon-top';
 
     private url;
     private title;
@@ -37,6 +39,7 @@ export class TabsPage
         });
 
         this.bottomMenuPages = bottomMenu;
+        this.bottomMenuIconLayout = config.bottomMenuIconLayout;
 
         // If we are created with params use them
         this.mySelectedIndex = navParams.get('tabIndex') || 0;

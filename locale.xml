@@ -28,6 +28,40 @@
             <de><![CDATA[Untere Menüstruktur]]></de>
             <en><![CDATA[Bottom-Menu structure]]></en>
         </locale>
+
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.text">
+            <de><![CDATA[Icon Layout]]></de>
+            <en><![CDATA[Icon Layout]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.desc">
+            <de><![CDATA[Wie sollen Icons und Titel im unteren Menü angezeigt werden?]]></de>
+            <en><![CDATA[How should icons and titles in the bottom menu be displayed?]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconTop">
+            <de><![CDATA[Icon Oben]]></de>
+            <en><![CDATA[Icon On Top]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconLeft">
+            <de><![CDATA[Icon Links]]></de>
+            <en><![CDATA[Icon on the left]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconRight">
+            <de><![CDATA[Icon Rechts]]></de>
+            <en><![CDATA[Icon on the right]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconBottom">
+            <de><![CDATA[Icon Unten]]></de>
+            <en><![CDATA[Icon beneath]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconHide">
+            <de><![CDATA[Icon verstecken (nur Text)]]></de>
+            <en><![CDATA[Hide icon (show text only)]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.titleHide">
+            <de><![CDATA[Titel verstecken (nur Icon)]]></de>
+            <en><![CDATA[Hide title (show icon only)]]></en>
+        </locale>
+
         <locale name="quiqqerApp.settings.fontColor.text">
             <de><![CDATA[Allgemeine Schriftfarbe]]></de>
             <en><![CDATA[General font color]]></en>
@@ -110,8 +144,10 @@
             <en><![CDATA[Static Site IDs]]></en>
         </locale>
         <locale name="quiqqerApp.settings.staticPages.description">
-            <de><![CDATA[Geben Sie hier kommasepariert die IDs der Seiten an, die auch offline in der App verfügbar sein sollen. Zum Beispiel: "1,5,7" (Nicht für Shop-Seiten o.ä. geeignet)]]></de>
-            <en><![CDATA[Enter a comma separated list of IDs of pages which should also be available offline in the app. For example: "1,5,7" (Don't use this for shop or similar pages.)]]></en>
+            <de>
+                <![CDATA[Geben Sie hier kommasepariert die IDs der Seiten an, die auch offline in der App verfügbar sein sollen. Zum Beispiel: "1,5,7" (Nicht für Shop-Seiten o.ä. geeignet)]]></de>
+            <en>
+                <![CDATA[Enter a comma separated list of IDs of pages which should also be available offline in the app. For example: "1,5,7" (Don't use this for shop or similar pages.)]]></en>
         </locale>
 
         <locale name="quiqqerApp.settings.download.title">

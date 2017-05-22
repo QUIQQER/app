@@ -1,4 +1,4 @@
-<ion-tabs [selectedIndex]="mySelectedIndex">
+<ion-tabs [selectedIndex]="mySelectedIndex" [tabsLayout]="bottomMenuIconLayout">
     <!-- This tab displays pages selected from side-menu. Hidden by CSS from bottom menu -->
     <ion-tab [root]="tab1Root" tabIcon="home" show="false" [rootParams]="{url: url, title: title}"></ion-tab>
     
@@ -6,5 +6,6 @@
              [root]="tab1Root"
              [rootParams]="{url: page.url, title: page.title}"
              [tabIcon]="page.icon"
+             [tabTitle]="page.title"
     ></ion-tab>
 </ion-tabs>
