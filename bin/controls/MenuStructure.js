@@ -383,7 +383,8 @@ define('package/quiqqer/app/bin/controls/MenuStructure', [
                         var data = this.$Grid.getSelectedData()[0];
 
 //                        data.icon = '<i class="'+selected[0]+'"></i>';
-                        data.icon = selected[0];
+                        var icon = selected[0].replace('fa ', '');
+                        data.icon = icon;
 
                         this.$Grid.setDataByRow(index, data);
                         this.save();
