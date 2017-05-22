@@ -5,6 +5,6 @@
     <ion-tab *ngFor="let page of bottomMenuPages"
              [root]="tab1Root"
              [rootParams]="{url: page.url, title: page.title}"
-             tabIcon="home"
+             [tabIcon]="page.icon"
     ></ion-tab>
 </ion-tabs>

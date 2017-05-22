@@ -98,6 +98,29 @@ if (!$apiData->useBottomMenu) {
     $tabBarDisplayStyle = 'display: none !important;';
 }
 
+$bottomBarIconsStyle = "";
+$usedIcons           = array();
+// Bottom Tab Bar Icons
+foreach ($apiData->bottomMenu as $page) {
+    $icon = $page->icon;
+
+    if (!$icon || empty($icon)) {
+        $icon = 'fa-file-text-o';
+    }
+
+    if (!in_array($icon, $usedIcons)) {
+        $usedIcons[] = $icon;
+
+        $bottomBarIconsStyle .= "
+        .ion-ios-{$icon}-outline::before,
+        .ion-md-{$icon}::before {
+            @extend .fa-icons-general;
+            @extend .{$icon}:before;
+        }
+        ";
+    }
+}
+
 $scss = "
 // --------------------------------------------------
 // Page
@@ -119,10 +142,27 @@ $scss = "
   color: {$colors->menuFontColor} !important;
 }
 
+
+// Use FontAwesome Icons in Tabbar
+.fa-icons-general {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+
+
 // Display Tabbar?
 ion-tabs {
   .tabbar {
     {$tabBarDisplayStyle}
+   
+    > a.tab-button {
+        {$bottomBarIconsStyle}
+    }
    
     > a:first-child {
       display: none;
@@ -260,7 +300,8 @@ file_put_contents('src/app/pages.ts', $pages);
 // Build array of pages for sidemenu
 $pages = "// Pages for bottom menu generated via build script\nexport let bottomMenu = [";
 foreach ($apiData->bottomMenu as $page) {
-    $pages .= "{title: '{$page->title}', url: '{$page->url}'},";
+    $icon = $page->icon == false ? 'fa-file-text-o' : $page->icon;
+    $pages .= "{title: '{$page->title}', url: '{$page->url}', icon: '{$icon}'},";
 }
 $pages .= "];";
 
