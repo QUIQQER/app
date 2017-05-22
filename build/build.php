@@ -113,6 +113,7 @@ foreach ($apiData->bottomMenu as $page) {
 
         $bottomBarIconsStyle .= "
         .ion-ios-{$icon}-outline::before,
+        .ion-ios-{$icon}::before,
         .ion-md-{$icon}::before {
             @extend .fa-icons-general;
             @extend .{$icon}:before;
@@ -147,7 +148,7 @@ $scss = "
 .fa-icons-general {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
+  font-size: 2.5rem;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
