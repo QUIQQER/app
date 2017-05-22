@@ -14,26 +14,35 @@ $restoreState = true;
 $generateIcon   = true;
 $generateSplash = true;
 
+// Is dev flag set? Activate all flags
+if (in_array('--dev', $argv)) {
+    $runNpm         = false;
+    $restoreState   = false;
+    $generateIcon   = false;
+    $generateSplash = false;
+    echo "Dev Mode:\n";
+}
+
 // Is no npm flag set?
-if (in_array('--noNpm', $argv)) {
+if (in_array('--noNpm', $argv) || !$runNpm) {
     $runNpm = false;
     echo "Not running npm install\n";
 }
 
 // Is no state restore flag set?
-if (in_array('--noRestore', $argv)) {
+if (in_array('--noRestore', $argv) || !$restoreState) {
     $restoreState = false;
     echo "Not restoring Ionic State\n";
 }
 
 // Is no icon generation flag set?
-if (in_array('--noIcon', $argv)) {
+if (in_array('--noIcon', $argv) || !$generateIcon) {
     $generateIcon = false;
     echo "Not generating Icons\n";
 }
 
 // Is no splash generation flag set?
-if (in_array('--noSplash', $argv)) {
+if (in_array('--noSplash', $argv) || !$generateSplash) {
     $generateSplash = false;
     echo "Not generating Splash\n";
 }
