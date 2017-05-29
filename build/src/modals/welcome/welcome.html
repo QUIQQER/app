@@ -1,0 +1,9 @@
+<ion-content padding>
+
+    <div id="loading">
+        Please wait while the content is loaded for the first time.
+        <ion-spinner></ion-spinner>
+    </div>
+
+    <iframe *ngFor="let staticPage of staticPages" [src]="staticPage" (load)="iframeLoaded()" style="display: none"></iframe>
+</ion-content>

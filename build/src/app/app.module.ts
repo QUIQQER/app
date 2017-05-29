@@ -14,6 +14,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
 import {StatusBar} from "@ionic-native/status-bar";
 import {Network} from "@ionic-native/network";
 import {AdMob} from "@ionic-native/admob";
+import {WelcomeModal} from "../modals/welcome/welcome";
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
     declarations: [
@@ -23,11 +25,13 @@ import {AdMob} from "@ionic-native/admob";
         HomePage,
         TabsPage,
         ImprintPage,
-        NetworkCheckPage
+        NetworkCheckPage,
+        WelcomeModal
     ],
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp),
+        IonicStorageModule.forRoot(),
         TranslateModule.forRoot({
             provide: TranslateLoader,
             useFactory: (createTranslateLoader),
@@ -42,7 +46,8 @@ import {AdMob} from "@ionic-native/admob";
         HomePage,
         TabsPage,
         ImprintPage,
-        NetworkCheckPage
+        NetworkCheckPage,
+        WelcomeModal
     ],
     providers: [
         {provide: ErrorHandler, useClass: IonicErrorHandler},

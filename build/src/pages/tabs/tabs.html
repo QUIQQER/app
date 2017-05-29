@@ -1,9 +1,9 @@
 <ion-tabs [selectedIndex]="mySelectedIndex" [tabsLayout]="bottomMenuIconLayout">
     <!-- This tab displays pages selected from side-menu. Hidden by CSS from bottom menu -->
-    <ion-tab [root]="tab1Root" tabIcon="home" show="false" [rootParams]="{url: url, title: title}"></ion-tab>
+    <ion-tab [root]="Home" tabIcon="home" [rootParams]="{url: url, title: title}"></ion-tab>
     
     <ion-tab *ngFor="let page of bottomMenuPages"
-             [root]="tab1Root"
+             [root]="Home"
              [rootParams]="{url: page.url, title: page.title}"
              [tabIcon]="page.icon"
              [tabTitle]="page.title"

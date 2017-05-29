@@ -1,0 +1,20 @@
+modal-welcome {
+  text-align: center;
+
+  ion-content #loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    ion-spinner {
+      width: 15%;
+      height: 15%;
+      margin: 20px;
+    }
+
+  }
+
+}
