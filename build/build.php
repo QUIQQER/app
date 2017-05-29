@@ -198,6 +198,16 @@ ion-toolbar.toolbar ion-title * {
 );
 
 
+// --------------------------------------------------
+// Miscellaneous 
+// --------------------------------------------------
+
+// Loading Spinner Color
+ion-spinner * {
+  stroke: #444 !important;
+}
+
+
 ";
 
 // Save to file
