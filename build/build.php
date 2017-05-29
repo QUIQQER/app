@@ -161,6 +161,10 @@ ion-tabs {
   .tabbar {
     {$tabBarDisplayStyle}
    
+    > a:first-child {
+        display: none;
+    }
+   
     > a.tab-button {
         {$bottomBarIconsStyle}
     }
