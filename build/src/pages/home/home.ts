@@ -3,6 +3,8 @@ import {NavParams, ModalController} from "ionic-angular";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {ImprintPage} from "../../modals/imprint/imprint";
 import {pages} from "../../app/pages";
+import {Network} from "@ionic-native/network";
+import {staticUrls} from "../../assets/staticUrls";
 
 @Component({
     selector: 'page-home',
@@ -11,20 +13,27 @@ import {pages} from "../../app/pages";
 export class HomePage {
     private url: SafeResourceUrl;
     private title: String = 'Home';
+    private isOffline: boolean = false;
+    private isStaticPage: boolean = false;
 
     constructor(private params: NavParams,
                 private sanitizer: DomSanitizer,
-                private modalCtrl: ModalController) {
+                private modalCtrl: ModalController,
+                private Network: Network,) {
         let url = params.get('url');
         let title = params.get('title');
-
         let Page = pages[0];
+
+        this.isOffline = Network.type == 'none';
 
         // If opened with URL param we have to tell Angular it's save since it's used for iframe src
         if (typeof url == 'undefined') {
             // If no URL provided (e.g.on startup) use the first url from menu
             url = Page.url;
         }
+
+        this.isStaticPage = staticUrls.indexOf(url) > -1;
+
         this.url = this.getSanitizedUrl(url);
 
         if (typeof title != 'undefined') {
