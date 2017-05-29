@@ -327,7 +327,7 @@ file_put_contents('src/assets/bottomMenu.ts', $pages);
  * ===============================
  */
 // Build array of pages for sidemenu
-$staticURLs = "// static pages generated via build script\nvar static_urls = [";
+$staticURLs = "// static pages generated via build script\nexport let staticUrls = [";
 foreach ($apiData->sideMenu as $page) {
     if ($page->isStatic) {
         $staticURLs .= "'{$page->url}',";
@@ -336,7 +336,7 @@ foreach ($apiData->sideMenu as $page) {
 $staticURLs .= "];";
 
 // Save to file
-file_put_contents('src/assets/static_pages.js', $staticURLs);
+file_put_contents('src/assets/staticUrls.ts', $staticURLs);
 
 
 /**
