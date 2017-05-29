@@ -136,7 +136,7 @@ class EventHandler
 
             // Remove SAMEORIGIN Policy for iframes inside the app
             QUI::getGlobalResponse()->headers->remove("X-Frame-Options");
-//            QUI::getGlobalResponse()->headers->add(['Access-Control-Allow-Origin' => '*']);
+            QUI::getGlobalResponse()->headers->add(['Access-Control-Allow-Origin' => '*']);
         }
     }
 }
