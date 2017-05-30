@@ -7,7 +7,6 @@ import {ContactPage} from '../pages/contact/contact';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 import {ImprintPage} from "../modals/imprint/imprint";
-import {NetworkCheckPage} from "../modals/network-check/network-check";
 import {Http} from "@angular/http";
 import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-translate";
 import {SplashScreen} from "@ionic-native/splash-screen";
@@ -25,7 +24,6 @@ import {IonicStorageModule} from "@ionic/storage";
         HomePage,
         TabsPage,
         ImprintPage,
-        NetworkCheckPage,
         WelcomeModal
     ],
     imports: [
@@ -46,7 +44,6 @@ import {IonicStorageModule} from "@ionic/storage";
         HomePage,
         TabsPage,
         ImprintPage,
-        NetworkCheckPage,
         WelcomeModal
     ],
     providers: [
