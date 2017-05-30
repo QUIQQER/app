@@ -39,6 +39,14 @@ export class HomePage {
             // If no title provided (e.g.on startup) use the first title from menu
             this.title = Page.title;
         }
+
+        let self = this;
+        Network.onConnect().subscribe(() => {
+            self.isOffline = false;
+        });
+        Network.onDisconnect().subscribe(() => {
+            self.isOffline = true;
+        });
     }
 
     /**
