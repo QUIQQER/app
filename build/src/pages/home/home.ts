@@ -26,7 +26,6 @@ export class HomePage {
 
         this.isOffline = Network.type == 'none';
 
-        // If opened with URL param we have to tell Angular it's save since it's used for iframe src
         if (typeof url == 'undefined') {
             // If no URL provided (e.g.on startup) use the first url from menu
             url = Page.url;
@@ -36,7 +35,7 @@ export class HomePage {
 
         this.url = this.getSanitizedUrl(url);
 
-        if (typeof title != 'undefined') {
+        if (typeof title == 'undefined') {
             // If no title provided (e.g.on startup) use the first title from menu
             this.title = Page.title;
         }
