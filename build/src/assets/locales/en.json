@@ -1,4 +1,7 @@
 {
+  "welcome": {
+    "text": "Please wait while the content is loaded for the first time…"
+  },
   "back": "Back",
   "imprint": {
     "title": "Imprint"

@@ -1,4 +1,7 @@
 {
+  "welcome": {
+    "text": "Bitte warten, während die Inhalte das erste Mal geladen werden…"
+  },
   "back": "Zurück",
   "imprint": {
     "title": "Impressum"
