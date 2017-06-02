@@ -175,22 +175,8 @@ ion-tabs {
 // --------------------------------------------------
 // Top Toolbar
 // --------------------------------------------------
-ion-header {
-  // Background
-  .toolbar-background {
-    background-color: {$colors->menuBackgroundColor} !important;
-  }
+\$toolbar-background: {$colors->menuBackgroundColor};
 
-  // Font Color
-  ion-navbar.toolbar * {
-    color: {$colors->menuFontColor};
-  }
-}
-
-// Sidebar Title Color
-ion-toolbar.toolbar ion-title * {
-  color: {$colors->menuFontColor};
-}
 
 // Primary Color for Menu Button
 \$colors: (
