@@ -1,13 +1,14 @@
 <ion-header>
     <ion-toolbar>
+        <ion-title>
+            {{"imprint.title" | translate}}
+        </ion-title>
         <ion-buttons start>
             <button ion-button (click)="dismiss()">
-                Close
+                <span ion-text color="primary" showWhen="ios">{{"back" | translate}}</span>
+                <ion-icon name="md-close" showWhen="android,windows,core"></ion-icon>
             </button>
         </ion-buttons>
-        <ion-title>
-            Imprint
-        </ion-title>
     </ion-toolbar>
 </ion-header>
 
