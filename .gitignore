@@ -40,3 +40,6 @@ build/UserInterfaceState.xcuserstate
 /build/src/assets/bottomMenu.ts
 /build/src/assets/static_pages.js
 /build/src/assets/staticUrls.ts
+/build/my-release-key.keystore
+
+*.apk

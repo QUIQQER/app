@@ -53,7 +53,6 @@ $configIni = parse_ini_file('config.ini', true);
 if ($configIni === false) {
     // If no config.ini found or not parseable
     error("config.ini could not be found");
-    exit;
 }
 
 $apiUrl = $configIni['api_url']; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
@@ -79,7 +78,6 @@ try {
 } catch (Exception $ex) {
     // If anything goes wrong exit with error
     error("Invalid API URL!");
-    exit;
 }
 
 //var_dump($apiData);
@@ -246,7 +244,8 @@ if (!empty($logo) && $generateIcon) {
             'Something went wrong generating the icons.' . PHP_EOL
             . "Try again later or try running '{$cmd}' manually" . PHP_EOL
             . "Further information:" . PHP_EOL
-            . $result['output']
+            . $result['output'],
+            false
         );
     }
 }
@@ -268,7 +267,8 @@ if (!empty($splash) && $generateSplash) {
             'Something went wrong generating the splashscreens.' . PHP_EOL
             . "Try again later or try running '{$cmd}' manually" . PHP_EOL
             . "Further information:" . PHP_EOL
-            . $result['output']
+            . $result['output'],
+            false
         );
     }
 }
@@ -298,7 +298,7 @@ file_put_contents('src/app/pages.ts', $pages);
 // Build array of pages for sidemenu
 $pages = "// Pages for bottom menu generated via build script\nexport let bottomMenu = [";
 foreach ($apiData->bottomMenu as $page) {
-    $icon = $page->icon == false ? 'fa-file-text-o' : $page->icon;
+    $icon  = $page->icon == false ? 'fa-file-text-o' : $page->icon;
     $pages .= "{title: '{$page->title}', url: '{$page->url}', icon: '{$icon}'},";
 }
 $pages .= "];";
@@ -349,6 +349,77 @@ $xmlAuthorAttributes->href  = $author->website;
 
 $xmlConfig->saveXML('config.xml');
 
+$cliInput = fopen("php://stdin", "r");
+
+$startAndroidBuild = getInput("Do you want to build the APK file for android now? (y/n): ", $cliInput) == 'y';
+
+if (!$startAndroidBuild) {
+    echo "\nNot starting Android build.\n";
+    echo "Instructions on how to finish your build for iOS and Android can be found here:\n";
+    echo "https://dev.quiqqer.com/quiqqer/app/wikis/build-app\n";
+    exit;
+}
+
+$sdkPath = getInput("Please enter the absolute path to your Android SDK: ", $cliInput);
+
+if (!is_dir($sdkPath)) {
+    error("Directory $sdkPath could not be found, exiting.");
+}
+
+if (!is_dir("$sdkPath/tools")) {
+    error("Tools directory could not be found inside Android SDK folder ($sdkPath), exiting.");
+}
+
+exec("export ANDROID_HOME=$sdkPath");
+exec("export PATH=\$PATH:\$ANDROID_HOME/tools");
+echo "\nAndroid SDK path set to: $sdkPath\n";
+
+getInput("Press enter to start building the .apk file: ", $cliInput);
+
+echo "\nBuilding .apk file, please wait...\n";
+liveExecuteCommand('cordova build --release android');
+
+$apkPath = __DIR__ . "/platforms/android/build/outputs/apk/android-release-unsigned.apk";
+
+$hasKey = getInput("Do you already have a signing key pair? (y/n): ", $cliInput) == 'y';
+
+if ($hasKey) {
+    $keyPath = getInput("Please enter the absolute path to your signing key pair: ", $cliInput);
+} else {
+    echo "\nGenerating signing key pair now. Please follow the instructions:\n";
+
+    liveExecuteCommand("keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000");
+
+    $keyPath = __DIR__ . '/my-release-key.keystore';
+
+    echo "\nSigning key pair stored at: $keyPath. Keep this file or you won't be able to update the app in the future.";
+}
+
+if (!file_exists($keyPath)) {
+    error("Signing Key Pair could not be found at: $keyPath. Exiting.");
+}
+
+getInput("Press enter to start signing the .apk: ", $cliInput);
+
+liveExecuteCommand("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keyPath $apkPath alias_name");
+
+getInput("Press enter to optimize the signed .apk: ", $cliInput);
+
+$buildToolsDirs      = glob("$sdkPath/build-tools/*", GLOB_ONLYDIR);
+$latestBuildToolsDir = end($buildToolsDirs);
+$zipalignPath        = "$latestBuildToolsDir/zipalign";
+
+while (!file_exists($zipalignPath)) {
+    error("Couldn't find zipalign tool under $zipalignPath. Please enter the absolute path here: ", false);
+    $zipalignPath = trim(fgets($cliInput));
+}
+
+$appName = str_replace(' ', '_', $apiData->title);
+
+liveExecuteCommand("$zipalignPath -v 4 $apkPath $appName.apk");
+
+echo "\nYour app was successfully built as $appName.apk\n";
+
 echo "\nBuild completed\n";
 
 
@@ -391,11 +462,31 @@ function liveExecuteCommand($cmd)
 }
 
 /**
- * Outputs an error message (colored red)
+ * Waits for and then returns input from the given CLI [$cli = fopen("php://stdin", "r")]
+ *
+ * @param $message - Message to display
+ * @param $cli - The CLI to listen to
+ * @return string - The entered input
+ */
+function getInput($message, $cli)
+{
+    echo "\n$message";
+
+    return trim(fgets($cli));
+}
+
+
+/**
+ * Outputs an error message (colored red) and exists the program.
  *
  * @param $message
+ * @param boolean $exit - Stop execution?
  */
-function error($message)
+function error($message, $exit = true)
 {
     echo "\033[0;31mERROR:" . PHP_EOL . "$message\033[0m" . PHP_EOL;
+
+    if ($exit) {
+        exit;
+    }
 }
