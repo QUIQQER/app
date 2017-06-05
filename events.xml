@@ -2,4 +2,5 @@
 <events>
     <event on="onProjectConfigSave" fire="QUI\APP\EventHandler::onProjectConfigSave"/>
     <event on="onRequest" fire="QUI\APP\EventHandler::onRequest"/>
+    <event on="onTemplateGetHeader" fire="QUI\APP\EventHandler::onTemplateGetHeader"/>
 </events>

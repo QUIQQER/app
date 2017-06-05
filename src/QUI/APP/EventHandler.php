@@ -139,4 +139,12 @@ class EventHandler
             QUI::getGlobalResponse()->headers->add(['Access-Control-Allow-Origin' => '*']);
         }
     }
+
+
+    public static function onTemplateGetHeader(QUI\Template $Template)
+    {
+        if (Validate::isAppRequest()) {
+            $Template->extendHeaderWithJavaScriptFile(URL_OPT_DIR . 'quiqqer/app/bin/register-service-worker.js');
+        }
+    }
 }
