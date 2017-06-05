@@ -1,34 +1,35 @@
 {
-    "name": "quiqqer\/app",
-    "type": "quiqqer-library",
-    "description": "QUIQQER APP",
-    "version": "dev-dev",
-    "license": "",
-    "authors": [
-        {
-            "name": "Henning Leutz",
-            "email": "leutz@pcsg.de",
-            "homepage": "http:\/\/www.pcsg.de",
-            "role": "Developer"
-        },
-        {
-            "name": "Jan Wennrich",
-            "email": "jan.wennrich@pcsg.de",
-            "homepage": "http:\/\/www.pcsg.de",
-            "role": "Developer"
-        }
-    ],
-    "support": {
-        "email": "support@pcsg.de"
+  "name": "quiqqer\/app",
+  "type": "quiqqer-library",
+  "description": "QUIQQER APP",
+  "version": "dev-dev",
+  "license": "",
+  "authors": [
+    {
+      "name": "Henning Leutz",
+      "email": "leutz@pcsg.de",
+      "homepage": "http:\/\/www.pcsg.de",
+      "role": "Developer"
     },
-    "require": {
-        "php": ">=7",
-        "quiqqer\/quiqqer": "*",
-        "quiqqer\/rest": "dev-master|dev-dev"
-    },
-    "autoload": {
-        "psr-4": {
-            "QUI\\APP\\": "src\/QUI\/APP"
-        }
+    {
+      "name": "Jan Wennrich",
+      "email": "jan.wennrich@pcsg.de",
+      "homepage": "http:\/\/www.pcsg.de",
+      "role": "Developer"
     }
+  ],
+  "support": {
+    "email": "support@pcsg.de"
+  },
+  "require": {
+    "php": ">=7",
+    "quiqqer\/quiqqer": "*",
+    "quiqqer\/rest": "dev-master|dev-dev",
+    "npm-asset\/sw-toolbox": "3.6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "QUI\\APP\\": "src\/QUI\/APP"
+    }
+  }
 }
