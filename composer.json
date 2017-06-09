@@ -24,7 +24,7 @@
   "require": {
     "php": ">=7",
     "quiqqer\/quiqqer": "*",
-    "quiqqer\/rest": "dev-master|dev-dev",
+    "quiqqer\/rest": "dev-dev",
     "npm-asset\/sw-toolbox": "3.6.0"
   },
   "autoload": {
