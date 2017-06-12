@@ -256,11 +256,18 @@ file_put_contents('src/app/config.ts', $config);
 $logo   = $apiData->logo;
 $splash = $apiData->splash;
 
-// If Logo URL and no Flag set, generate Icon
-if (!empty($logo) && $generateIcon) {
-    // Download the Icon
+// Download the Icon if set in API
+if (!empty($logo)) {
     copy($logo, 'resources/icon.png');
+}
 
+// Download the Splashscreen if set in API
+if (!empty($splash)) {
+    copy($splash, 'resources/splash.png');
+}
+
+// If Logo URL and no Flag set, generate Icon
+if ($generateIcon) {
     echo "\nGenerating Icons...\n";
 
     $cmd = 'ionic resources --icon';
@@ -280,9 +287,7 @@ if (!empty($logo) && $generateIcon) {
 }
 
 // If Splash URL and no Flag set, generate Splash
-if (!empty($splash) && $generateSplash) {
-    // Download the Splash
-    copy($splash, 'resources/splash.png');
+if ($generateSplash) {
 
     echo "\nGenerating Splashscreens...\n";
 
@@ -385,7 +390,6 @@ $xmlAuthorAttributes->href  = $author->website;
 
 
 $xmlConfig->saveXML('config.xml');
-
 
 
 /**
