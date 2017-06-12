@@ -80,6 +80,7 @@ if ($restoreState) {
 
 
 // Try do get data from Api
+$apiData = null;
 try {
     // Get JSON data from API
     $contextOptions = array(
@@ -95,7 +96,9 @@ try {
     error("Invalid API URL!");
 }
 
-//var_dump($apiData);
+if (is_null($apiData)) {
+    error("Something went wrong getting data from the API. Make sure you are connected to the internet or try again later.");
+}
 
 
 /**
