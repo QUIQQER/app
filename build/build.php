@@ -16,7 +16,7 @@ $generateSplash = true;
 
 $sslErrors = true;
 
-// Is dev flag set? Activate all flags
+// If dev flag is set activate all flags
 if (in_array('--dev', $argv)) {
     $runNpm         = false;
     $restoreState   = false;
@@ -62,8 +62,8 @@ if ($configIni === false) {
     // If no config.ini found or not parseable
     error("config.ini could not be found");
 }
-
 $apiUrl = $configIni['api_url']; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
+
 
 // Install npm Modules
 if ($runNpm) {
@@ -83,6 +83,8 @@ if ($restoreState) {
 $apiData = null;
 try {
     // Get JSON data from API
+
+    // Ignore SSL errors if flag set
     $contextOptions = array(
         "ssl" => array(
             "verify_peer"      => $sslErrors,
@@ -96,6 +98,7 @@ try {
     error("Invalid API URL!");
 }
 
+// If no exception was thrown before but apiData is still not present show an error
 if (is_null($apiData)) {
     error("Something went wrong getting data from the API. Make sure you are connected to the internet or try again later.");
 }
@@ -116,10 +119,12 @@ if (!$apiData->useBottomMenu) {
 
 $bottomBarIconsStyle = "";
 $usedIcons           = array();
+
 // Bottom Tab Bar Icons
 foreach ($apiData->bottomMenu as $page) {
     $icon = $page->icon;
 
+    // If no icon is set, set a default icon
     if (!$icon || empty($icon)) {
         $icon = 'fa-file-text-o';
     }
@@ -127,6 +132,7 @@ foreach ($apiData->bottomMenu as $page) {
     if (!in_array($icon, $usedIcons)) {
         $usedIcons[] = $icon;
 
+        // Add CSS for each icon to use FontAwesome icon in bottom bar
         $bottomBarIconsStyle .= "
         .ion-ios-{$icon}-outline::before,
         .ion-ios-{$icon}::before,
@@ -367,6 +373,13 @@ $xmlAuthorAttributes->href  = $author->website;
 
 $xmlConfig->saveXML('config.xml');
 
+
+
+/**
+ * ===============================
+ * =      ANDROID APK BUILD      =
+ * ===============================
+ */
 $cliInput = fopen("php://stdin", "r");
 
 $startAndroidBuild = getInput("Do you want to build the APK file for android now? (y/n): ", $cliInput) == 'y';
