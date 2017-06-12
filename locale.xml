@@ -154,6 +154,10 @@
             <de><![CDATA[Herunterladen]]></de>
             <en><![CDATA[Download]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.download.description">
+            <de><![CDATA[Bitte speichern Sie Ihre Einstellungen vor dem Herunterladen.]]></de>
+            <en><![CDATA[Please save your settings before starting the download.]]></en>
+        </locale>
     </groups>
 
     <groups name="quiqqer/app" datatype="js">

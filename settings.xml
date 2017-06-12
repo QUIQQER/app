@@ -316,7 +316,11 @@
                             <input type="hidden"
                                    disabled="disabled"
                                    data-qui="package/quiqqer/app/bin/controls/DownloadButton"
-                                   label="false"/>
+                                   label="false">
+                                <description>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.download.description"/>
+                                </description>
+                            </input>
                         </settings>
                     </category>
                 </categories>
