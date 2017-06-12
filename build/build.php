@@ -68,14 +68,14 @@ $apiUrl = $configIni['api_url']; // e.g: http://quiqqer.local/api/quiqqer/app/st
 // Install npm Modules
 if ($runNpm) {
     echo "\nInstalling Node Modules, this may take a while...\n";
-    shell_exec('npm install');
+    liveExecuteCommand('npm install');
 }
 
 
 // Restore Ionic State
 if ($restoreState) {
-    echo "\nRestoring Ionic State...\n";
-    shell_exec('ionic state restore');
+    echo "\nRestoring Ionic State, this may take a while...\n";
+    liveExecuteCommand('ionic state restore');
 }
 
 
