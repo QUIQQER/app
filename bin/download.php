@@ -37,7 +37,7 @@ if (file_exists($zipPath)) {
 $Zip = new ZipArchive();
 $Zip->open($zipPath, ZipArchive::CREATE);
 
-$apiUrl  = QUI\REST\Server::getInstance()->getAddress() . "quiqqer/app/structure/$projectName/de";
+$apiUrl  = QUI\REST\Server::getInstance()->getAddress() . "/quiqqer/app/structure/$projectName/de";
 $content = "api_url=\"$apiUrl\"";
 $Zip->addFromString('config.ini', $content);
 
