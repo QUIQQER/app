@@ -14,12 +14,15 @@ $restoreState = true;
 $generateIcon   = true;
 $generateSplash = true;
 
+$sslErrors = true;
+
 // Is dev flag set? Activate all flags
 if (in_array('--dev', $argv)) {
     $runNpm         = false;
     $restoreState   = false;
     $generateIcon   = false;
     $generateSplash = false;
+    $sslErrors      = false;
     echo "Dev Mode:\n";
 }
 
@@ -47,6 +50,11 @@ if (in_array('--noSplash', $argv) || !$generateSplash) {
     echo "Not generating Splash\n";
 }
 
+// Is ignore SSL flag set?
+if (in_array('--ignoreSSL', $argv) || !$sslErrors) {
+    $sslErrors = false;
+    echo "Ignoring SSL Errors\n";
+}
 
 // Get API URL from config.ini
 $configIni = parse_ini_file('config.ini', true);
@@ -74,7 +82,14 @@ if ($restoreState) {
 // Try do get data from Api
 try {
     // Get JSON data from API
-    $apiData = json_decode(file_get_contents($apiUrl, true));
+    $contextOptions = array(
+        "ssl" => array(
+            "verify_peer"      => $sslErrors,
+            "verify_peer_name" => $sslErrors,
+        ),
+    );
+
+    $apiData = json_decode(file_get_contents($apiUrl, true, stream_context_create($contextOptions)));
 } catch (Exception $ex) {
     // If anything goes wrong exit with error
     error("Invalid API URL!");
