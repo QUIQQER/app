@@ -92,6 +92,7 @@ try {
         ),
     );
 
+    echo "\nGetting data from API...\n";
     $apiData = json_decode(file_get_contents($apiUrl, true, stream_context_create($contextOptions)));
 } catch (Exception $ex) {
     // If anything goes wrong exit with error
@@ -109,6 +110,8 @@ if (is_null($apiData)) {
  * =            SCSS             =
  * ===============================
  */
+echo "\nBuilding styles...\n";
+
 $colors = $apiData->colors;
 
 // Show bottom tab bar?
@@ -227,6 +230,8 @@ file_put_contents('src/theme/custom.scss', $scss);
  * =          CONFIG             =
  * ===============================
  */
+echo "\nBuilding config...\n";
+
 // Show advertisement banner?
 $showAds = $apiData->advertisment ? 'true' : 'false';
 
@@ -303,6 +308,8 @@ if (!empty($splash) && $generateSplash) {
  * =         SIDE MENU           =
  * ===============================
  */
+echo "\nBuilding side menu...\n";
+
 // Build array of pages for sidemenu
 $pages = "// Pages for sidemenu generated via build script\nexport let pages = [";
 foreach ($apiData->sideMenu as $page) {
@@ -319,6 +326,8 @@ file_put_contents('src/app/pages.ts', $pages);
  * =         BOTTOM MENU         =
  * ===============================
  */
+echo "\nBuilding bottom menu...\n";
+
 // Build array of pages for sidemenu
 $pages = "// Pages for bottom menu generated via build script\nexport let bottomMenu = [";
 foreach ($apiData->bottomMenu as $page) {
@@ -336,6 +345,8 @@ file_put_contents('src/assets/bottomMenu.ts', $pages);
  * =      STATIC PAGES/URLs      =
  * ===============================
  */
+echo "\nBuilding static pages...\n";
+
 // Build array of pages for sidemenu
 $staticURLs = "// static pages generated via build script\nexport let staticUrls = [";
 foreach ($apiData->sideMenu as $page) {
@@ -354,6 +365,8 @@ file_put_contents('src/assets/staticUrls.ts', $staticURLs);
  * =         CONFIG.xml          =
  * ===============================
  */
+echo "\nBuilding config...\n";
+
 $appTitle = $apiData->title;
 $author   = $apiData->author;
 
