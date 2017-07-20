@@ -21,21 +21,32 @@ $projectName = $Project->getName();
 // Folder to store our ZIP
 $tempFolderPath = QUI::getTemp()->createFolder('app');
 
-$zipName = "app-{$projectName}.zip";
-$zipPath = $tempFolderPath . $zipName;
+$zipDir    = $packagesDir . "quiqqer/app/build";
+$zipName   = "app-{$projectName}.zip";
+$zipTarget = $tempFolderPath . $zipName;
+
 
 // Delete older zip, since the zip isn't overwritten
-if (file_exists($zipPath)) {
-    unlink($zipPath);
+if (file_exists($zipTarget)) {
+    unlink($zipTarget);
 }
 
-// ZIP the build/ folder
-\QUI\Archiver\Zip::zip($packagesDir . "quiqqer/app/build", $zipPath);
+// Ignore files that may be left over from package development
+$ignore = array(
+    'node_modules/',
+    'platforms/',
+    'plugins/',
+    'www/assets/',
+    'www/build/',
+    'www/fonts/',
+);
+
+\QUI\Archiver\Zip::zip($zipDir, $zipTarget, $ignore);
 
 
-// Add config file for API URL
+// Add config file for API URL (inject into zip instead of creating in package folder before)
 $Zip = new ZipArchive();
-$Zip->open($zipPath, ZipArchive::CREATE);
+$Zip->open($zipTarget, ZipArchive::CREATE);
 
 $apiUrl  = QUI\REST\Server::getInstance()->getAddress() . "/quiqqer/app/structure/$projectName/de";
 $content = "api_url=\"$apiUrl\"";
@@ -46,6 +57,6 @@ $Zip->close();
 // Return file download
 header("Content-Type: application/zip");
 header("Content-Disposition: attachment; filename=\"$zipName\"");
-readfile($zipPath);
+readfile($zipTarget);
 
 exit;
