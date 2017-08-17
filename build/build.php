@@ -1,8 +1,14 @@
 <?php
 
 /**
- * This script requires the first parameter to be the QUIQQER APP API URL
- * These parameters can be used optionally: --noIcon and/or --noSplash to skip icon and/or splashscreen generation
+ * The following flags can be used:
+ * --noNpm      skip download & installation of npm packages
+ * --noRestore  skip Ionic state restoration
+ * --ignoreSSL  ignore SSL certificate errors when querying QUIQQER App API
+ * --noIcon     skip icon generation
+ * --noSplash   skip splashscreen generation
+ *
+ * --dev        activates all of above flags
  */
 
 echo "\nBuild started\n";
