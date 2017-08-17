@@ -147,7 +147,9 @@
                                 </text>
                             </input>
                             <input conf="quiqqerApp.settings.logo"
-                                   class="media-image">
+                                   class="media-image"
+                                   data-qui-options-selectable_types="image"
+                                   data-qui-options-selectable_mimetypes="image/png">
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.logo.text"
@@ -158,7 +160,9 @@
                                 </description>
                             </input>
                             <input conf="quiqqerApp.settings.splash"
-                                   class="media-image">
+                                   class="media-image"
+                                   data-qui-options-selectable_types="image"
+                                   data-qui-options-selectable_mimetypes="image/png">
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.splash.text"
