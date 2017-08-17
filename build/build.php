@@ -85,21 +85,20 @@ if ($restoreState) {
 }
 
 
+// Ignore SSL errors if flag set
+$contextOptions = array(
+    "ssl" => array(
+        "verify_peer"      => $sslErrors,
+        "verify_peer_name" => $sslErrors,
+    ),
+);
+$StreamContext  = stream_context_create($contextOptions);
+
 // Try do get data from Api
 $apiData = null;
 try {
-    // Get JSON data from API
-
-    // Ignore SSL errors if flag set
-    $contextOptions = array(
-        "ssl" => array(
-            "verify_peer"      => $sslErrors,
-            "verify_peer_name" => $sslErrors,
-        ),
-    );
-
     echo "\nGetting data from API...\n";
-    $apiData = json_decode(file_get_contents($apiUrl, true, stream_context_create($contextOptions)));
+    $apiData = json_decode(file_get_contents($apiUrl, true, $StreamContext));
 } catch (Exception $ex) {
     // If anything goes wrong exit with error
     error("Invalid API URL!");
@@ -264,12 +263,12 @@ $splash = $apiData->splash;
 
 // Download the Icon if set in API
 if (!empty($logo)) {
-    copy($logo, 'resources/icon.png');
+    copy($logo, 'resources/icon.png', $StreamContext);
 }
 
 // Download the Splashscreen if set in API
 if (!empty($splash)) {
-    copy($splash, 'resources/splash.png');
+    copy($splash, 'resources/splash.png', $StreamContext);
 }
 
 // If Logo URL and no Flag set, generate Icon
