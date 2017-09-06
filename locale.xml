@@ -5,9 +5,9 @@
             <de><![CDATA[QUIQQER - APP]]></de>
             <en><![CDATA[QUIQQER - APP]]></en>
         </locale>
-        <locale name="package.title">
-            <de><![CDATA[Erweitert QUIQQER um eine REST API für eine QUIQQER APP.]]></de>
-            <en><![CDATA[Extends QUIQQER with a REST API for a QUIQQER APP.]]></en>
+        <locale name="package.description">
+            <de><![CDATA[Wandeln Sie Ihre Webseite in eine Android oder IOS App um]]></de>
+            <en><![CDATA[Convert your website to an Android or IOS app]]></en>
         </locale>
     </groups>
 
