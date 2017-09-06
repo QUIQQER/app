@@ -1,7 +1,7 @@
 {
   "name": "quiqqer\/app",
   "type": "quiqqer-library",
-  "description": "QUIQQER APP",
+  "description": "Convert your website to an Android or IOS app",
   "version": "dev-dev",
   "license": "",
   "authors": [
