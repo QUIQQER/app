@@ -1,4 +1,3 @@
-
 QUIQQER APP
 ========
 
@@ -6,12 +5,12 @@ Paketname:
 
     quiqqer/app
 
-
 Features (Funktionen)
 --------
 
-- Buildscript für eine App
-- REST Schnittstelle für eine QUIQQER APP
+- Erstellen einer Android oder iOS App
+- Die eigene Website per App offline verfügbar machen
+- REST-Schnittstelle für Entwickler
 
 
 Installation
@@ -29,16 +28,10 @@ Mitwirken
 Support
 -------
 
-Falls Sie einen Fehler gefunden haben oder Verbesserungen wünschen,
-senden Sie bitte eine E-Mail an support@pcsg.de.
-
+Falls Sie Fehler gefunden, Wünsche oder Verbesserungsvorschläge haben, 
+können Sie uns gern per Mail an support@pcsg.de darüber informieren.  
+Wir werden versuchen auf Ihre Wünsche einzugehen bzw. diese an die 
+zuständigen Entwickler des Projektes weiterleiten.
 
 Lizenz
 -------
-
-MIT
-
-Entwickler
---------
-
-https://dev.quiqqer.com/quiqqer/app/wikis/rest/
