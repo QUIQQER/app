@@ -1,20 +1,20 @@
 {
   "name": "quiqqer\/app",
-  "type": "quiqqer-library",
-  "description": "Convert your website to an Android or IOS app",
+  "type": "quiqqer-module",
+  "description": "Convert your QUIQQER website to an Android or iOS app",
   "version": "dev-dev",
   "license": "",
   "authors": [
     {
-      "name": "Henning Leutz",
-      "email": "leutz@pcsg.de",
-      "homepage": "http:\/\/www.pcsg.de",
+      "name": "Jan Wennrich",
+      "email": "jan.wennrich@pcsg.de",
+      "homepage": "https:\/\/www.pcsg.de",
       "role": "Developer"
     },
     {
-      "name": "Jan Wennrich",
-      "email": "jan.wennrich@pcsg.de",
-      "homepage": "http:\/\/www.pcsg.de",
+      "name": "Henning Leutz",
+      "email": "leutz@pcsg.de",
+      "homepage": "https:\/\/www.pcsg.de",
       "role": "Developer"
     }
   ],
