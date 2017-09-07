@@ -8,6 +8,11 @@
             <locale group="quiqqer/app" var="package.description"/>
         </description>
 
+        <preview>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/1.png"/>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/2.png"/>
+        </preview>
+
         <support>
             <email>support@pcsg.de</email>
             <forum>https://community.quiqqer.com</forum>
