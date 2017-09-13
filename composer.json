@@ -3,7 +3,7 @@
   "type": "quiqqer-module",
   "description": "Convert your QUIQQER website to an Android or iOS app",
   "version": "dev-dev",
-  "license": "",
+  "license": "MIT",
   "authors": [
     {
       "name": "Jan Wennrich",
