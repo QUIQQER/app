@@ -1,37 +1,35 @@
-QUIQQER APP
+QUIQQER App
 ========
-
-Paketname:
+Package name:
 
     quiqqer/app
 
-Features (Funktionen)
+Features
 --------
-
-- Erstellen einer Android oder iOS App
-- Die eigene Website per App offline verfügbar machen
-- REST-Schnittstelle für Entwickler
+- Create your own Android or iOS App
+- Make your QUIQQER website offline available as an app
+- REST Interface for developers
 
 
 Installation
 ------------
+The package name is: quiqqer/app
 
-Der Paketname ist: quiqqer/app
 
-Mitwirken
+Contribute
 ----------
-
 - Issue Tracker: https://dev.quiqqer.com/quiqqer/app/issues
 - Source Code: https://dev.quiqqer.com/quiqqer/app/tree/master
 - Wiki: https://dev.quiqqer.com/quiqqer/app/wikis/home
 
+
 Support
 -------
+If you found any flaws, have any wishes or suggestions you can send a mail
+to support@pcsg.de to inform us about your concerns. 
+We will try to respond to your request and forward it to the responsible developer.
 
-Falls Sie Fehler gefunden, Wünsche oder Verbesserungsvorschläge haben, 
-können Sie uns gern per Mail an support@pcsg.de darüber informieren.  
-Wir werden versuchen auf Ihre Wünsche einzugehen bzw. diese an die 
-zuständigen Entwickler des Projektes weiterleiten.
 
-Lizenz
+License
 -------
+MIT
