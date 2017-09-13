@@ -13,7 +13,7 @@ Features
 
 Installation
 ------------
-The package name is: quiqqer/app
+The package name is: `quiqqer/app`
 
 
 Contribute
@@ -25,8 +25,8 @@ Contribute
 
 Support
 -------
-If you found any flaws, have any wishes or suggestions you can send a mail
-to support@pcsg.de to inform us about your concerns. 
+If you found any flaws, have any wishes or suggestions you can send an email
+to [support@pcsg.de](mailto:support@pcsg.de) to inform us about your concerns. 
 We will try to respond to your request and forward it to the responsible developer.
 
 
