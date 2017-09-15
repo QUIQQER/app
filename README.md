@@ -1,3 +1,5 @@
+![QUIQQER App](bin/images/Readme.jpg)
+
 QUIQQER App
 ========
 Package name:
