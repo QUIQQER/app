@@ -11,8 +11,10 @@
         <image src="URL_OPT_DIR/quiqqer/app/bin/images/Logo.jpg"/>
 
         <preview>
-            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/1.png"/>
-            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/2.png"/>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/1.jpg"/>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/2.jpg"/>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/3.jpg"/>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/4.jpg"/>
         </preview>
 
         <support>
