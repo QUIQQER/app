@@ -23,6 +23,7 @@
   },
   "require": {
     "php": ">=7",
+    "ext-zip": "*",
     "quiqqer\/quiqqer": "*",
     "quiqqer\/rest": "dev-dev",
     "npm-asset\/sw-toolbox": "3.6.0"
