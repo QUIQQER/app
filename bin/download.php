@@ -41,22 +41,30 @@ $ignore = array(
     'www/fonts/',
 );
 
-\QUI\Archiver\Zip::zip($zipDir, $zipTarget, $ignore);
+try {
+    \QUI\Archiver\Zip::zip($zipDir, $zipTarget, $ignore);
 
+    // Add config file for API URL (inject into zip instead of creating in package folder before)
+    $Zip = new ZipArchive();
+    $Zip->open($zipTarget, ZipArchive::CREATE);
 
-// Add config file for API URL (inject into zip instead of creating in package folder before)
-$Zip = new ZipArchive();
-$Zip->open($zipTarget, ZipArchive::CREATE);
+    $apiUrl  = QUI\REST\Server::getInstance()->getAddress() . "quiqqer/app/structure/$projectName/de";
+    $content = "api_url=\"$apiUrl\"";
+    $Zip->addFromString('config.ini', $content);
 
-$apiUrl  = QUI\REST\Server::getInstance()->getAddress() . "quiqqer/app/structure/$projectName/de";
-$content = "api_url=\"$apiUrl\"";
-$Zip->addFromString('config.ini', $content);
+    $Zip->close();
 
-$Zip->close();
-
-// Return file download
-header("Content-Type: application/zip");
-header("Content-Disposition: attachment; filename=\"$zipName\"");
-readfile($zipTarget);
+    // Return file download
+    header("Content-Type: application/zip");
+    header("Content-Disposition: attachment; filename=\"$zipName\"");
+    readfile($zipTarget);
+} catch (Exception $exception) {
+    echo "
+    <script>
+        parent.QUI.getMessageHandler().then(function (MessageHandler) {
+            MessageHandler.addError('Something went wrong. PHP Zip Extension installed?');
+        });
+    </script>";
+}
 
 exit;
