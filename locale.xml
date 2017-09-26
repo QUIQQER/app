@@ -155,8 +155,8 @@
             <en><![CDATA[Download]]></en>
         </locale>
         <locale name="quiqqerApp.settings.download.description">
-            <de><![CDATA[Bitte speichern Sie Ihre Einstellungen vor dem Herunterladen.]]></de>
-            <en><![CDATA[Please save your settings before starting the download.]]></en>
+            <de><![CDATA[Einstellungen vorher speichern!]]></de>
+            <en><![CDATA[Save settings before download!]]></en>
         </locale>
     </groups>
 

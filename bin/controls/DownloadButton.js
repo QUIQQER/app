@@ -12,7 +12,10 @@ define('package/quiqqer/app/bin/controls/DownloadButton', [
     'qui/controls/Control',
     'qui/controls/buttons/Button',
     'Ajax',
-    'Locale'
+    'Locale',
+
+    'css!package/quiqqer/app/bin/controls/DownloadButton.css'
+
 
 ], function (QUI, QUIControl, QUIButton, QUIAjax, QUILocale)
 {
@@ -76,7 +79,7 @@ define('package/quiqqer/app/bin/controls/DownloadButton', [
             new QUIButton({
                 icon   : 'fa fa-download',
                 text   : QUILocale.get(lg, 'download.button'),
-                'class': Parent.className,
+                'class': Parent.className + ' app-download-button',
                 events : {
                     onClick: this.$download
                 }
