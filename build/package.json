@@ -60,13 +60,6 @@
         "cordova-plugin-extension",
         "cordova-plugin-network-information"
     ],
-    "cordovaPlatforms": [
-        {
-            "platform": "android",
-            "version": "",
-            "locator": "android"
-        }
-    ],
     "description": "QUIQQER App Skeleton, build an App for your QUIQQER website with one click.",
     "cordova": {
         "plugins": {

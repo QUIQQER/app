@@ -2,30 +2,32 @@
 
 /**
  * The following flags can be used:
- * --noNpm      skip download & installation of npm packages
- * --noRestore  skip Ionic state restoration
- * --ignoreSSL  ignore SSL certificate errors when querying QUIQQER App API
- * --noIcon     skip icon generation
- * --noSplash   skip splashscreen generation
+ * --noNpm      	skip download & installation of npm packages
+ * --skipPlatforms  skip adding iOS/Android platforms
+ * --ignoreSSL  	ignore SSL certificate errors when querying QUIQQER App API
+ * --noIcon     	skip icon generation
+ * --noSplash   	skip splashscreen generation
  *
- * --dev        activates all of above flags
+ * --dev        	activates all of above flags
  */
 
 echo "\nBuild started\n";
 
 $runNpm = true;
 
-$restoreState = true;
+$addPlatforms = true;
 
 $generateIcon   = true;
 $generateSplash = true;
 
 $sslErrors = true;
 
+$cliInput = fopen("php://stdin", "r");
+
 // If dev flag is set activate all flags
 if (in_array('--dev', $argv)) {
     $runNpm         = false;
-    $restoreState   = false;
+    $addPlatforms   = false;
     $generateIcon   = false;
     $generateSplash = false;
     $sslErrors      = false;
@@ -39,8 +41,8 @@ if (in_array('--noNpm', $argv) || !$runNpm) {
 }
 
 // Is no state restore flag set?
-if (in_array('--noRestore', $argv) || !$restoreState) {
-    $restoreState = false;
+if (in_array('--skipPlatforms', $argv) || !$addPlatforms) {
+    $addPlatforms = false;
     echo "Not restoring Ionic State\n";
 }
 
@@ -78,10 +80,19 @@ if ($runNpm) {
 }
 
 
-// Restore Ionic State
-if ($restoreState) {
-    echo "\nRestoring Ionic State, this may take a while...\n";
-    liveExecuteCommand('ionic state restore');
+// Add platforms
+if ($addPlatforms) {
+    $buildPlatforms = getInput("For which platforms do you want to build you app? (Android = a; iOS = i; both = b): ", $cliInput);
+
+    if ($buildPlatforms == 'a' || 'b') {
+        echo "\nAdding Android platform (ignore errors), this may take a while...\n";
+        liveExecuteCommand('ionic platform add android');
+    }
+
+    if ($buildPlatforms == 'i' || 'b') {
+        echo "\nAdding iOS platform (ignore errors), this may take a while...\n";
+        liveExecuteCommand('ionic platform add ios');
+    }
 }
 
 
@@ -402,8 +413,6 @@ $xmlConfig->saveXML('config.xml');
  * =      ANDROID APK BUILD      =
  * ===============================
  */
-$cliInput = fopen("php://stdin", "r");
-
 $startAndroidBuild = getInput("Do you want to build the APK file for android now? (y/n): ", $cliInput) == 'y';
 
 if (!$startAndroidBuild) {
