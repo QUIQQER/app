@@ -15,13 +15,6 @@
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
-  <platform name="android">
-    <allow-intent href="market:*"/>
-  </platform>
-  <platform name="ios">
-    <allow-intent href="itms:*"/>
-    <allow-intent href="itms-apps:*"/>
-  </platform>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
