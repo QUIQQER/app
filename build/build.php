@@ -82,14 +82,15 @@ if ($runNpm) {
 
 // Add platforms
 if ($addPlatforms) {
-    $buildPlatforms = getInput("For which platforms do you want to build you app? (Android = a; iOS = i; both = b): ", $cliInput);
+    $message        = "For which platforms do you want to build you app? (Android = a; iOS = i; both = b): ";
+    $buildPlatforms = getInput($message, $cliInput);
 
-    if ($buildPlatforms == 'a' || 'b') {
+    if ($buildPlatforms == 'a' || $buildPlatforms == 'b') {
         echo "\nAdding Android platform (ignore errors), this may take a while...\n";
         liveExecuteCommand('ionic platform add android');
     }
 
-    if ($buildPlatforms == 'i' || 'b') {
+    if ($buildPlatforms == 'i' || $buildPlatforms == 'b') {
         echo "\nAdding iOS platform (ignore errors), this may take a while...\n";
         liveExecuteCommand('ionic platform add ios');
     }
