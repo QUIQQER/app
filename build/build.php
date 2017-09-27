@@ -43,7 +43,7 @@ if (in_array('--noNpm', $argv) || !$runNpm) {
 // Is no state restore flag set?
 if (in_array('--skipPlatforms', $argv) || !$addPlatforms) {
     $addPlatforms = false;
-    echo "Not restoring Ionic State\n";
+    echo "Not adding any platforms\n";
 }
 
 // Is no icon generation flag set?
