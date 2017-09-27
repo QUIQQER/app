@@ -29,12 +29,12 @@ export class MyApp
 
     rootPage = TabsPage;
 
-    constructor(private platform: Platform,
+    constructor(platform: Platform,
+                StatusBar: StatusBar,
+                SplashScreen: SplashScreen,
+                AdMob : AdMob,
                 public menu: MenuController,
-                private translate: TranslateService,
-                private StatusBar: StatusBar,
-                private SplashScreen: SplashScreen,
-                private AdMob : AdMob)
+                private translate: TranslateService)
     {
         this.initializeTranslation();
 

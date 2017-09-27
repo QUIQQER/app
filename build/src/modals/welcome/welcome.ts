@@ -14,7 +14,7 @@ export class WelcomeModal {
     public staticPages: SafeResourceUrl[];
     private loadedPages: number = 0;
 
-    constructor(public viewCtrl: ViewController, private sanitizer: DomSanitizer, private Network: Network,) {
+    constructor(public viewCtrl: ViewController, private sanitizer: DomSanitizer, Network: Network,) {
         if (Network.type == 'none') {
             // If we're offline wait until we're online before loading pages
             Network.onConnect().subscribe(() => {

@@ -21,7 +21,7 @@ export class TabsPage {
     private title: string;
 
     constructor(navParams: NavParams,
-                private modalCtrl: ModalController,
+                modalCtrl: ModalController,
                 private storage: Storage,) {
         let self = this;
 

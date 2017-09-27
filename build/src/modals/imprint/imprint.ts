@@ -11,8 +11,7 @@ export class ImprintPage
 {
     private url: SafeResourceUrl;
 
-    constructor(private viewCtrl: ViewController,
-                private sanitizer: DomSanitizer)
+    constructor(private viewCtrl: ViewController, sanitizer: DomSanitizer)
     {
         // URL is used for iframe src, so we have to tell Angular it's save
         this.url = sanitizer.bypassSecurityTrustResourceUrl(config.imprintUrl+'?app=1');

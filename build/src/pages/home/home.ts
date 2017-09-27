@@ -16,10 +16,10 @@ export class HomePage {
     private isOffline: boolean = false;
     private isStaticPage: boolean = false;
 
-    constructor(private params: NavParams,
+    constructor(params: NavParams,
+                Network: Network,
                 private sanitizer: DomSanitizer,
-                private modalCtrl: ModalController,
-                private Network: Network,) {
+                private modalCtrl: ModalController) {
         let url = params.get('url');
         let title = params.get('title');
         let Page = pages[0];
