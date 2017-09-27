@@ -439,7 +439,7 @@ echo "\nAndroid SDK path set to: $sdkPath\n";
 getInput("Press enter to start building the .apk file: ", $cliInput);
 
 echo "\nBuilding .apk file, please wait...\n";
-liveExecuteCommand('cordova build --release android');
+liveExecuteCommand('ionic build android --prod --release');
 
 $apkPath = __DIR__ . "/platforms/android/build/outputs/apk/android-release-unsigned.apk";
 
