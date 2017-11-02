@@ -20,6 +20,7 @@ build/tmp/
 build/temp/
 build/hooks/
 build/platforms/
+!build/platforms/.gitkeep
 build/plugins/
 build/plugins/android.json
 build/plugins/ios.json

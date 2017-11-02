@@ -34,7 +34,6 @@ if (file_exists($zipTarget)) {
 // Ignore files that may be left over from package development
 $ignore = array(
     'node_modules/',
-    'platforms/',
     'plugins/',
     'www/assets/',
     'www/build/',
