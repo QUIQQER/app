@@ -433,14 +433,14 @@ if (!is_dir("$sdkPath/tools")) {
     error("Tools directory could not be found inside Android SDK folder ($sdkPath), exiting.");
 }
 
-exec("export ANDROID_HOME=$sdkPath");
-exec("export PATH=\$PATH:\$ANDROID_HOME/tools");
 echo "\nAndroid SDK path set to: $sdkPath\n";
 
 getInput("Press enter to start building the .apk file: ", $cliInput);
 
 echo "\nBuilding .apk file, please wait...\n";
-liveExecuteCommand('ionic build android --prod --release');
+
+$environmentVariables = "ANDROID_HOME=\"$sdkPath\" PATH=\$PATH:\$ANDROID_HOME/tools";
+liveExecuteCommand("$environmentVariables ionic build android --prod --release");
 
 $apkPath = __DIR__ . "/platforms/android/build/outputs/apk/android-release-unsigned.apk";
 
