@@ -5,8 +5,30 @@
         </title>
 
         <description>
-            <locale group="quiqqer/app" var="package.title"/>
+            <locale group="quiqqer/app" var="package.description"/>
         </description>
+
+        <image src="URL_OPT_DIR/quiqqer/app/bin/images/Logo.jpg"/>
+
+        <preview>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/1.jpg"/>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/2.jpg"/>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/3.jpg"/>
+            <image src="URL_OPT_DIR/quiqqer/app/bin/images/preview/4.jpg"/>
+        </preview>
+
+        <support>
+            <email><![CDATA[support@pcsg.de]]></email>
+            <forum><![CDATA[https://community.quiqqer.com]]></forum>
+            <source><![CDATA[https://dev.quiqqer.com/quiqqer/app]]></source>
+            <issues><![CDATA[https://dev.quiqqer.com/quiqqer/app/issues]]></issues>
+            <wiki><![CDATA[https://dev.quiqqer.com/quiqqer/app/wikis/home]]></wiki>
+        </support>
+
+        <copyright>
+            <name><![CDATA[PCSG - Computer & Internet Service OHG]]></name>
+            <license><![CDATA[MIT]]></license>
+        </copyright>
 
         <provider>
             <rest src="\QUI\APP\RestProvider"/>

@@ -2,12 +2,12 @@
 <locales>
     <groups name="quiqqer/app" datatype="js,php">
         <locale name="package.title">
-            <de><![CDATA[QUIQQER - APP]]></de>
-            <en><![CDATA[QUIQQER - APP]]></en>
+            <de><![CDATA[QUIQQER - App]]></de>
+            <en><![CDATA[QUIQQER - App]]></en>
         </locale>
-        <locale name="package.title">
-            <de><![CDATA[Erweitert QUIQQER um eine REST API für eine QUIQQER APP.]]></de>
-            <en><![CDATA[Extends QUIQQER with a REST API for a QUIQQER APP.]]></en>
+        <locale name="package.description">
+            <de><![CDATA[Wandeln Sie Ihre QUIQQER Webseite in eine Android oder iOS App um.]]></de>
+            <en><![CDATA[Convert your QUIQQER website to an Android or iOS app.]]></en>
         </locale>
     </groups>
 
@@ -20,10 +20,48 @@
             <de><![CDATA[Allgemeine Einstellungen]]></de>
             <en><![CDATA[General settings]]></en>
         </locale>
-        <locale name="quiqqerApp.settings.menuStructure.title">
-            <de><![CDATA[Menüstruktur]]></de>
-            <en><![CDATA[Menu structure]]></en>
+        <locale name="quiqqerApp.settings.sideMenuStructure.title">
+            <de><![CDATA[Seitliche Menüstruktur]]></de>
+            <en><![CDATA[Side-Menu structure]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.title">
+            <de><![CDATA[Untere Menüstruktur]]></de>
+            <en><![CDATA[Bottom-Menu structure]]></en>
+        </locale>
+
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.text">
+            <de><![CDATA[Icon Layout]]></de>
+            <en><![CDATA[Icon Layout]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.desc">
+            <de><![CDATA[Wie sollen Icons und Titel im unteren Menü angezeigt werden?]]></de>
+            <en><![CDATA[How should icons and titles in the bottom menu be displayed?]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconTop">
+            <de><![CDATA[Icon Oben]]></de>
+            <en><![CDATA[Icon On Top]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconLeft">
+            <de><![CDATA[Icon Links]]></de>
+            <en><![CDATA[Icon on the left]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconRight">
+            <de><![CDATA[Icon Rechts]]></de>
+            <en><![CDATA[Icon on the right]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconBottom">
+            <de><![CDATA[Icon Unten]]></de>
+            <en><![CDATA[Icon beneath]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconHide">
+            <de><![CDATA[Icon verstecken (nur Text)]]></de>
+            <en><![CDATA[Hide icon (show text only)]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.bottomMenuStructure.iconLayout.titleHide">
+            <de><![CDATA[Titel verstecken (nur Icon)]]></de>
+            <en><![CDATA[Hide title (show icon only)]]></en>
+        </locale>
+
         <locale name="quiqqerApp.settings.fontColor.text">
             <de><![CDATA[Allgemeine Schriftfarbe]]></de>
             <en><![CDATA[General font color]]></en>
@@ -36,17 +74,45 @@
             <de><![CDATA[Werbung in der App verwenden]]></de>
             <en><![CDATA[Use advertising in the app]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.advertisement.admobid.text">
+            <de><![CDATA[AdMob ID für Werbung]]></de>
+            <en><![CDATA[AdMob ID for ads]]></en>
+        </locale>
         <locale name="quiqqerApp.settings.title.text">
             <de><![CDATA[Titel der APP]]></de>
             <en><![CDATA[Title of the app]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.description.text">
+            <de><![CDATA[Beschreibung der APP]]></de>
+            <en><![CDATA[Description of the app]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.version.text">
+            <de><![CDATA[Versionsnummer]]></de>
+            <en><![CDATA[Version Number]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.author.name.text">
+            <de><![CDATA[Name des Autors]]></de>
+            <en><![CDATA[Author Name]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.author.email.text">
+            <de><![CDATA[Email Adresse des Autors]]></de>
+            <en><![CDATA[Author Email Address]]></en>
         </locale>
         <locale name="quiqqerApp.settings.logo.text">
             <de><![CDATA[Logo der APP]]></de>
             <en><![CDATA[Logo of the app]]></en>
         </locale>
+        <locale name="quiqqerApp.settings.logo.description">
+            <de><![CDATA[.png, .ai, oder .psd Datei mit einer Auflösung von mind. 192x192px]]></de>
+            <en><![CDATA[.png, .ai, or .psd file with a resolution of at least 192x192px]]></en>
+        </locale>
         <locale name="quiqqerApp.settings.splash.text">
             <de><![CDATA[Splashscreen der APP]]></de>
             <en><![CDATA[Splashscreen of the app]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.splash.description">
+            <de><![CDATA[.png, .ai, oder .psd Datei mit einer Auflösung von mind. 2208x2208px]]></de>
+            <en><![CDATA[.png, .ai, or .psd file with a resolution of at least 2208x2208px]]></en>
         </locale>
         <locale name="quiqqerApp.settings.availableLanguages.text">
             <de><![CDATA[Mögliche Sprachen der APP]]></de>
@@ -56,7 +122,7 @@
             <de><![CDATA[Menü Einstellungen]]></de>
             <en><![CDATA[Menu settings]]></en>
         </locale>
-        <locale name="quiqqerApp.settings.menuFrontColor.text">
+        <locale name="quiqqerApp.settings.menuFontColor.text">
             <de><![CDATA[Schriftfarbe des Menüs]]></de>
             <en><![CDATA[Font color of the menu]]></en>
         </locale>
@@ -68,6 +134,30 @@
             <de><![CDATA[Unteres Menü anzeigen]]></de>
             <en><![CDATA[Show bottom menü]]></en>
         </locale>
+
+        <locale name="quiqqerApp.settings.staticPages.title">
+            <de><![CDATA[Statische Seiten]]></de>
+            <en><![CDATA[Static Sites]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.staticPages.text">
+            <de><![CDATA[Statische Seiten IDs]]></de>
+            <en><![CDATA[Static Site IDs]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.staticPages.description">
+            <de>
+                <![CDATA[Geben Sie hier kommasepariert die IDs der Seiten an, die auch offline in der App verfügbar sein sollen. Zum Beispiel: "1,5,7" (Nicht für Shop-Seiten o.ä. geeignet)]]></de>
+            <en>
+                <![CDATA[Enter a comma separated list of IDs of pages which should also be available offline in the app. For example: "1,5,7" (Don't use this for shop or similar pages.)]]></en>
+        </locale>
+
+        <locale name="quiqqerApp.settings.download.title">
+            <de><![CDATA[Herunterladen]]></de>
+            <en><![CDATA[Download]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.download.description">
+            <de><![CDATA[Einstellungen vorher speichern!]]></de>
+            <en><![CDATA[Save settings before download!]]></en>
+        </locale>
     </groups>
 
     <groups name="quiqqer/app" datatype="js">
@@ -78,6 +168,21 @@
         <locale name="window.remove.content">
             <de><![CDATA[Möchten Sie die markierten Einträge wirklich entfernen?]]></de>
             <en><![CDATA[Are you sure you want to remove the selected entries?]]></en>
+        </locale>
+
+        <locale name="download.button">
+            <de><![CDATA[Herunterladen]]></de>
+            <en><![CDATA[Download]]></en>
+        </locale>
+
+        <locale name="icon">
+            <de><![CDATA[Icon]]></de>
+            <en><![CDATA[Icon]]></en>
+        </locale>
+
+        <locale name="setIcon.button">
+            <de><![CDATA[Icon Auswählen]]></de>
+            <en><![CDATA[Select Icon]]></en>
         </locale>
     </groups>
 </locales>

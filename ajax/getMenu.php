@@ -8,38 +8,49 @@
  * Returns the menu entries from the project
  *
  * @param {String} $project - Project JSON data
+ * @param {String} $menu - Which menu to get ('sideMenu' or 'bottomMenu')
  *
  * @return array
  */
 QUI::$Ajax->registerFunction(
     'package_quiqqer_app_ajax_getMenu',
-    function ($project) {
+    function ($project, $menu) {
+
         $Project = QUI::getProjectManager()->decode($project);
         $Config  = QUI::getPackage('quiqqer/app')->getConfig();
 
-        $ids = $Config->getValue('menu', $Project->getName() . '_' . $Project->getLang());
+        $menuItems = $Config->getValue($menu, $Project->getName() . '_' . $Project->getLang());
 
-        if (!$ids) {
+        if (!$menuItems) {
             return array();
         }
 
-        $result = array();
-        $ids    = explode(',', $ids);
+        $result    = array();
+        $menuItems = json_decode($menuItems, true);
 
-        foreach ($ids as $id) {
+        foreach ($menuItems as $menuItem) {
             try {
-                $Site     = $Project->get($id);
-                $result[] = array(
+                $Site = $Project->get($menuItem['id']);
+
+                $resultData = array(
                     'id'    => $Site->getId(),
                     'title' => $Site->getAttribute('title'),
                     'name'  => $Site->getAttribute('name')
                 );
+
+                if (isset($menuItem['icon'])) {
+                    $resultData['icon'] = $menuItem['icon'];
+                } else {
+                    $resultData['icon'] = false;
+                }
+
+                $result[] = $resultData;
             } catch (QUI\Exception $Exception) {
             }
         }
 
         return $result;
     },
-    array('project'),
+    array('project', 'menu'),
     'Permission::checkAdminUser'
 );

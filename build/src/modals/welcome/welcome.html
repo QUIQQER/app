@@ -1,0 +1,9 @@
+<ion-content padding>
+
+    <div id="loading">
+        {{"welcome.text" | translate}}
+        <ion-spinner></ion-spinner>
+    </div>
+
+    <iframe *ngFor="let staticPage of staticPages" [src]="staticPage" (load)="iframeLoaded()" style="display: none"></iframe>
+</ion-content>

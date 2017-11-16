@@ -4,7 +4,16 @@
         <settings>
             <config>
                 <section name="quiqqerApp.settings">
-
+                    <conf name="version">
+                        <type><![CDATA[string]]></type>
+                        <defaultvalue>1.0.0</defaultvalue>
+                    </conf>
+                    <conf name="author.name">
+                        <type><![CDATA[string]]></type>
+                    </conf>
+                    <conf name="author.email">
+                        <type><![CDATA[string]]></type>
+                    </conf>
                     <conf name="fontColor">
                         <type><![CDATA[string]]></type>
                         <defaultvalue>#333333</defaultvalue>
@@ -16,6 +25,9 @@
                     <conf name="advertisement">
                         <type><![CDATA[bool]]></type>
                         <defaultvalue>1</defaultvalue>
+                    </conf>
+                    <conf name="advertisement.admobid">
+                        <type><![CDATA[string]]></type>
                     </conf>
                     <conf name="lastEdit">
                         <type><![CDATA[int]]></type>
@@ -29,7 +41,7 @@
                     <conf name="splash">
                         <type><![CDATA[string]]></type>
                     </conf>
-                    <conf name="menuFrontColor">
+                    <conf name="menuFontColor">
                         <type><![CDATA[string]]></type>
                         <defaultvalue>#ffffff</defaultvalue>
                     </conf>
@@ -41,13 +53,18 @@
                         <type><![CDATA[bool]]></type>
                         <defaultvalue>1</defaultvalue>
                     </conf>
-
+                    <conf name="bottomMenu.iconLayout">
+                        <type><![CDATA[text]]></type>
+                        <defaultvalue>icon-top</defaultvalue>
+                    </conf>
+                    <conf name="staticPages">
+                        <type><![CDATA[string]]></type>
+                    </conf>
                 </section>
             </config>
 
             <window>
                 <categories>
-
                     <category name="quiqqerApp">
                         <text>
                             <locale group="quiqqer/app"
@@ -68,6 +85,38 @@
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.title.text"
+                                    />
+                                </text>
+                            </input>
+
+                            <input type="hidden" data-qui="package/quiqqer/app/bin/controls/DescriptionSetting">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.description.text"
+                                    />
+                                </text>
+                            </input>
+
+                            <input conf="quiqqerApp.settings.version" type="text">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.version.text"
+                                    />
+                                </text>
+                            </input>
+
+                            <input conf="quiqqerApp.settings.author.name" type="text">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.author.name.text"
+                                    />
+                                </text>
+                            </input>
+
+                            <input conf="quiqqerApp.settings.author.email" type="text">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.author.email.text"
                                     />
                                 </text>
                             </input>
@@ -98,26 +147,44 @@
                                 </text>
                             </input>
                             <input conf="quiqqerApp.settings.logo"
-                                   class="media-image">
+                                   class="media-image"
+                                   data-qui-options-selectable_types="image"
+                                   data-qui-options-selectable_mimetypes="image/png">
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.logo.text"
                                     />
                                 </text>
+                                <description>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.logo.description"/>
+                                </description>
                             </input>
                             <input conf="quiqqerApp.settings.splash"
-                                   class="media-image">
+                                   class="media-image"
+                                   data-qui-options-selectable_types="image"
+                                   data-qui-options-selectable_mimetypes="image/png">
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.splash.text"
                                     />
                                 </text>
+                                <description>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.splash.description"/>
+                                </description>
                             </input>
                             <input conf="quiqqerApp.settings.advertisement"
                                    type="checkbox">
                                 <text>
                                     <locale group="quiqqer/app"
                                             var="quiqqerApp.settings.advertisement.text"
+                                    />
+                                </text>
+                            </input>
+                            <input conf="quiqqerApp.settings.advertisement.admobid"
+                                   type="text">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.advertisement.admobid.text"
                                     />
                                 </text>
                             </input>
@@ -131,11 +198,11 @@
                                         var="quiqqerApp.settings.menu.title"
                                 />
                             </title>
-                            <input conf="quiqqerApp.settings.menuFrontColor"
+                            <input conf="quiqqerApp.settings.menuFontColor"
                                    type="color">
                                 <text>
                                     <locale group="quiqqer/app"
-                                            var="quiqqerApp.settings.menuFrontColor.text"
+                                            var="quiqqerApp.settings.menuFontColor.text"
                                     />
                                 </text>
                             </input>
@@ -159,19 +226,106 @@
                         </settings>
 
                         <settings title="quiqqerApp.settings"
-                                  name="quiqqerApp.settings.menuStructure">
+                                  name="quiqqerApp.settings.sideMenuStructure"
+                        >
                             <title>
                                 <locale group="quiqqer/app"
-                                        var="quiqqerApp.settings.menuStructure.title"
+                                        var="quiqqerApp.settings.sideMenuStructure.title"
                                 />
                             </title>
 
-                            <input conf="quiqqerApp.settings.menu"
+                            <input conf="quiqqerApp.settings.sideMenu"
                                    type="hidden"
-                                   data-qui="package/quiqqer/app/bin/controls/MenuStructure" label="false"/>
+                                   label="false"
+                                   data-qui="package/quiqqer/app/bin/controls/MenuStructure"
+                                   data-qui-options-menuType="sideMenu"/>
+
+                        </settings>
+
+                        <settings title="quiqqerApp.settings"
+                                  name="quiqqerApp.settings.bottomMenuStructure"
+                        >
+                            <title>
+                                <locale group="quiqqer/app"
+                                        var="quiqqerApp.settings.bottomMenuStructure.title"
+                                />
+                            </title>
+
+                            <input conf="quiqqerApp.settings.bottomMenu"
+                                   type="hidden"
+                                   label="false"
+                                   data-qui="package/quiqqer/app/bin/controls/MenuStructure"
+                                   data-qui-options-menuType="bottomMenu"/>
+
+                            <select conf="quiqqerApp.settings.bottomMenu.iconLayout">
+                                <text>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.text"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.desc"/>
+                                </description>
+                                <option value="icon-top">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconTop"/>
+                                </option>
+                                <option value="icon-right">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconRight"/>
+                                </option>
+                                <option value="icon-bottom">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconBottom"/>
+                                </option>
+                                <option value="icon-left">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconLeft"/>
+                                </option>
+                                <option value="icon-hide">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.iconHide"/>
+                                </option>
+                                <option value="title-hide">
+                                    <locale group="quiqqer/app"
+                                            var="quiqqerApp.settings.bottomMenuStructure.iconLayout.titleHide"/>
+                                </option>
+                            </select>
+                        </settings>
+
+                        <settings title="quiqqerApp.settings"
+                                  name="quiqqerApp.settings.staticPages"
+                        >
+                            <title>
+                                <locale group="quiqqer/app" var="quiqqerApp.settings.staticPages.title"/>
+                            </title>
+
+                            <input conf="quiqqerApp.settings.staticPages" type="text">
+                                <text>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.staticPages.text"/>
+                                </text>
+                                <description>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.staticPages.description"/>
+                                </description>
+                            </input>
                         </settings>
 
 
+                        <settings>
+                            <title>
+                                <locale group="quiqqer/app"
+                                        var="quiqqerApp.settings.download.title"
+                                />
+                            </title>
+                            <input type="hidden"
+                                   disabled="disabled"
+                                   data-qui="package/quiqqer/app/bin/controls/DownloadButton"
+                                   label="true">
+                                <text>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.download.description"/>
+                                </text>
+                            </input>
+                        </settings>
                     </category>
                 </categories>
             </window>

@@ -3,6 +3,7 @@
 /**
  * This file contains QUI\APP\EventHandler
  */
+
 namespace QUI\APP;
 
 use QUI;
@@ -10,7 +11,7 @@ use QUI;
 /**
  * Class RestProvider
  *
- * @package QUI\OAuth
+ * @package QUI\APP
  */
 class EventHandler
 {
@@ -31,22 +32,32 @@ class EventHandler
             return;
         }
 
-        // title
+        // title & desc
         $Package = QUI::getPackage('quiqqer/app');
         $Config  = $Package->getConfig();
         $group   = 'quiqqer/app';
-        $var     = 'app.title.' . $Project->getName();
-        $titles  = json_decode($params['quiqqerApp.settings.title'], true);
+
+        $var_title    = 'app.title.' . $Project->getName();
+        $var_desc     = 'app.description.' . $Project->getName();
+        $titles       = json_decode($params['quiqqerApp.settings.title'], true);
+        $descriptions = json_decode($params['quiqqerApp.settings.description'], true);
 
         try {
-            QUI\Translator::add($group, $var, $Package->getName());
+            QUI\Translator::add($group, $var_title, $Package->getName());
         } catch (QUI\Exception $Exception) {
+            // Throws error if lang var already exists
+        }
+
+        try {
+            QUI\Translator::add($group, $var_desc, $Package->getName());
+        } catch (QUI\Exception $Exception) {
+            // Throws error if lang var already exists
         }
 
         try {
             QUI\Translator::update(
                 'quiqqer/app',
-                $var,
+                $var_title,
                 $Package->getName(),
                 $titles
             );
@@ -54,26 +65,86 @@ class EventHandler
             QUI\System\Log::writeException($Exception);
         }
 
-        // menu
-        if (isset($params['quiqqerApp.settings.menu'])) {
-            $menu = json_decode($params['quiqqerApp.settings.menu'], true);
-            QUI\System\Log::writeRecursive($menu);
-            if ($menu) {
-                foreach ($menu as $lang => $entries) {
+        try {
+            QUI\Translator::update(
+                'quiqqer/app',
+                $var_desc,
+                $Package->getName(),
+                $descriptions
+            );
+        } catch (QUI\Exception $Exception) {
+            QUI\System\Log::writeException($Exception);
+        }
+
+
+        $isConfigChanged = false;
+
+        // sideMenu
+        if (isset($params['quiqqerApp.settings.sideMenu'])) {
+            $sideMenu = json_decode($params['quiqqerApp.settings.sideMenu'], true);
+            if ($sideMenu) {
+                foreach ($sideMenu as $lang => $entries) {
                     $Config->setValue(
-                        'menu',
+                        'sideMenu',
                         $Project->getName() . '_' . $lang,
-                        $entries
+                        json_encode($entries)
                     );
                 }
-
-                $Config->save();
+                $isConfigChanged = true;
             }
         }
+
+
+        // bottomMenu
+        if (isset($params['quiqqerApp.settings.bottomMenu'])) {
+            $bottomMenu = json_decode($params['quiqqerApp.settings.bottomMenu'], true);
+            if ($bottomMenu) {
+                foreach ($bottomMenu as $lang => $entries) {
+                    $Config->setValue(
+                        'bottomMenu',
+                        $Project->getName() . '_' . $lang,
+                        json_encode($entries)
+                    );
+                }
+                $isConfigChanged = true;
+            }
+        }
+
+        if ($isConfigChanged) {
+            $Config->save();
+        }
+
+        QUI\Translator::publish('quiqqer/app');
 
         // clear cache
         QUI\Cache\Manager::clear(
             'quiqqer/app/settings/' . $Project->getName()
         );
+    }
+
+
+    /**
+     * @param QUI\Rewrite $Rewrite
+     * @param $url
+     */
+    public static function onRequest(QUI\Rewrite $Rewrite, $url)
+    {
+        // If request comes from a QUIQQER app
+        if (Validate::isAppRequest()) {
+            // Save that this is an QUIQQER app session
+            QUI::getSession()->set('__APP__', 1);
+
+            // Remove SAMEORIGIN Policy for iframes inside the app
+            QUI::getGlobalResponse()->headers->remove("X-Frame-Options");
+            QUI::getGlobalResponse()->headers->add(['Access-Control-Allow-Origin' => '*']);
+        }
+    }
+
+
+    public static function onTemplateGetHeader(QUI\Template $Template)
+    {
+        if (Validate::isAppRequest()) {
+            $Template->extendHeaderWithJavaScriptFile(URL_OPT_DIR . 'quiqqer/app/bin/register-service-worker.js');
+        }
     }
 }

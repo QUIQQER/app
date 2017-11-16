@@ -1,0 +1,16 @@
+{
+  "welcome": {
+    "text": "Bitte warten, während die Inhalte das erste Mal geladen werden…"
+  },
+  "back": "Zurück",
+  "imprint": {
+    "title": "Impressum"
+  },
+  "side-menu": {
+    "title": "Seiten"
+  },
+  "network-check": {
+    "header": "Es wird eine aktive Internetverbindung benötigt.",
+    "text": "Bitte verbinde dein Gerät mit dem Internet."
+  }
+}

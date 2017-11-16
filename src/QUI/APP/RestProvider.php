@@ -3,6 +3,7 @@
 /**
  * This file contains QUI\APP\RestProvider
  */
+
 namespace QUI\APP;
 
 use QUI;
@@ -65,12 +66,14 @@ class RestProvider implements QUI\REST\ProviderInterface
         $cacheName = 'quiqqer/app/settings/' . $Project->getName();
 
         try {
-            return QUI\Cache\Manager::get($cacheName);
+            return $Response->withStatus(200)
+                ->withHeader('Content-Type', 'application/json')
+                ->write(QUI\Cache\Manager::get($cacheName));
         } catch (\Exception $Exception) {
         }
 
-        $Package = QUI::getPackage('quiqqer/app');
-        $Config  = $Package->getConfig();
+        $Locale = new QUI\Locale();
+        $Locale->setCurrent($Project->getLang());
 
         // Logo
         $logo = '';
@@ -133,46 +136,32 @@ class RestProvider implements QUI\REST\ProviderInterface
             }
         }
 
-
-        // Menu
-        $menu = array();
-        $ids  = $Config->getValue(
-            'menu',
-            $Project->getName() . '_' . $Project->getLang()
-        );
-
-        if ($ids) {
-            $ids = explode(',', $ids);
-
-            foreach ($ids as $id) {
-                try {
-                    $Site = $Project->get($id);
-
-                    if ($Site->getAttribute('active')) {
-                        $menu[] = $this->getSiteData($Site);
-                    }
-                } catch (QUI\Exception $Exception) {
-                }
-            }
-        }
-
-
         // title
         $result = array(
-            'title'         => QUI::getLocale()->get('quiqqer/app', 'app.title.' . $Project->getName()),
-            'logo'          => $logo,
-            'splash'        => $splash,
-            'placeholder'   => $placeholder,
-            'menu'          => $menu,
-            'imprint'       => $imprint,
-            'advertisment'  => !!$Project->getConfig('quiqqerApp.settings.advertisement'),
-            'useBottomMenu' => !!$Project->getConfig('quiqqerApp.settings.menuBottom'),
-            'languages'     => $Project->getConfig('quiqqerApp.settings.availableLanguages'),
-            'lastEdit'      => time(),
-            'colors'        => array(
+            'title'                => $Locale->get('quiqqer/app', 'app.title.' . $Project->getName()),
+            'description'          => $Locale->get('quiqqer/app', 'app.description.' . $Project->getName()),
+            'version'              => $Project->getConfig('quiqqerApp.settings.version'),
+            'author'               => array(
+                'name'    => $Project->getConfig('quiqqerApp.settings.author.name'),
+                'email'   => $Project->getConfig('quiqqerApp.settings.author.email'),
+                'website' => $Project->getHost()
+            ),
+            'logo'                 => $logo,
+            'splash'               => $splash,
+            'placeholder'          => $placeholder,
+            'sideMenu'             => $this->getMenu('sideMenu', $Project),
+            'bottomMenu'           => $this->getMenu('bottomMenu', $Project),
+            'bottomMenuIconLayout' => $Project->getConfig('quiqqerApp.settings.bottomMenu.iconLayout'),
+            'imprint'              => $imprint,
+            'advertisment'         => !!$Project->getConfig('quiqqerApp.settings.advertisement'),
+            'admobid'              => $Project->getConfig('quiqqerApp.settings.advertisement.admobid'),
+            'useBottomMenu'        => !!$Project->getConfig('quiqqerApp.settings.menuBottom'),
+            'languages'            => $Project->getConfig('quiqqerApp.settings.availableLanguages'),
+            'lastEdit'             => time(),
+            'colors'               => array(
                 'fontColor'           => $Project->getConfig('quiqqerApp.settings.fontColor'),
                 'backgroundColor'     => $Project->getConfig('quiqqerApp.settings.backgroundColor'),
-                'menuFrontColor'      => $Project->getConfig('quiqqerApp.settings.menuFrontColor'),
+                'menuFontColor'       => $Project->getConfig('quiqqerApp.settings.menuFontColor'),
                 'menuBackgroundColor' => $Project->getConfig('quiqqerApp.settings.menuBackgroundColor')
             )
         );
@@ -213,13 +202,71 @@ class RestProvider implements QUI\REST\ProviderInterface
      */
     protected function getSiteData(QUI\Projects\Site $Site)
     {
-        $Project = $Site->getProject();
-
         return array(
-            'id'    => $Site->getId(),
-            'title' => $Site->getAttribute('title'),
-            'name'  => $Site->getAttribute('name'),
-            'url'   => $Project->getVHost(true, true) . $Site->getUrlRewritten()
+            'id'       => $Site->getId(),
+            'title'    => $Site->getAttribute('title'),
+            'name'     => $Site->getAttribute('name'),
+            'url'      => $Site->getUrlRewritten(),
+            'lastEdit' => $Site->getAttribute('e_date'),
+            'icon'     => $Site->getAttribute('image_site'),
         );
+    }
+
+
+    private function getMenu($menuType, QUI\Projects\Project $Project)
+    {
+        $Package = QUI::getPackage('quiqqer/app');
+        $Config  = $Package->getConfig();
+
+        $staticPageIDs = $this->getStaticPageIDs($Project);
+
+        $menu        = array();
+        $menuEntries = $Config->getValue(
+            $menuType,
+            $Project->getName() . '_' . $Project->getLang()
+        );
+
+        if ($menuEntries) {
+            $menuEntries = json_decode($menuEntries, true);
+
+            foreach ($menuEntries as $menuEntry) {
+                try {
+                    $id   = $menuEntry['id'];
+                    $Site = $Project->get($id);
+
+                    if ($Site->getAttribute('active')) {
+                        $siteData = $this->getSiteData($Site);
+
+                        $siteData['isStatic'] = false;
+                        if (in_array($id, $staticPageIDs)) {
+                            $siteData['isStatic'] = true;
+                        }
+
+                        if (isset($menuEntry['icon'])) {
+                            $siteData['icon'] = $menuEntry['icon'];
+                        } else {
+                            $siteData['icon'] = false;
+                        }
+
+                        $menu[] = $siteData;
+                    }
+                } catch (QUI\Exception $Exception) {
+                }
+            }
+        }
+
+        return $menu;
+    }
+
+
+    private function getStaticPageIDs(QUI\Projects\Project $Project)
+    {
+        $staticPageIDs = $Project->getConfig('quiqqerApp.settings.staticPages');
+
+        if ($staticPageIDs) {
+            return explode(',', $staticPageIDs);
+        }
+
+        return array();
     }
 }

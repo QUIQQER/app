@@ -1,0 +1,16 @@
+{
+  "welcome": {
+    "text": "Please wait while the content is loaded for the first time…"
+  },
+  "back": "Back",
+  "imprint": {
+    "title": "Imprint"
+  },
+  "side-menu": {
+    "title": "Pages"
+  },
+  "network-check": {
+    "header": "An active internet connection is required.",
+    "text": "Please connect your device to the internet."
+  }
+}

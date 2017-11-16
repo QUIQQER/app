@@ -1,14 +1,20 @@
 {
-  "name": "quiqqer/app",
-  "type": "quiqqer-library",
-  "description": "QUIQQER APP",
-  "version": "dev-master",
-  "license": "",
+  "name": "quiqqer\/app",
+  "type": "quiqqer-module",
+  "description": "Convert your QUIQQER website to an Android or iOS app",
+  "version": "dev-dev",
+  "license": "MIT",
   "authors": [
+    {
+      "name": "Jan Wennrich",
+      "email": "jan.wennrich@pcsg.de",
+      "homepage": "https:\/\/www.pcsg.de",
+      "role": "Developer"
+    },
     {
       "name": "Henning Leutz",
       "email": "leutz@pcsg.de",
-      "homepage": "http://www.pcsg.de",
+      "homepage": "https:\/\/www.pcsg.de",
       "role": "Developer"
     }
   ],
@@ -17,12 +23,14 @@
   },
   "require": {
     "php": ">=7",
-    "quiqqer/quiqqer": "*",
-    "quiqqer/rest": "dev-master|dev-dev"
+    "ext-zip": "*",
+    "quiqqer\/quiqqer": "*",
+    "quiqqer\/rest": "dev-dev",
+    "npm-asset\/sw-toolbox": "3.6.0"
   },
   "autoload": {
     "psr-4": {
-      "QUI\\APP\\": "src/QUI/APP"
+      "QUI\\APP\\": "src\/QUI\/APP"
     }
   }
 }
