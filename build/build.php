@@ -442,7 +442,7 @@ echo "\nBuilding .apk file, please wait...\n";
 $environmentVariables = "ANDROID_HOME=\"$sdkPath\" PATH=\$PATH:\$ANDROID_HOME/tools";
 liveExecuteCommand("$environmentVariables ionic build android --prod --release");
 
-$apkPath = __DIR__ . "/platforms/android/build/outputs/apk/android-release-unsigned.apk";
+$apkPath = __DIR__ . "/platforms/android/build/outputs/apk/release/android-release-unsigned.apk";
 
 $hasKey = getInput("Do you already have a signing key pair? (y/n): ", $cliInput) == 'y';
 
