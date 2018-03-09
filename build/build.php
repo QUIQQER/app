@@ -451,9 +451,10 @@ if ($hasKey) {
 } else {
     echo "\nGenerating signing key pair now. Please follow the instructions:\n";
 
-    liveExecuteCommand("keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000");
+    $keyName = "my_release_key.p12";
+    liveExecuteCommand("keytool -genkey -keystore $keyName -keyalg RSA -keysize 2048 -validity 10000 -storetype PKCS12 -alias my_release_key");
 
-    $keyPath = __DIR__ . '/my-release-key.keystore';
+    $keyPath = __DIR__ . "/$keyName";
 
     echo "\nSigning key pair stored at: $keyPath. Keep this file or you won't be able to update the app in the future.";
 }
@@ -464,7 +465,7 @@ if (!file_exists($keyPath)) {
 
 getInput("Press enter to start signing the .apk: ", $cliInput);
 
-liveExecuteCommand("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keyPath $apkPath alias_name");
+liveExecuteCommand("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keyPath $apkPath my_release_key");
 
 getInput("Press enter to optimize the signed .apk: ", $cliInput);
 
