@@ -37,7 +37,8 @@ class RestProvider implements QUI\REST\ProviderInterface
      * @param RequestInterface $Request
      * @param ResponseInterface $Response
      * @param $args
-     * @return mixed
+     *
+     * @return string
      */
     public function help(
         RequestInterface $Request,
@@ -55,6 +56,10 @@ class RestProvider implements QUI\REST\ProviderInterface
      * @param RequestInterface $Request
      * @param ResponseInterface $Response
      * @param $args
+     *
+     * @return string
+     *
+     * @throws QUI\Exception
      */
     public function structure(
         RequestInterface $Request,
@@ -181,6 +186,8 @@ class RestProvider implements QUI\REST\ProviderInterface
      * @param $args
      *
      * @return string
+     *
+     * @throws QUI\Exception
      */
     public function content(
         RequestInterface $Request,
@@ -198,7 +205,10 @@ class RestProvider implements QUI\REST\ProviderInterface
      * Return the data for a site
      *
      * @param QUI\Projects\Site $Site
+     *
      * @return array
+     *
+     * @throws QUI\Exception
      */
     protected function getSiteData(QUI\Projects\Site $Site)
     {
@@ -206,13 +216,23 @@ class RestProvider implements QUI\REST\ProviderInterface
             'id'       => $Site->getId(),
             'title'    => $Site->getAttribute('title'),
             'name'     => $Site->getAttribute('name'),
-            'url'      => $Site->getUrlRewritten(),
+            'url'      => $Site->getUrlRewrittenWithHost(),
             'lastEdit' => $Site->getAttribute('e_date'),
             'icon'     => $Site->getAttribute('image_site'),
         );
     }
 
 
+    /**
+     * Returns the structure of a menu (side or bottom menu)
+     *
+     * @param string $menuType - The menu to get ("sideMenu" or "bottomMenu")
+     * @param QUI\Projects\Project $Project
+     *
+     * @return array
+     *
+     * @throws QUI\Exception
+     */
     private function getMenu($menuType, QUI\Projects\Project $Project)
     {
         $Package = QUI::getPackage('quiqqer/app');
@@ -259,6 +279,13 @@ class RestProvider implements QUI\REST\ProviderInterface
     }
 
 
+    /**
+     * Returns the IDs of all pages that were defined as static
+     *
+     * @param QUI\Projects\Project $Project - The project which static pages should be get
+     *
+     * @return int[]
+     */
     private function getStaticPageIDs(QUI\Projects\Project $Project)
     {
         $staticPageIDs = $Project->getConfig('quiqqerApp.settings.staticPages');

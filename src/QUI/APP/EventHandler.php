@@ -9,16 +9,19 @@ namespace QUI\APP;
 use QUI;
 
 /**
- * Class RestProvider
+ * Class EventHandler
  *
  * @package QUI\APP
  */
 class EventHandler
 {
     /**
+     * Listens to project config save
+     *
      * @param $project
      * @param array $config
      * @param array $params
+     * @throws QUI\Exception
      */
     public static function onProjectConfigSave($project, array $config, array $params)
     {
@@ -124,6 +127,8 @@ class EventHandler
 
 
     /**
+     * Listens to page requests
+     *
      * @param QUI\Rewrite $Rewrite
      * @param $url
      */
@@ -141,10 +146,21 @@ class EventHandler
     }
 
 
+    /**
+     * Listens to the template's templateGetHeader-event
+     *
+     * @param QUI\Template $Template The template that fired the event
+     */
     public static function onTemplateGetHeader(QUI\Template $Template)
     {
         if (Validate::isAppRequest()) {
             $Template->extendHeaderWithJavaScriptFile(URL_OPT_DIR . 'quiqqer/app/bin/register-service-worker.js');
+
+            // Disable header and footer
+            $Template->setAttributes([
+                'template-header' => false,
+                'template-footer' => false,
+            ]);
         }
     }
 }

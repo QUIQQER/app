@@ -2,6 +2,7 @@
 
 /**
  * The following flags can be used:
+ * --noDepCheck     skip checking dependencies
  * --noNpm      	skip download & installation of npm packages
  * --skipPlatforms  skip adding iOS/Android platforms
  * --ignoreSSL  	ignore SSL certificate errors when querying QUIQQER App API
@@ -11,7 +12,11 @@
  * --dev        	activates all of above flags
  */
 
+require_once "dependency_check.php";
+
 echo "\nBuild started\n";
+
+$checkDependencies = true;
 
 $runNpm = true;
 
@@ -26,13 +31,22 @@ $cliInput = fopen("php://stdin", "r");
 
 // If dev flag is set activate all flags
 if (in_array('--dev', $argv)) {
-    $runNpm         = false;
-    $addPlatforms   = false;
-    $generateIcon   = false;
-    $generateSplash = false;
-    $sslErrors      = false;
+    $checkDependencies = false;
+    $runNpm            = false;
+    $addPlatforms      = false;
+    $generateIcon      = false;
+    $generateSplash    = false;
+    $sslErrors         = false;
     echo "Dev Mode:\n";
 }
+
+
+// Is no dependency check flag set?
+if (in_array('--noDepCheck', $argv) || !$checkDependencies) {
+    $checkDependencies = false;
+    echo "Not checking dependencies\n";
+}
+
 
 // Is no npm flag set?
 if (in_array('--noNpm', $argv) || !$runNpm) {
@@ -71,6 +85,16 @@ if ($configIni === false) {
     error("config.ini could not be found");
 }
 $apiUrl = $configIni['api_url']; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
+
+
+// Check dependencies
+if ($checkDependencies) {
+    echo "\nChecking if all required dependencies are present...\n";
+    if (!checkDependencies()) {
+        error("Not all required dependencies are installed, exiting.\nDependencies marked red above are missing\nInstall the missing ones and try again.", true);
+    }
+    echo "\nAll dependencies are present.\n";
+}
 
 
 // Install npm Modules
@@ -442,7 +466,7 @@ echo "\nBuilding .apk file, please wait...\n";
 $environmentVariables = "ANDROID_HOME=\"$sdkPath\" PATH=\$PATH:\$ANDROID_HOME/tools";
 liveExecuteCommand("$environmentVariables ionic build android --prod --release");
 
-$apkPath = __DIR__ . "/platforms/android/build/outputs/apk/android-release-unsigned.apk";
+$apkPath = __DIR__ . "/platforms/android/build/outputs/apk/release/android-release-unsigned.apk";
 
 $hasKey = getInput("Do you already have a signing key pair? (y/n): ", $cliInput) == 'y';
 
@@ -451,9 +475,10 @@ if ($hasKey) {
 } else {
     echo "\nGenerating signing key pair now. Please follow the instructions:\n";
 
-    liveExecuteCommand("keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000");
+    $keyName = "my_release_key.p12";
+    liveExecuteCommand("keytool -genkey -keystore $keyName -keyalg RSA -keysize 2048 -validity 10000 -storetype PKCS12 -alias my_release_key");
 
-    $keyPath = __DIR__ . '/my-release-key.keystore';
+    $keyPath = __DIR__ . "/$keyName";
 
     echo "\nSigning key pair stored at: $keyPath. Keep this file or you won't be able to update the app in the future.";
 }
@@ -464,7 +489,7 @@ if (!file_exists($keyPath)) {
 
 getInput("Press enter to start signing the .apk: ", $cliInput);
 
-liveExecuteCommand("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keyPath $apkPath alias_name");
+liveExecuteCommand("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keyPath $apkPath my_release_key");
 
 getInput("Press enter to optimize the signed .apk: ", $cliInput);
 
