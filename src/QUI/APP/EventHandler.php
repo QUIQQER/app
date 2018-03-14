@@ -9,16 +9,19 @@ namespace QUI\APP;
 use QUI;
 
 /**
- * Class RestProvider
+ * Class EventHandler
  *
  * @package QUI\APP
  */
 class EventHandler
 {
     /**
+     * Listens to project config save
+     *
      * @param $project
      * @param array $config
      * @param array $params
+     * @throws QUI\Exception
      */
     public static function onProjectConfigSave($project, array $config, array $params)
     {
@@ -124,6 +127,8 @@ class EventHandler
 
 
     /**
+     * Listens to page requests
+     *
      * @param QUI\Rewrite $Rewrite
      * @param $url
      */
