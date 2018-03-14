@@ -2,6 +2,7 @@
 
 /**
  * The following flags can be used:
+ * --noDepCheck     skip checking dependencies
  * --noNpm      	skip download & installation of npm packages
  * --skipPlatforms  skip adding iOS/Android platforms
  * --ignoreSSL  	ignore SSL certificate errors when querying QUIQQER App API
@@ -11,7 +12,11 @@
  * --dev        	activates all of above flags
  */
 
+require_once "dependency_check.php";
+
 echo "\nBuild started\n";
+
+$checkDependencies = true;
 
 $runNpm = true;
 
@@ -26,13 +31,22 @@ $cliInput = fopen("php://stdin", "r");
 
 // If dev flag is set activate all flags
 if (in_array('--dev', $argv)) {
-    $runNpm         = false;
-    $addPlatforms   = false;
-    $generateIcon   = false;
-    $generateSplash = false;
-    $sslErrors      = false;
+    $checkDependencies = false;
+    $runNpm            = false;
+    $addPlatforms      = false;
+    $generateIcon      = false;
+    $generateSplash    = false;
+    $sslErrors         = false;
     echo "Dev Mode:\n";
 }
+
+
+// Is no dependency check flag set?
+if (in_array('--noDepCheck', $argv) || !$checkDependencies) {
+    $checkDependencies = false;
+    echo "Not checking dependencies\n";
+}
+
 
 // Is no npm flag set?
 if (in_array('--noNpm', $argv) || !$runNpm) {
@@ -71,6 +85,16 @@ if ($configIni === false) {
     error("config.ini could not be found");
 }
 $apiUrl = $configIni['api_url']; // e.g: http://quiqqer.local/api/quiqqer/app/structure/Mainproject/de
+
+
+// Check dependencies
+if ($checkDependencies) {
+    echo "\nChecking if all required dependencies are present...\n";
+    if (!checkDependencies()) {
+        error("Not all required dependencies are installed, exiting.\nDependencies marked red above are missing\nInstall the missing ones and try again.", true);
+    }
+    echo "\nAll dependencies are present.\n";
+}
 
 
 // Install npm Modules
