@@ -75,8 +75,12 @@
             <en><![CDATA[Use advertising in the app]]></en>
         </locale>
         <locale name="quiqqerApp.settings.advertisement.admobid.text">
-            <de><![CDATA[AdMob ID für Werbung]]></de>
-            <en><![CDATA[AdMob ID for ads]]></en>
+            <de><![CDATA[AdSense ID]]></de>
+            <en><![CDATA[AdSense ID]]></en>
+        </locale>
+        <locale name="quiqqerApp.settings.advertisement.admobid.description">
+            <de><![CDATA[Ihre Google AdSense Ad-Unit ID für Banner]]></de>
+            <en><![CDATA[Your Google AdSense Ad-Unit ID for banners]]></en>
         </locale>
         <locale name="quiqqerApp.settings.title.text">
             <de><![CDATA[Titel der APP]]></de>
