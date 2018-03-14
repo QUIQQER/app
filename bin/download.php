@@ -48,6 +48,7 @@ try {
     $Zip->open($zipTarget, ZipArchive::CREATE);
 
     $apiUrl  = QUI\REST\Server::getInstance()->getAddress() . "quiqqer/app/structure/$projectName/de";
+    $apiUrl  = preg_replace('/(?<!:)\/{2,}/', '/', $apiUrl);
     $content = "api_url=\"$apiUrl\"";
     $Zip->addFromString('config.ini', $content);
 
