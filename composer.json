@@ -3,7 +3,7 @@
   "type": "quiqqer-module",
   "description": "Convert your QUIQQER website to an Android or iOS app",
   "licence": ["PCSG QL-1.0", "GPL-3.0+"],
-  "version": "dev-master",
+  "version": "dev-dev",
   "authors": [
     {
       "name": "Jan Wennrich",
