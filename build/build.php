@@ -106,7 +106,7 @@ if ($runNpm) {
 
 // Add platforms
 if ($addPlatforms) {
-    $message        = "For which platforms do you want to build you app? (Android = a; iOS = i; both = b): ";
+    $message        = "For which platforms do you want to build your app? (Android = a; iOS = i; both = b): ";
     $buildPlatforms = getInput($message, $cliInput);
 
     if ($buildPlatforms == 'a' || $buildPlatforms == 'b') {
