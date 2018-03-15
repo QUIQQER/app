@@ -5,11 +5,9 @@
         {{"welcome.offline.text" | translate}}
     </div>
 
-    <div *ngIf="!isOffline">
-        <div id="loading">
-            {{"welcome.text" | translate}}
-            <ion-spinner></ion-spinner>
-        </div>
+    <div *ngIf="!isOffline" id="loading">
+        <ion-spinner></ion-spinner>
+        {{"welcome.text" | translate}}
 
         <iframe *ngFor="let staticPage of staticPagesInitial" [src]="staticPage" (load)="initialIframeLoaded(staticPage)" style="display: none"></iframe>
         <iframe *ngFor="let staticPage of staticPagesFinal" [src]="staticPage" (load)="finalIframeLoaded(staticPage)" style="display: none"></iframe>
