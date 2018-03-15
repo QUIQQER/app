@@ -13,17 +13,24 @@ export class WelcomeModal {
 
     public staticPages: SafeResourceUrl[] = [];
     private loadedPages: number = 0;
+    private isOffline: boolean;
 
     constructor(public viewCtrl: ViewController, private sanitizer: DomSanitizer, Network: Network,) {
-        if (Network.type == 'none') {
+        this.isOffline = Network.type == 'none';
+
+        if (this.isOffline) {
             // If we're offline wait until we're online before loading pages
             Network.onConnect().subscribe(() => {
+                this.isOffline = false;
+                console.log('Device is offline: ', this.isOffline);
                 this.loadPages();
             });
         } else {
             // We're online, time to load the pages
             this.loadPages();
         }
+
+        console.log('Device is offline: ', this.isOffline);
     }
 
 

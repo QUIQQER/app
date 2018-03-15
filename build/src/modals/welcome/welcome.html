@@ -1,9 +1,16 @@
 <ion-content padding>
-
-    <div id="loading">
-        {{"welcome.text" | translate}}
-        <ion-spinner></ion-spinner>
+    <div *ngIf="isOffline">
+        <img src="assets/images/offline.png"/>
+        <h3>{{"welcome.offline.header" | translate}}</h3>
+        {{"welcome.offline.text" | translate}}
     </div>
 
-    <iframe *ngFor="let staticPage of staticPages" [src]="staticPage" (load)="iframeLoaded()" style="display: none"></iframe>
+    <div *ngIf="!isOffline">
+        <div id="loading">
+            {{"welcome.text" | translate}}
+            <ion-spinner></ion-spinner>
+        </div>
+
+        <iframe *ngFor="let staticPage of staticPages" [src]="staticPage" (load)="iframeLoaded()" style="display: block"></iframe>
+    </div>
 </ion-content>
