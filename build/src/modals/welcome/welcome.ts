@@ -11,7 +11,7 @@ import {Network} from "@ionic-native/network";
 })
 export class WelcomeModal {
 
-    public staticPages: SafeResourceUrl[];
+    public staticPages: SafeResourceUrl[] = [];
     private loadedPages: number = 0;
 
     constructor(public viewCtrl: ViewController, private sanitizer: DomSanitizer, Network: Network,) {
@@ -29,10 +29,15 @@ export class WelcomeModal {
 
     private loadPages() {
         this.staticPages = staticUrls.map(this.getSanitizedUrl.bind(this));
+
+        if (this.staticPages.length == 0) {
+            this.dismiss();
+        }
     }
 
 
     public iframeLoaded() {
+
         this.loadedPages++;
 
         if (this.loadedPages == staticUrls.length) {
