@@ -11,13 +11,20 @@ import {Network} from "@ionic-native/network";
 })
 export class WelcomeModal {
 
-    public staticPages: SafeResourceUrl[];
-    private loadedPages: number = 0;
+    public staticPagesInitial: SafeResourceUrl[] = [];
+    public staticPagesFinal: SafeResourceUrl[] = [];
+    private loadedPagesInitial: number = 0;
+    private loadedPagesFinal: number = 0;
+    private isOffline: boolean;
 
     constructor(public viewCtrl: ViewController, private sanitizer: DomSanitizer, Network: Network,) {
-        if (Network.type == 'none') {
+        this.isOffline = Network.type == 'none';
+
+        if (this.isOffline) {
             // If we're offline wait until we're online before loading pages
             Network.onConnect().subscribe(() => {
+                this.isOffline = false;
+                console.log('Device is offline: ', this.isOffline);
                 this.loadPages();
             });
         } else {
@@ -28,16 +35,33 @@ export class WelcomeModal {
 
 
     private loadPages() {
-        this.staticPages = staticUrls.map(this.getSanitizedUrl.bind(this));
+        this.staticPagesInitial = staticUrls.map(this.getSanitizedUrl.bind(this));
+
+        if (this.staticPagesInitial.length == 0) {
+            this.dismiss();
+        }
     }
 
 
-    public iframeLoaded() {
-        this.loadedPages++;
+    public initialIframeLoaded(staticPage) {
 
-        if (this.loadedPages == staticUrls.length) {
-            console.log('All pages loaded');
-            this.dismiss();
+        if(staticPage) {
+            console.log("Loaded", staticPage);
+            this.loadedPagesInitial++;
+            this.staticPagesFinal.push(staticPage);
+        }
+
+    }
+
+
+    public finalIframeLoaded(staticPage) {
+        if(staticPage) {
+            console.log("Loaded second time: ", staticPage);
+            this.loadedPagesFinal++;
+            if (this.loadedPagesFinal == staticUrls.length) {
+                console.log('All pages loaded twice');
+                this.dismiss();
+            }
         }
     }
 

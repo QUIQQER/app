@@ -2,6 +2,33 @@
 
 QUIQQER App
 ========
+
+Build a smartphone app from your QUIQQER project!  
+
+Now you can't just be found in the app stores of Apple and Google but also your website becomes offline available.  
+
+And all of that dead easy without any programming knowledge!  
+
+In your QUIQQER system you comfortably configure everything from colors and logos up to menus and ads.
+Download the generated files and an easy to use script does the rest for you.
+Just like this you create your own app in no time!  
+
+Since all content of the app is served from your QUIQQER system you manage the app's content with the QUIQQER WYSIWYG-Editors and have no need to always upload new versions to the app stores.  
+
+By optionally embedding Google ads in your app you can generate additional income easily.  
+
+Features summerized:
+
+
+Your own Android or iOS app in just 5 minutes
+Present your QUIQQER website mobile and also offline
+Completely customizable from colors and logos to menus and ads
+Directly use the generated app or customize it even more with some programming knowledge (an Ionic App is generated)
+Update the apps content with the QUIQQER WYSIWYG-Editor without uploading new app versions to the app stores
+Earn money by optional ads in your app with Google AdMob
+
+- - - - - - 
+
 Package name:
 
     quiqqer/app
@@ -39,4 +66,5 @@ We will try to respond to your request and forward it to the responsible develop
 
 License
 -------
-MIT
+PCSG QL-1.0  
+GPL-3.0+

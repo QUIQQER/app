@@ -187,6 +187,9 @@
                                             var="quiqqerApp.settings.advertisement.admobid.text"
                                     />
                                 </text>
+                                <description>
+                                    <locale group="quiqqer/app" var="quiqqerApp.settings.advertisement.admobid.description"/>
+                                </description>
                             </input>
                         </settings>
 
