@@ -4,7 +4,7 @@
   "description": "Convert your QUIQQER website to an Android or iOS app",
 
   "licence": ["PCSG QL-1.0", "GPL-3.0+"],
-  "version": "1.0.0",
+  "version": "dev-master",
   "authors": [
     {
       "name": "Jan Wennrich",
