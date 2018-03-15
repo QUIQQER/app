@@ -6,6 +6,7 @@ import {HomePage} from '../home/home';
 import {bottomMenu} from "../../assets/bottomMenu";
 import {config} from "../../app/config";
 import {WelcomeModal} from "../../modals/welcome/welcome";
+import {staticUrls} from "../../assets/staticUrls";
 
 @Component({
     templateUrl: 'tabs.html'
@@ -29,11 +30,15 @@ export class TabsPage {
         this.isFirstUse().then(function (isFirstUse) {
 
             if (isFirstUse) {
-                let Welcome = modalCtrl.create(WelcomeModal, null, {enableBackdropDismiss: false});
-                Welcome.onDidDismiss(function (returnedData) {
+                if (staticUrls.length > 0) {
+                    let Welcome = modalCtrl.create(WelcomeModal, null, {enableBackdropDismiss: false});
+                    Welcome.onDidDismiss(function (returnedData) {
+                        self.storage.set('isFirstUse', false);
+                    });
+                    Welcome.present();
+                } else {
                     self.storage.set('isFirstUse', false);
-                });
-                Welcome.present();
+                }
             }
         });
 
