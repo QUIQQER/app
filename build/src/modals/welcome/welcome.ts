@@ -11,8 +11,10 @@ import {Network} from "@ionic-native/network";
 })
 export class WelcomeModal {
 
-    public staticPages: SafeResourceUrl[] = [];
-    private loadedPages: number = 0;
+    public staticPagesInitial: SafeResourceUrl[] = [];
+    public staticPagesFinal: SafeResourceUrl[] = [];
+    private loadedPagesInitial: number = 0;
+    private loadedPagesFinal: number = 0;
     private isOffline: boolean;
 
     constructor(public viewCtrl: ViewController, private sanitizer: DomSanitizer, Network: Network,) {
@@ -29,27 +31,37 @@ export class WelcomeModal {
             // We're online, time to load the pages
             this.loadPages();
         }
-
-        console.log('Device is offline: ', this.isOffline);
     }
 
 
     private loadPages() {
-        this.staticPages = staticUrls.map(this.getSanitizedUrl.bind(this));
+        this.staticPagesInitial = staticUrls.map(this.getSanitizedUrl.bind(this));
 
-        if (this.staticPages.length == 0) {
+        if (this.staticPagesInitial.length == 0) {
             this.dismiss();
         }
     }
 
 
-    public iframeLoaded() {
+    public initialIframeLoaded(staticPage) {
 
-        this.loadedPages++;
+        if(staticPage) {
+            console.log("Loaded", staticPage);
+            this.loadedPagesInitial++;
+            this.staticPagesFinal.push(staticPage);
+        }
 
-        if (this.loadedPages == staticUrls.length) {
-            console.log('All pages loaded');
-            this.dismiss();
+    }
+
+
+    public finalIframeLoaded(staticPage) {
+        if(staticPage) {
+            console.log("Loaded second time: ", staticPage);
+            this.loadedPagesFinal++;
+            if (this.loadedPagesFinal == staticUrls.length) {
+                console.log('All pages loaded twice');
+                this.dismiss();
+            }
         }
     }
 

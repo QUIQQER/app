@@ -11,6 +11,7 @@
             <ion-spinner></ion-spinner>
         </div>
 
-        <iframe *ngFor="let staticPage of staticPages" [src]="staticPage" (load)="iframeLoaded()" style="display: block"></iframe>
+        <iframe *ngFor="let staticPage of staticPagesInitial" [src]="staticPage" (load)="initialIframeLoaded(staticPage)" style="display: none"></iframe>
+        <iframe *ngFor="let staticPage of staticPagesFinal" [src]="staticPage" (load)="finalIframeLoaded(staticPage)" style="display: none"></iframe>
     </div>
 </ion-content>
