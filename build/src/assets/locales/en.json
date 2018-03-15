@@ -1,6 +1,10 @@
 {
   "welcome": {
-    "text": "Please wait while the content is loaded for the first time…"
+    "text": "Please wait while the content is loaded for the first time…",
+    "offline": {
+      "header": "The first initialization requires an internet connection.",
+      "text": "Please connect your device to the internet."
+    }
   },
   "back": "Back",
   "imprint": {

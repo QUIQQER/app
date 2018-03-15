@@ -1,6 +1,10 @@
 {
   "welcome": {
-    "text": "Bitte warten, während die Inhalte das erste Mal geladen werden…"
+    "text": "Bitte warte, während die Inhalte das erste Mal geladen werden…",
+    "offline": {
+      "header": "Zur ersten Einrichtung wird eine Internetverbindung benötigt.",
+      "text": "Bitte verbinde dein Gerät mit dem Internet."
+    }
   },
   "back": "Zurück",
   "imprint": {
