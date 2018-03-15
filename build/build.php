@@ -106,7 +106,7 @@ if ($runNpm) {
 
 // Add platforms
 if ($addPlatforms) {
-    $message        = "For which platforms do you want to build you app? (Android = a; iOS = i; both = b): ";
+    $message        = "For which platforms do you want to build your app? (Android = a; iOS = i; both = b): ";
     $buildPlatforms = getInput($message, $cliInput);
 
     if ($buildPlatforms == 'a' || $buildPlatforms == 'b') {
@@ -503,10 +503,24 @@ while (!file_exists($zipalignPath)) {
 }
 
 $appName = str_replace(' ', '_', $apiData->title);
+$appFile = "$appName.apk";
 
-liveExecuteCommand("$zipalignPath -v 4 $apkPath $appName.apk");
 
-echo "\nYour app was successfully built as $appName.apk\n";
+if (file_exists($appFile)) {
+    $overwriteFile = getInput("$appFile already exists, do you want to overwrite it? (y/n): ", $cliInput) == 'y';
+    if (!$overwriteFile) {
+        $version = 2;
+        $appFile = "{$appName}_{$version}.apk";
+        while (file_exists($appFile)) {
+            $version++;
+            $appFile = "{$appName}_{$version}.apk";
+        }
+    }
+}
+
+liveExecuteCommand("$zipalignPath -f 4 $apkPath $appFile");
+
+echo "\nYour app was successfully built as $appFile\n";
 
 echo "\nBuild completed\n";
 
