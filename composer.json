@@ -1,37 +1,38 @@
 {
-  "name": "quiqqer\/app",
-  "type": "quiqqer-module",
-  "description": "Convert your QUIQQER website to an Android or iOS app",
-
-  "licence": ["PCSG QL-1.0", "GPL-3.0+"],
-  "version": "dev-master",
-  "authors": [
-    {
-      "name": "Jan Wennrich",
-      "email": "jan.wennrich@pcsg.de",
-      "homepage": "https:\/\/www.pcsg.de",
-      "role": "Developer"
+    "name": "quiqqer\/app",
+    "type": "quiqqer-module",
+    "description": "Convert your QUIQQER website to an Android or iOS app",
+    "licence": [
+        "PCSG QL-1.0",
+        "GPL-3.0+"
+    ],
+    "authors": [
+        {
+            "name": "Jan Wennrich",
+            "email": "jan.wennrich@pcsg.de",
+            "homepage": "https:\/\/www.pcsg.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Henning Leutz",
+            "email": "leutz@pcsg.de",
+            "homepage": "https:\/\/www.pcsg.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@pcsg.de"
     },
-    {
-      "name": "Henning Leutz",
-      "email": "leutz@pcsg.de",
-      "homepage": "https:\/\/www.pcsg.de",
-      "role": "Developer"
+    "require": {
+        "php": ">=7",
+        "ext-zip": "*",
+        "quiqqer\/quiqqer": "*",
+        "quiqqer\/rest": "dev-master|dev-dev",
+        "npm-asset\/sw-toolbox": "3.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "QUI\\APP\\": "src\/QUI\/APP"
+        }
     }
-  ],
-  "support": {
-    "email": "support@pcsg.de"
-  },
-  "require": {
-    "php": ">=7",
-    "ext-zip": "*",
-    "quiqqer\/quiqqer": "*",
-    "quiqqer\/rest": "dev-master|dev-dev",
-    "npm-asset\/sw-toolbox": "3.6.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "QUI\\APP\\": "src\/QUI\/APP"
-    }
-  }
 }
