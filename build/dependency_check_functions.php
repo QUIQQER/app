@@ -106,7 +106,7 @@ function isCordovaInstalled()
     }
 
     $output = trim($output[0]);
-    if (!preg_match('/^\d+\.\d+\.\d+$/', $output)) {
+    if (!preg_match('/^\d+\.\d+\.\d+/', $output)) {
         return false;
     }
 
