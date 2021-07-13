@@ -28,7 +28,7 @@
         "ext-zip": "*",
         "quiqqer\/quiqqer": "*",
         "quiqqer\/rest": "dev-master|dev-dev",
-        "npm-asset\/sw-toolbox": "3.6.0"
+        "quiqqer-asset\/sw-toolbox": "3.6.0"
     },
     "autoload": {
         "psr-4": {

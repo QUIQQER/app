@@ -1,6 +1,6 @@
 'use strict';
 
-importScripts('/packages/bin/sw-toolbox/sw-toolbox.js');
+importScripts('/packages/bin/quiqqer-assets/sw-toolbox/sw-toolbox/sw-toolbox.js');
 
 self.toolbox.options.cache = {
     name: 'quiqqer-sw-cache'
